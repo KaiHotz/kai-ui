@@ -1,0 +1,31 @@
+.ui-color-input {
+  --ui-btn--width: 70px;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+
+  &__swatch {
+    display: flex;
+    margin-top: 5px;
+    border-radius: 3px;
+  }
+
+  &__validation-wrapper {
+    min-height: 18px;
+  }
+
+  &--error {
+    color: var(--error);
+    .ui-color-input__swatch {
+      border-color: var(--error);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    .ui-color-input__swatch {
+      background: var(--green-6);
+      cursor: not-allowed;
+    }
+  }
+}

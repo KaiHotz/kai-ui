@@ -1,0 +1,1 @@
+export { VirtualFilter } from './VirtualFilter';

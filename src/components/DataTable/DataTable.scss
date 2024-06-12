@@ -1,0 +1,128 @@
+@use 'node_modules/ag-grid-community/styles' as ag;
+@import 'node_modules/ag-grid-community/styles';
+
+$data-table-min-height: 386px;
+
+@include ag.grid-styles(
+  (
+    themes: (
+      quartz: (
+        --ag-font-size: 14px,
+        --ag-data-color: var(--emphasis-primary),
+        --ag-font-family: var(--font-primary),
+        --ag-border-color: var(--border-color),
+        --ag-borders-input: solid 1px,
+        --ag-checkbox-checked-color: var(--blue-3),
+        --ag-checkbox-unchecked-color: var(--blue-3),
+        --ag-input-focus-border-color: var(--border-color),
+        --ag-input-focus-box-shadow: none,
+      ),
+      quartz-dark: (
+        --ag-font-size: 14px,
+        --ag-data-color: var(--emphasis-primary),
+        --ag-font-family: var(--font-primary),
+        --ag-border-color: var(--border-color),
+        --ag-borders-input: solid 1px,
+        --ag-checkbox-checked-color: var(--blue-3),
+        --ag-checkbox-unchecked-color: var(--blue-3),
+        --ag-input-focus-border-color: var(--border-color),
+        --ag-input-focus-box-shadow: none,
+      ),
+    ),
+  )
+);
+.ag-date-filter {
+  .ag-text-field-input {
+    padding-right: 5px !important;
+  }
+}
+
+.ag-text-field-input {
+  min-height: 26px !important;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.ui-data-table {
+  --min-height: var(--ui-data-table--min-height, #{$data-table-min-height});
+  .ag-layout-auto-height {
+    min-height: var(--min-height);
+  }
+
+  &--fixed-height {
+    height: var(--ui-data-table--fixed-height, #{$data-table-min-height});
+  }
+
+  &--row-clickable {
+    .ag-row {
+      cursor: pointer;
+    }
+  }
+
+  .ag-cell-wrap-text {
+    line-height: 24px;
+    word-break: break-word;
+  }
+
+  .ag-cell-value {
+    width: 100%;
+  }
+
+  .ag-header-cell-text {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .ag-header-cell.text-center {
+    .ag-header-cell-label {
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  .ag-header-group-cell-label {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ag-pinned-right-cols-container,
+  .ag-center-cols-container {
+    margin-right: 0 !important;
+  }
+
+  .ag-pinned-left-cols-container {
+    margin-left: 0 !important;
+  }
+
+  .ag-header-cell {
+    &:last-of-type {
+      &:after {
+        content: '';
+        background-color: transparent;
+      }
+    }
+  }
+
+  .ag-header-row {
+    border-bottom: var(--ag-row-border-style) var(--ag-row-border-color) var(--ag-row-border-width);
+  }
+
+  .ag-row-odd {
+    background-color: var(--ag-background-color);
+  }
+
+  .ag-cell.text-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Removal borders for pinned columns */
+  .ag-pinned-left-header,
+  .ag-cell-last-left-pinned {
+    border: 0 !important;
+  }
+
+  .ag-horizontal-right-spacer {
+    border-left: none !important;
+  }
+}

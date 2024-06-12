@@ -1,0 +1,8 @@
+.ui-pseudo-link-cell-renderer {
+  &__inner {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    gap: 8px;
+  }
+}

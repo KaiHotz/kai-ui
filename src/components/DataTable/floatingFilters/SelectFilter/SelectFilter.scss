@@ -1,0 +1,14 @@
+.ui-select-filter {
+  .ui-select {
+    &__placeholder,
+    &__placeholder:hover {
+      color: var(--emphasis-primary) !important;
+    }
+    &__container {
+      background-color: var(--ag-background-color);
+      &:focus-within {
+        background-color: var(--ag-background-color) !important;
+      }
+    }
+  }
+}
