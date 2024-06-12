@@ -1,0 +1,1 @@
+import{r as o}from"./index-CDs2tPxN.js";import{T as s}from"./ThemeProvider-D1IB1Gcs.js";const n=()=>{const{theme:e,setTheme:t,isDark:r}=o.useContext(s);return{theme:e,isDark:r,setTheme:t}};export{n as u};
