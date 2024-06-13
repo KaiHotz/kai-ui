@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColorResult } from 'react-color';
 
-import { ColorInput } from './ColorInput';
+import { ColorPicker } from './ColorPicker';
 
-const meta: Meta<typeof ColorInput> = {
-  title: 'Components/ColorInput',
-  component: ColorInput,
+const meta: Meta<typeof ColorPicker> = {
+  title: 'Components/ColorPicker',
+  component: ColorPicker,
   argTypes: {
     onChange: {
       control: false,
@@ -17,7 +17,7 @@ const meta: Meta<typeof ColorInput> = {
   },
 };
 
-type Story = StoryObj<typeof ColorInput>;
+type Story = StoryObj<typeof ColorPicker>;
 export const Default: Story = {
   render: function useColorInput(args) {
     const [colorValue, setColorValue] = useState('#e0ee20');
@@ -26,7 +26,7 @@ export const Default: Story = {
       setColorValue(color.hex);
     };
 
-    return <ColorInput {...args} color={colorValue} onChange={handleChange} />;
+    return <ColorPicker {...args} color={colorValue} onChange={handleChange} />;
   },
   args: {
     variant: 'picker',
