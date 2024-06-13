@@ -33,6 +33,7 @@ export const Default: Story = {
     );
   },
   args: {
+    small: false,
     pages: 1000,
     fullPagination: false,
   },
