@@ -9,7 +9,7 @@ import { FormRadio } from './FormRadio';
 import { RadioOption } from '../../Radio';
 
 const meta: Meta<typeof FormRadio> = {
-  title: 'Forms/FormRadio',
+  title: 'Components/Forms/FormRadio',
   component: FormRadio,
   argTypes: {
     labelPosition: {

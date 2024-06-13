@@ -125,7 +125,7 @@ const columnDefsWithActions: ColumnDef<TableData>[] = [
 ];
 
 const meta: Meta<typeof DataTable> = {
-  title: 'Table/DataTable',
+  title: 'Components/DataTable',
   component: DataTable,
   argTypes: {
     gridOptions: {

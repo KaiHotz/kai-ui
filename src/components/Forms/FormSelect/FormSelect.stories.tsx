@@ -16,7 +16,7 @@ const optionsDefault: ISelectOption[] = [
 ];
 
 const meta: Meta<typeof FormSelect> = {
-  title: 'Forms/FormSelect',
+  title: 'Components/Forms/FormSelect',
   component: FormSelect,
   argTypes: {
     name: {

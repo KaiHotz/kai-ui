@@ -49,7 +49,7 @@ const options: Highcharts.Options = {
 };
 
 const meta: Meta<typeof DateTimeSeries> = {
-  title: 'Charts/DateTimeSeries',
+  title: 'Components/Charts/DateTimeSeries',
   component: DateTimeSeries,
   argTypes: {
     className: {

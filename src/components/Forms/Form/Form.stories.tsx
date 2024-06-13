@@ -12,7 +12,7 @@ import { capitalizeWords } from '../../../utils';
 const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] as const;
 
 const meta: Meta<typeof Form> = {
-  title: 'Forms/Form',
+  title: 'Components/Forms/Form',
   component: Form,
   args: {
     submitOnChange: false,

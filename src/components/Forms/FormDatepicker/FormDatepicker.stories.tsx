@@ -7,7 +7,7 @@ import { Form } from '../Form';
 import { FormDatepicker } from './FormDatepicker';
 
 const meta: Meta<typeof FormDatepicker> = {
-  title: 'Forms/FormDatepicker',
+  title: 'Components/Forms/FormDatepicker',
   component: FormDatepicker,
   argTypes: {
     dropdownMode: {

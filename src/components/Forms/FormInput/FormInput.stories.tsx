@@ -26,7 +26,7 @@ const iconMap = {
 };
 
 const meta: Meta<typeof FormInput> = {
-  title: 'Forms/FormInput',
+  title: 'Components/Forms/FormInput',
   component: FormInput,
   args: {
     label: '',
