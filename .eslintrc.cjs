@@ -40,6 +40,7 @@ module.exports = {
     'src/graphql/generated/*',
   ],
   rules: {
+    'no-unused-vars': 'warn',
     'react/display-name': 'off',
     'react-refresh/only-export-components': 'off',
     'newline-before-return': 'error',
