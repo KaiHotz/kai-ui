@@ -20,7 +20,7 @@ export const Default: Story = {
     return (
       <>
         <h4 style={{ textDecoration: 'underline' }}>This is a practical example of component composition in React:</h4>
-        <div style={{ padding: '20px 10px', marginTop: 30, border: '1px solid #000' }}>
+        <div style={{ padding: '20px 10px', marginTop: 30 }}>
           <Tabs {...args} selected={selected} setSelected={setSelected}>
             <TabsList>
               <Tab>First Tab</Tab>
