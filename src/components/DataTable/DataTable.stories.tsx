@@ -48,7 +48,7 @@ const columnDefsWithLargeheaderText: ColumnDef<TableData>[] = [
   {
     headerName: 'This is a large header text that wraps into multiple lines',
     field: 'first_name',
-    width: 200,
+    maxWidth: 180,
     sortable: true,
   },
   {
