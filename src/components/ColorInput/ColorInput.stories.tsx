@@ -11,6 +11,9 @@ const meta: Meta<typeof ColorInput> = {
     onChange: {
       control: false,
     },
+    color: {
+      control: false,
+    },
   },
 };
 
@@ -23,11 +26,7 @@ export const Default: Story = {
       setColorValue(color.hex);
     };
 
-    return (
-      <div>
-        <ColorInput {...args} color={colorValue} onChange={handleChange} />
-      </div>
-    );
+    return <ColorInput {...args} color={colorValue} onChange={handleChange} />;
   },
   args: {
     variant: 'picker',
@@ -39,6 +38,7 @@ export const Default: Story = {
     required: false,
     reserveSpaceForError: false,
     small: false,
+    children: 'click to change color',
   },
 };
 export default meta;

@@ -3,7 +3,6 @@ import cx from 'clsx';
 import './Button.scss';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: string;
   icon?: ReactNode;
   number?: boolean;
   iconPosition?: 'left' | 'right';

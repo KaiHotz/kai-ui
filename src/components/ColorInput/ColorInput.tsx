@@ -1,4 +1,4 @@
-import React, { FC, useState, ReactNode, useCallback, useRef, MouseEvent } from 'react';
+import React, { FC, useState, ReactNode, useCallback, useRef, MouseEvent, PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 import cx from 'clsx';
@@ -16,6 +16,7 @@ export interface IColorInputProps {
   color: ColorResult['hex'];
   variant?: 'palette' | 'picker';
   label?: string;
+  icon?: ReactNode;
   errorMsg?: ReactNode;
   hintText?: string;
   disabled?: boolean;
@@ -25,10 +26,12 @@ export interface IColorInputProps {
   onChange: (color: ColorResult) => void;
 }
 
-export const ColorInput: FC<IColorInputProps> = ({
+export const ColorInput: FC<PropsWithChildren<IColorInputProps>> = ({
+  children,
   variant = 'picker',
   color,
   label,
+  icon,
   errorMsg,
   hintText,
   disabled,
@@ -89,14 +92,17 @@ export const ColorInput: FC<IColorInputProps> = ({
       })}
     >
       <Label text={label} required={required} isError={Boolean(errorMsg)} small={small} />
-      <div
-        className="ui-color-input__swatch"
-        style={{
-          backgroundColor: color,
-        }}
+      <Button
+        type="button"
+        variant="tertiary"
+        small={small}
+        onClick={handleShowPicker}
+        disabled={disabled}
+        icon={icon}
+        style={{ backgroundColor: color }}
       >
-        <Button type="button" variant="ghost" small={small} onClick={handleShowPicker} disabled={disabled} />
-      </div>
+        {children}
+      </Button>
       {colorPickerElement &&
         ReactDOM.createPortal(
           <div className="ui-color-input__popover" ref={setPopperElement} {...attributes.popper} style={styles.popper}>
