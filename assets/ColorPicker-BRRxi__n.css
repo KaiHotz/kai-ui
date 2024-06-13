@@ -1,0 +1,1 @@
+.ui-color-picker{position:relative;box-sizing:border-box;margin:0}.ui-color-picker__validation-wrapper{min-height:18px}.ui-color-picker--error{color:var(--error)}.ui-color-picker--error .ui-btn{border-color:var(--error)}.ui-color-picker .ui-btn{color:var(--white);text-shadow:-1px 1px 0 var(--black),1px 1px 0 var(--black),1px -1px 0 var(--black),-1px -1px 0 var(--black)}
