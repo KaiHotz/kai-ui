@@ -9,7 +9,7 @@ import { Tab } from './Tab';
 type Story = StoryObj<typeof Tabs>;
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
 };
 
