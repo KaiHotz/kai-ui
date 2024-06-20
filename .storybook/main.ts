@@ -15,21 +15,10 @@ const config: StorybookConfig = {
     'name': '@storybook/react-vite',
     'options': {},
   },
-  'docs': {
-    'autodocs': 'tag',
-  },
+  'docs': {},
   'core': {
     disableTelemetry: true
   },
-  async viteFinal(config) {
-    // Merge custom configuration into the default config
-    return mergeConfig(config, {
-      // Add dependencies to pre-optimization
-      plugins: [svgr({ include: '**/*.svg' })],
-
-    });
-  },
-
 };
 
 export default config;
