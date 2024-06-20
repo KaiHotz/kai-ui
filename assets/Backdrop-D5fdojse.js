@@ -1,1 +1,0 @@
-import{R as o}from"./index-CDs2tPxN.js";import{c as r}from"./clsx-B-dksMZM.js";const s=({isFrosted:e})=>o.createElement("div",{className:r("ui-backdrop",{"ui-backdrop--frosted":e}),role:"presentation"});s.__docgenInfo={description:"",methods:[],displayName:"Backdrop",props:{isFrosted:{required:!1,tsType:{name:"boolean"},description:""}}};export{s as B};
