@@ -21,7 +21,7 @@ const menuItems: SideNavItem[] = [
     onClick: () => {},
   },
   {
-    title: 'Wahed Fees',
+    title: 'Fees',
     icon: <FaRegLightbulb />,
     subItems: [
       {

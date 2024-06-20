@@ -58,17 +58,7 @@ body {
 }
 
 #storybook-docs {
-  .docs-story {
+  .sbdocs {
     background-color: var(--app-backgroung-color);
-  }
-
-  .ui-docs-story {
-    &--dark {
-      @include colors-palette-dark-theme();
-    }
-
-    &--light {
-      @include colors-palette-light-theme();
-    }
   }
 }

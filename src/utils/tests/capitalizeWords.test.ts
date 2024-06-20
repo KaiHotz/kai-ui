@@ -14,7 +14,7 @@ describe('capitalizeWord', () => {
   });
 
   it('should omit unicode characters', () => {
-    const value = capitalizeWords('Wahed is really nice! 🙂');
-    expect(value).toBe('Wahed Is Really Nice! 🙂');
+    const value = capitalizeWords('Foo is really nice! 🙂');
+    expect(value).toBe('Foo Is Really Nice! 🙂');
   });
 });
