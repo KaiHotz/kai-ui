@@ -14,6 +14,14 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     "storybook-dark-mode",
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+      }
+    },
   ],
   'framework': {
     'name': '@storybook/react-vite',

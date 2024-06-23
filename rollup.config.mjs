@@ -18,13 +18,6 @@ export default defineConfig(
     input: './src/index.ts',
     output: [
       {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: false,
-        exports: 'named',
-        name: packageJson.name,
-      },
-      {
         file: packageJson.module,
         format: 'es',
         exports: 'named',
