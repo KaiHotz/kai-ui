@@ -1,14 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:storybook/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:react/jsx-runtime', 'plugin:storybook/recommended', 'plugin:jsx-a11y/recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   plugins: ['react', 'react-hooks', 'react-refresh', 'storybook', 'import', 'jsx-a11y', 'prettier'],
   env: {
     node: true,
