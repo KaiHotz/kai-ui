@@ -1,7 +1,8 @@
 //brand-colors
-$accent-1: #e8ab22;
-$accent-2: #e19526;
-$accent-3: #d57a27;
+$accent-1: #ffe81f;
+$accent-2: #e8ab22;
+$accent-3: #e19526;
+$accent-4: #d57a27;
 
 //neutral-colors
 $black: #000000;
@@ -26,6 +27,7 @@ $blue-3: #225fe8;
 $blue-4: #1241ac;
 $blue-5: #0b2766;
 $blue-6: #182230;
+$blue-7: #0d1117;
 
 $blue-green-1: #a7f5ff;
 $blue-green-2: #5bedff;
@@ -98,6 +100,7 @@ $blue-violet-5: #251556;
   --accent-1: #{$accent-1};
   --accent-2: #{$accent-2};
   --accent-3: #{$accent-3};
+  --accent-4: #{$accent-4};
 }
 
 @mixin neutral-colors {
@@ -125,6 +128,7 @@ $blue-violet-5: #251556;
   --blue-4: #{$blue-4};
   --blue-5: #{$blue-5};
   --blue-6: #{$blue-6};
+  --blue-7: #{$blue-7};
 
   --blue-green-1: #{$blue-green-1};
   --blue-green-2: #{$blue-green-2};
@@ -211,23 +215,23 @@ $blue-violet-5: #251556;
 }
 
 @mixin colors-palette-dark-theme() {
-  --app-backgroung-color: color-mix(in srgb, var(--white), var(--blue-6) 97%);
-  --positive: color-mix(in srgb, var(--negative), var(--blue-6) 93%);
-  --negative: var(--gray-1);
-  --emphasis-primary: var(--gray-2);
-  --emphasis-secondary: #{darken($white, 20%)};
-  --emphasis-tertiary: #{darken($white, 40%)};
-  --emphasis-quaternary: #{darken($white, 60%)};
-  --border-color: color-mix(in srgb, var(--emphasis-quaternary) 70%, transparent);
+  --app-backgroung-color: var(--blue-7);
+  --positive: color-mix(in srgb, var(--black), var(--blue-6) 93%);
+  --negative: var(--gray-2);
+  --emphasis-primary: var(--gray-4);
+  --emphasis-secondary: #{darken($gray-3, 20%)};
+  --emphasis-tertiary: #{darken($gray-3, 40%)};
+  --emphasis-quaternary: #{darken($gray-3, 60%)};
+  --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
 }
 
 @mixin colors-palette-light-theme() {
-  --app-backgroung-color: var(--white);
-  --positive: var(--gray-1);
-  --negative: var(--black);
+  --app-backgroung-color: var(--gray-3);
+  --positive: var(--gray-2);
+  --negative: color-mix(in srgb, var(--black), var(--blue-6) 93%);
   --emphasis-primary: var(--gray-10);
   --emphasis-secondary: #{lighten($gray-10, 20%)};
   --emphasis-tertiary: #{lighten($gray-10, 40%)};
   --emphasis-quaternary: #{lighten($gray-10, 60%)};
-  --border-color: color-mix(in srgb, var(--emphasis-quaternary) 70%, transparent);
+  --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
 }

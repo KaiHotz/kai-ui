@@ -9,9 +9,9 @@ import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
 import './Select.scss';
 
-export interface ISelectProps<OptionType extends ISelectOption>
-  extends ReactSelectProps<OptionType, false>,
-    CreatableProps<OptionType, false, GroupBase<OptionType>> {
+export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
+  extends ReactSelectProps<OptionType, IsMulti>,
+    CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
   required?: boolean;

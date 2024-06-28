@@ -2,6 +2,7 @@ import React from 'react';
 import type { Preview, StoryFn } from '@storybook/react';
 import { ThemeProvider } from '../src/providers';
 import { StoryThemeWrapper } from './StoryThemeWrapper';
+import './preview.scss';
 
 const preview: Preview = {
   parameters: {
@@ -24,7 +25,8 @@ const preview: Preview = {
         </StoryThemeWrapper>
       </ThemeProvider>
     ),
-  ]
+  ],
+  tags: ['autodocs']
 };
 
 export default preview;

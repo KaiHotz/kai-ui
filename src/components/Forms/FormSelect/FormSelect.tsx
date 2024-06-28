@@ -11,9 +11,9 @@ interface ICustomFieldError extends FieldError {
   value: FieldError;
 }
 
-export interface IFormSelectProps<OptionType extends ISelectOption>
-  extends SelectProps<OptionType, false>,
-    Partial<AsyncProps<OptionType, false, GroupBase<OptionType>>> {
+export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
+  extends SelectProps<OptionType, IsMulti>,
+    AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   name: string;
   small?: boolean;
   label?: string;
