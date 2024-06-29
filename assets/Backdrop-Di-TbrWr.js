@@ -1,1 +1,0 @@
-import{j as r}from"./jsx-runtime-qGIIFXMu.js";import{c as s}from"./clsx-B-dksMZM.js";const e=({isFrosted:o})=>r.jsx("div",{className:s("ui-backdrop",{"ui-backdrop--frosted":o}),role:"presentation"});e.__docgenInfo={description:"",methods:[],displayName:"Backdrop",props:{isFrosted:{required:!1,tsType:{name:"boolean"},description:""}}};export{e as B};

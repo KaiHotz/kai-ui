@@ -1,0 +1,1 @@
+import{g as n}from"./index-BP8_t0zE.js";import{b as u,c as m,d as b}from"./_baseAssignValue-Q6cBhLIi.js";var l=b,p=u,f=m;function V(r,a){var s={};return a=f(a),p(r,function(o,e,t){l(s,e,a(o,e,t))}),s}var c=V;const _=n(c);export{_ as m};

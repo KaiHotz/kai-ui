@@ -1,5 +1,0 @@
-import{j as r}from"./jsx-runtime-qGIIFXMu.js";import{j as m}from"./index-C0IPxtKF.js";import"./index-CDs2tPxN.js";const i=({size:a=35,color:o,speedMultiplier:p=1.5})=>r.jsx("div",{style:{"--ui-spinner-color":o,"--ui-spinner-speed":`${1.5/p}s`},className:"ui-spinner",children:r.jsx(m,{size:a,title:"LoadingSpinner"})});i.__docgenInfo={description:"",methods:[],displayName:"Spinner",props:{size:{required:!1,tsType:{name:"union",raw:"number | string",elements:[{name:"number"},{name:"string"}]},description:"",defaultValue:{value:"35",computed:!1}},color:{required:!1,tsType:{name:"string"},description:""},speedMultiplier:{required:!1,tsType:{name:"number"},description:"",defaultValue:{value:"1.5",computed:!1}}}};const c={title:"Components/Spinner",component:i},e={args:{size:35}};var s,n,t;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
-  args: {
-    size: 35
-  }
-}`,...(t=(n=e.parameters)==null?void 0:n.docs)==null?void 0:t.source}}};const f=["Default"];export{e as Default,f as __namedExportsOrder,c as default};
