@@ -62,6 +62,7 @@ export const Select = <OptionType extends ISelectOption>({
     <div className="ui-select">
       {label && (
         <Label
+          text={label}
           htmlFor={name}
           required={required}
           disabled={disabled}
@@ -69,9 +70,7 @@ export const Select = <OptionType extends ISelectOption>({
           endAdornment={labelEndAdornment}
           small={small}
           className="ui-select__label"
-        >
-          {label}
-        </Label>
+        />
       )}
       <div
         className={cx(`ui-select__container `, {

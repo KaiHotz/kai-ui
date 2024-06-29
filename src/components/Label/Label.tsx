@@ -3,6 +3,7 @@ import cx from 'clsx';
 import './Label.scss';
 
 interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  text?: ReactNode;
   required?: boolean;
   disabled?: boolean;
   isError?: boolean;
@@ -12,6 +13,7 @@ interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
 }
 
 export const Label: FC<ILabelProps> = ({
+  text,
   htmlFor,
   children,
   disabled,
@@ -22,8 +24,8 @@ export const Label: FC<ILabelProps> = ({
   small,
   ...rest
 }) => {
-  const shouldShowLabel = Boolean(children || children === 0);
-  const labelText = typeof children === 'string' ? `${children}${required ? ' *' : ''}` : children;
+  const shouldShowLabel = Boolean(text || text === 0);
+  const labelText = typeof text === 'string' ? `${text}${required ? ' *' : ''}` : text;
 
   return (
     <label
@@ -46,6 +48,7 @@ export const Label: FC<ILabelProps> = ({
           {!!endAdornment && <div className="ui-label__end-adornment">{endAdornment}</div>}
         </>
       )}
+      {children}
     </label>
   );
 };
