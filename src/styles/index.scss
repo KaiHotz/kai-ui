@@ -8,10 +8,10 @@
   --font-secondary: #{$font-secondary};
 
   //colors
+  @include system-color-pallet();
   @include brand-color-pallet();
   @include neutral-colors();
   @include gray-color-pallet();
-  @include system-color-pallet();
   @include feedback-color-pallet();
   @include severity-color-pallet();
 }

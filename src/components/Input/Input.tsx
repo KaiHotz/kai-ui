@@ -61,6 +61,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
       >
         {label && (
           <Label
+            text={label}
             htmlFor={name}
             required={required}
             disabled={disabled}
@@ -68,9 +69,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
             endAdornment={labelEndAdornment}
             className="ui-input__label"
             small={small}
-          >
-            {label}
-          </Label>
+          />
         )}
         <div
           className={cx('ui-input__wrapper', {

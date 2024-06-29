@@ -9,9 +9,9 @@ import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
 import './Select.scss';
 
-export interface ISelectProps<OptionType extends ISelectOption>
-  extends ReactSelectProps<OptionType, false>,
-    CreatableProps<OptionType, false, GroupBase<OptionType>> {
+export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
+  extends ReactSelectProps<OptionType, IsMulti>,
+    CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
   required?: boolean;
@@ -62,6 +62,7 @@ export const Select = <OptionType extends ISelectOption>({
     <div className="ui-select">
       {label && (
         <Label
+          text={label}
           htmlFor={name}
           required={required}
           disabled={disabled}
@@ -69,9 +70,7 @@ export const Select = <OptionType extends ISelectOption>({
           endAdornment={labelEndAdornment}
           small={small}
           className="ui-select__label"
-        >
-          {label}
-        </Label>
+        />
       )}
       <div
         className={cx(`ui-select__container `, {

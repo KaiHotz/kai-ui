@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 import React, { ReactNode } from 'react';
 import cx from 'clsx';
 import AsyncCreatable from 'react-select/async-creatable';
@@ -12,8 +10,8 @@ import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
 import './Select.scss';
 
-export interface IAsyncSelectProps<OptionType extends ISelectOption>
-  extends AsyncProps<OptionType, false, GroupBase<OptionType>> {
+export interface IAsyncSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
+  extends AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
   required?: boolean;
@@ -24,6 +22,7 @@ export interface IAsyncSelectProps<OptionType extends ISelectOption>
   isCreatable?: boolean;
   centerOptinons?: boolean;
   labelEndAdornment?: ReactNode;
+  options?: OptionType[];
 }
 export const AsyncSelect = <OptionType extends ISelectOption>({
   name,
@@ -39,7 +38,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
   defaultOptions = false,
   loadOptions,
   formatOptionLabel,
-  options,
+  options = [],
   onChange,
   small,
   centerOptinons,
@@ -63,6 +62,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
     <div className="ui-select">
       {label && (
         <Label
+          text={label}
           htmlFor={name}
           required={required}
           disabled={disabled}
@@ -70,9 +70,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
           endAdornment={labelEndAdornment}
           className="ui-select__label"
           small={small}
-        >
-          {label}
-        </Label>
+        />
       )}
       <div
         className={cx(`ui-select__container `, {
