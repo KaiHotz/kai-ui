@@ -26,13 +26,24 @@ describe('<Label />', () => {
     expect(label).toHaveClass(props.className);
   });
 
-  it('should display as required', () => {
+  it('should display text as required', () => {
     const props = {
       text: 'This is a Label',
       required: true,
     };
     render(<Label {...props} />);
     const label = screen.getByText(`${props.text} *`);
+
+    expect(label).toBeInTheDocument();
+  });
+
+  it('should display children as required', () => {
+    const props = {
+      children: 'This is a Label',
+      required: true,
+    };
+    render(<Label {...props} />);
+    const label = screen.getByText(`${props.children} *`);
 
     expect(label).toBeInTheDocument();
   });

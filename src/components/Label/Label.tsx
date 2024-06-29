@@ -25,7 +25,6 @@ export const Label: FC<ILabelProps> = ({
   ...rest
 }) => {
   const shouldShowLabel = Boolean(text || text === 0);
-  const labelText = typeof text === 'string' ? `${text}${required ? ' *' : ''}` : text;
 
   return (
     <label
@@ -44,11 +43,12 @@ export const Label: FC<ILabelProps> = ({
     >
       {shouldShowLabel && (
         <>
-          {labelText}
-          {!!endAdornment && <div className="ui-label__end-adornment">{endAdornment}</div>}
+          {typeof text === 'string' ? `${text}${required ? ' *' : ''}` : text}
+          {!!endAdornment && text && <div className="ui-label__end-adornment">{endAdornment}</div>}
         </>
       )}
-      {children}
+      {typeof children === 'string' ? `${children}${required ? ' *' : ''}` : children}
+      {!!endAdornment && children && <div className="ui-label__end-adornment">{endAdornment}</div>}
     </label>
   );
 };
