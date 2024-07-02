@@ -6,13 +6,13 @@ import { useRadioOption } from './context';
 import { Label } from '../Label';
 import './RadioOption.scss';
 
-export interface RadioOptionProps {
+export interface IRadioOptionProps {
   value: string | number;
   label: ReactNode;
   disabled?: boolean;
 }
 
-export const RadioOption: FC<RadioOptionProps> = ({ value, label, disabled }) => {
+export const RadioOption: FC<IRadioOptionProps> = ({ value, label, disabled }) => {
   const optionsAttr = useRadioOption();
   const isOptionDisabled = disabled || optionsAttr?.disabled;
   const isChecked = value === optionsAttr?.selected;

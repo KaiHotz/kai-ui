@@ -1,0 +1,52 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<AccordionSection /> > should render component with an animation 1`] = `
+<div
+  class="ui-accordion__section ui-accordion__section--expandable Custom"
+  data-testid="ui-accordion-section"
+>
+  <div
+    aria-controls="react-collapsed-panel-:r0:"
+    aria-expanded="false"
+    class="ui-accordion__section-header ui-accordion__section-header--separator"
+    data-testid="ui-accordion-section-header"
+    id="react-collapsed-toggle-:r0:"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="ui-accordion__section-header-title"
+      data-testid="ui-accordion-section-title"
+    >
+      <span
+        class="ui-accordion__section-header-title-text"
+      >
+        accordionSection
+      </span>
+    </div>
+    <svg
+      fill="currentColor"
+      height="1em"
+      stroke="currentColor"
+      stroke-width="0"
+      viewBox="0 0 512 512"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+      />
+    </svg>
+  </div>
+  <section
+    aria-hidden="true"
+    aria-labelledby="react-collapsed-toggle-:r0:"
+    class="ui-accordion__section-content"
+    id="react-collapsed-panel-:r0:"
+    role="region"
+    style="box-sizing: border-box; display: none; height: 0px; overflow: hidden;"
+  >
+    dwadaw
+  </section>
+</div>
+`;

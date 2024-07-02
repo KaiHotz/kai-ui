@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
+    "react-collapsed": "^4.1.2",
     "react-color": "^2.19.3",
     "react-datepicker": "^6.9.0",
     "react-select": "^5.8.0"

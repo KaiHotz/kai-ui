@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
 
-import { RadioProps } from './Radio';
+import { IRadioProps } from './Radio';
 
-export type RadioContext = Omit<RadioProps, 'errorMsg' | 'hintText' | 'reserveSpaceForError'>;
+export type TRadioContext = Omit<IRadioProps, 'errorMsg' | 'hintText' | 'reserveSpaceForError'>;
 
-export const RadioOptionContext = createContext<RadioContext | null>(null);
+export const RadioOptionContext = createContext<TRadioContext | null>(null);
 
 export const useRadioOption = () => {
   const radioContextData = useContext(RadioOptionContext);

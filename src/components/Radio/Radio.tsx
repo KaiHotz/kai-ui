@@ -5,7 +5,7 @@ import { Hint } from '../Hint';
 import { RadioOptionContext } from './context';
 import './Radio.scss';
 
-export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   selected?: string | number;
   errorMsg?: ReactNode;
   hintText?: string;
@@ -16,7 +16,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   small?: boolean;
 }
 
-export const Radio: FC<PropsWithChildren<RadioProps>> = ({
+export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
   children,
   errorMsg,
   hintText,
