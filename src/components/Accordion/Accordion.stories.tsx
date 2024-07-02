@@ -21,9 +21,9 @@ const meta: Meta<typeof Accordion> = {
 type Story = StoryObj<typeof Accordion>;
 
 export const Default: Story = {
-  render: function useAccordion(args) {
+  render: (args) => {
     return (
-      <Accordion {...args} initialOpenSection={2}>
+      <Accordion {...args}>
         <AccordionSection title="Title Section 1" icon={<FaClock />}>
           <div style={{ padding: '10px' }}>Content Section 1</div>
         </AccordionSection>

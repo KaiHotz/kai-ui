@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 
-import { Radio, RadioProps } from '../../Radio';
-interface IFormRadioProps extends Omit<RadioProps, 'errorMsg'> {
+import { IRadioProps, Radio } from '../../Radio';
+interface IFormRadioProps extends Omit<IRadioProps, 'errorMsg'> {
   name: string;
   errorMsg?: FieldError;
 }

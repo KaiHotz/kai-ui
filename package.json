@@ -24,7 +24,7 @@
     "build": "rimraf dist && NODE_ENV=production BABEL_ENV=production rollup -c",
     "lint": "yarn check-types && yarn eslint && yarn stylelint",
     "lint:fix": "yarn eslint:fix && yarn stylelint:fix",
-    "eslint": "eslint . --ext .js,.jsx,.tsx,.ts",
+    "eslint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "eslint:fix": "eslint . --ext .js,.jsx,.tsx,.ts --fix",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\"",
     "stylelint:fix": "stylelint \"**/*.{css,scss,sass}\" --fix",

@@ -29,3 +29,53 @@
   box-sizing: border-box;
   @content;
 }
+
+@mixin hideScrollBar {
+  -ms-overflow-style: none; // Hide scrollbar for  IE and Edge
+  scrollbar-width: none; // Hide scrollbar for  Firefox
+  // Hide scrollbar for Chrome, Safari and Opera
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin flashingDots($size: 5px, $gutter: 7px) {
+  position: relative;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: var(--orange-3);
+  color: var(--orange-3);
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -#{$gutter};
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: var(--orange-3);
+    color: var(--orange-3);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: $gutter;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: var(--orange-3);
+    color: var(--orange-3);
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+}

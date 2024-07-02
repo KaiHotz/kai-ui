@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import { describe, expect, it } from 'vitest';
 
 import { isEditableElement } from '../isEditableElement';

@@ -22,3 +22,14 @@
     transform: rotate(360deg) scale(1);
   }
 }
+
+@keyframes dotFlashing {
+  0% {
+    background-color: var(--orange-3);
+  }
+
+  50%,
+  100% {
+    background-color: var(--app-backgroung-color);
+  }
+}
