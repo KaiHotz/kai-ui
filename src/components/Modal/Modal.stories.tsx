@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { Meta } from '@storybook/react';
 
-import { Modal, IModalProps } from './Modal';
+import { IModalProps, Modal } from './Modal';
 import { Button } from '../Button';
 
 const ModalBody = () => (

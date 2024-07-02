@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { FaSistrix, FaCircleInfo } from 'react-icons/fa6';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Label } from './Label';
 

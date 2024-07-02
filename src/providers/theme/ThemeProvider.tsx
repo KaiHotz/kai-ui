@@ -1,4 +1,4 @@
-import React, { createContext, FC, ReactNode, useMemo, useEffect, useState, useCallback } from 'react';
+import React, { createContext, FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { noop } from 'lodash';
 
 import { EThemeOptions } from './types';

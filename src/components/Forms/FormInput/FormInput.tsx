@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect } from 'react';
 import { FieldError, RegisterOptions, useController, useFormContext } from 'react-hook-form';
 
-import { Input, IInputProps } from '../../Input';
+import { IInputProps, Input } from '../../Input';
 
 export interface IFormInputProps extends Omit<IInputProps, 'errorMsg'> {
   name: string;

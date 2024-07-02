@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { keyNames } from '../../utils';
-import { Modal, IModalProps } from './Modal';
+import { IModalProps, Modal } from './Modal';
 
 const modalProps: PropsWithChildren<IModalProps> = {
   onClose: vi.fn(),

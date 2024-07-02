@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, LabelHTMLAttributes } from 'react';
+import React, { FC, LabelHTMLAttributes, ReactNode } from 'react';
 import cx from 'clsx';
 import './Label.scss';
 

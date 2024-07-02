@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { FaPencil, FaGear, FaTrashCan } from 'react-icons/fa6';
+import { FaGear, FaPencil, FaTrashCan } from 'react-icons/fa6';
 
 import { DataTable } from './DataTable';
 import { selectorColumn } from './columns';

@@ -2,7 +2,7 @@ import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FaSistrix, FaCreativeCommonsBy, FaRegUser, FaCircleInfo } from 'react-icons/fa6';
+import { FaCircleInfo, FaCreativeCommonsBy, FaRegUser, FaSistrix } from 'react-icons/fa6';
 
 import { SideNav, SideNavItem } from './SideNav';
 

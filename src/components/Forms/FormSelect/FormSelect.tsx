@@ -1,10 +1,10 @@
 import React, { MutableRefObject, useEffect, useImperativeHandle } from 'react';
 import { AsyncProps } from 'react-select/async';
-import { GroupBase, Props as SelectProps, SingleValue, ActionMeta } from 'react-select';
+import { ActionMeta, GroupBase, Props as SelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import { noop } from 'lodash';
 
-import { AsyncSelect, Select, ISelectOption } from '../../Select';
+import { AsyncSelect, ISelectOption, Select } from '../../Select';
 
 interface ICustomFieldError extends FieldError {
   label: FieldError;

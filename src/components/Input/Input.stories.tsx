@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaSistrix, FaEye, FaEyeSlash, FaCircleInfo } from 'react-icons/fa6';
+import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
 
 import { Input } from './Input';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { FaSistrix, FaCreativeCommonsBy, FaRegUser, FaCircleInfo, FaRegLightbulb } from 'react-icons/fa6';
+import { FaCircleInfo, FaCreativeCommonsBy, FaRegLightbulb, FaRegUser, FaSistrix } from 'react-icons/fa6';
 
 import { SideNav, SideNavItem } from './SideNav';
 

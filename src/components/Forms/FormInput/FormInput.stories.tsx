@@ -3,7 +3,7 @@ import React from 'react';
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaSistrix, FaEye, FaEyeSlash, FaCircleInfo } from 'react-icons/fa6';
+import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
 
 import { Form } from '../Form';
 import { Button } from '../../Button';
