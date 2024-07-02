@@ -1,0 +1,31 @@
+@mixin separator($color: var(--border-color)) {
+  position: relative;
+  border-bottom: 1px solid $color;
+  box-sizing: border-box;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 60%;
+    border: 3px solid transparent;
+    border-top-color: $color;
+    border-left: $color;
+
+    @media (min-width: 414px) {
+      width: 50%;
+    }
+
+    @media (min-width: 768px) {
+      width: 25%;
+    }
+  }
+  @content;
+}
+
+@mixin simple-separator($color: var(--border-color)) {
+  position: relative;
+  border-bottom: 2px solid $color;
+  box-sizing: border-box;
+  @content;
+}

@@ -217,7 +217,7 @@ $blue-violet-5: #251556;
 @mixin colors-palette-dark-theme() {
   --app-backgroung-color: var(--blue-7);
   --positive: color-mix(in srgb, var(--black), var(--blue-6) 93%);
-  --negative: var(--gray-2);
+  --negative: color-mix(in srgb, var(--white) 60%, var(--blue-6) 40%);
   --emphasis-primary: var(--gray-4);
   --emphasis-secondary: #{darken($gray-3, 20%)};
   --emphasis-tertiary: #{darken($gray-3, 40%)};
@@ -228,8 +228,8 @@ $blue-violet-5: #251556;
 
 @mixin colors-palette-light-theme() {
   --app-backgroung-color: var(--gray-3);
-  --positive: var(--gray-2);
-  --negative: color-mix(in srgb, var(--black), var(--blue-6) 93%);
+  --positive: color-mix(in srgb, var(--white), var(--blue-6) 93%);
+  --negative: color-mix(in srgb, var(--black) 20%, var(--blue-6) 60%);
   --emphasis-primary: var(--gray-10);
   --emphasis-secondary: #{lighten($gray-10, 20%)};
   --emphasis-tertiary: #{lighten($gray-10, 40%)};

@@ -1,4 +1,8 @@
-@import './variables/index.scss';
+@import './animations.scss';
+@import './fonts.scss';
+@import './colors.scss';
+@import './typography.scss';
+@import './mixins.scss';
 
 @include font-faces();
 

@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .ui-accordion {
   width: 100%;
   &__section-header {
@@ -8,65 +10,57 @@
     display: flex;
     justify-content: space-between;
     padding: 15px 10px 10px;
+    border-color: var(--border-color);
 
     &:hover {
-      border-color: var(--border-color);
+      border-color: var(--negative);
       color: var(--emphasis-secondary);
 
       &:before {
-        border-top-color: var(--border-color);
-        border-left: var(--border-color);
+        border-top-color: var(--negative);
+        border-left: var(--negative);
       }
     }
 
     &--separator {
       margin-bottom: 15px;
-      position: relative;
-      border-bottom: 2px solid var(--border-color);
-      box-sizing: border-box;
-      &:before {
-        content: '';
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        width: 25%;
-        border: 5px solid transparent;
-        border-top-color: var(--border-color);
-        border-left: var(--border-color);
-      }
+      @include separator;
     }
 
     &--simple-separator {
       margin-bottom: 5px;
-      position: relative;
-      border-bottom: 2px solid var(--border-color);
-      box-sizing: border-box;
+      @include simple-separator;
     }
   }
   &__section-header-title {
     display: flex;
     align-items: center;
+    gap: 8px;
     svg {
-      color: inherit;
-      margin-right: 10px;
-      width: 20px !important;
-      height: 20px !important;
+      color: var(--emphasis-primary);
+      width: 16px;
+      height: 16px;
     }
   }
 
   &__section--expanded {
     .ui-accordion__section-header {
       color: var(--emphasis-primary);
-      border-color: var(--border-color);
+      border-color: var(--negative);
       &:before {
-        border-top-color: var(--border-color);
-        border-left: var(--border-color);
+        border-top-color: var(--negative);
+        border-left: var(--negative);
       }
     }
   }
+
   &__section--expandable {
     .ui-accordion__section-header {
       cursor: pointer;
     }
+  }
+
+  &__section-content {
+    color: var(--emphasis-primary);
   }
 }

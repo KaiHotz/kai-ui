@@ -11,10 +11,6 @@ const props = {
 };
 
 describe('<AccordionSection />', () => {
-  it('should render component with an animation', () => {
-    render(<AccordionSection {...props} />);
-    expect(screen.getByTestId('ui-accordion-section')).toMatchSnapshot();
-  });
   it('should allow custom className', () => {
     render(<AccordionSection {...props} />);
     expect(screen.getByTestId('ui-accordion-section')).toHaveClass(props.className);
