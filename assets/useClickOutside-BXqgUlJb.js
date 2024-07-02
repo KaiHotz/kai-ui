@@ -1,1 +1,0 @@
-import{r as a}from"./index-BP8_t0zE.js";import{u as n}from"./useCloseByEscape-Czgrgqxy.js";const r=(t,s)=>{const o=a.useCallback(u=>{var c;(c=t==null?void 0:t.current)!=null&&c.contains(u.target)||s(u)},[t,s]);n("mousedown",o,document),n("touchstart",o,document)};export{r as u};
