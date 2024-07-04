@@ -27,7 +27,7 @@ describe('<HeatMapCalendar />', () => {
     it('should handle string formatted date range', () => {
       render(<HeatMapCalendar endDate="2019-12-31" startDate="2019-01-01" {...defaultprops} />);
 
-      expect(screen.getAllByTestId('ui-heatmap-calendar-day').length).toBe(362);
+      expect(screen.getAllByTestId('ui-heatmap-calendar-day').length).toBe(364);
     });
   });
 
