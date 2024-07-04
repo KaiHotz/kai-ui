@@ -10,6 +10,7 @@ export * from './DataTable';
 export * from './DatePicker';
 export * from './Drawer';
 export * from './Forms';
+export * from './HeatMapCalendar';
 export * from './Hint';
 export * from './Input';
 export * from './Label';

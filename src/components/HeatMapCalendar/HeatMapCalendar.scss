@@ -1,0 +1,39 @@
+.ui-heatmap-calendar {
+  &__day {
+    position: relative;
+
+    &:hover {
+      fill: var(--orange-3);
+      stroke: var(--border-color);
+      stroke-width: 1px;
+    }
+    &--clickable {
+      cursor: pointer;
+    }
+  }
+
+  .color-empty {
+    fill: var(--emphasis-quaternary);
+  }
+
+  &__month-label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: 10px;
+    fill: var(--emphasis-primary);
+  }
+
+  &__tooltip {
+    min-width: 110px;
+    min-height: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
