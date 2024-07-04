@@ -3,6 +3,7 @@ import { addDays, subDays } from 'date-fns';
 import cx from 'clsx';
 import { Tooltip } from 'react-tooltip';
 
+import { EThemeOptions } from '../../providers/theme/types';
 import { convertToDate, dateNDaysAgo, DEFAULT_MONTH_LABELS, getEndDate, getRange, MIN_ALPHA } from '../../utils';
 
 import './HeatMapCalendar.scss';
@@ -43,6 +44,7 @@ export interface IHeatMapCalendarProps {
   renderTooltipText: (value: HeatMapCalendarValue) => string | ReactNode;
   /** callback function when a circle is clicked */
   onClick?: (value: HeatMapCalendarValue) => void;
+  theme?: EThemeOptions;
   testId?: string;
 }
 
@@ -57,6 +59,7 @@ export const HeatMapCalendar: React.FC<IHeatMapCalendarProps> = ({
   monthLabels = DEFAULT_MONTH_LABELS,
   onClick,
   testId = 'ui-heatmap-calendar',
+  theme = EThemeOptions.LIGHT,
 }) => {
   const circleWithGutterSize = CIRCLE_DIAMETER + gutterSize;
   const monthLabelSize = showMonthLabels ? CIRCLE_DIAMETER + MONTH_LABEL_GUTTER_SIZE : 0;
@@ -183,7 +186,7 @@ export const HeatMapCalendar: React.FC<IHeatMapCalendarProps> = ({
           {getRange(getWeekCount()).map((weekIndex) => renderWeek(weekIndex))}
         </g>
       </svg>
-      <Tooltip id={tooltipId} variant="light" />
+      <Tooltip id={tooltipId} variant={theme === EThemeOptions.LIGHT ? EThemeOptions.DARK : EThemeOptions.LIGHT} />
     </div>
   );
 };

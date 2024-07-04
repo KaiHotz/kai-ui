@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { useTheme } from '../../hooks';
 import { dateNDaysAgo, getRange, shiftDate } from '../../utils';
 import { HeatMapCalendar } from './HeatMapCalendar';
 
@@ -15,6 +16,9 @@ const meta: Meta<typeof HeatMapCalendar> = {
       control: false,
     },
     onClick: {
+      control: false,
+    },
+    theme: {
       control: false,
     },
   },
@@ -34,15 +38,17 @@ const randomValues = getRange(365).map((index) => {
 });
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useHeatMapCalendar(args) {
+    const { theme } = useTheme();
+
     return (
       <div style={{ padding: '20px' }}>
-        <HeatMapCalendar {...args} />
+        <HeatMapCalendar {...args} theme={theme} />
       </div>
     );
   },
   args: {
-    showMonthLabels: false,
+    showMonthLabels: true,
     gutterSize: 10,
     startDate: dateNDaysAgo(randomValues.length),
     endDate: new Date(Date.now() - 864e5),
