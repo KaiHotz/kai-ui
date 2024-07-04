@@ -1,0 +1,47 @@
+.ui-drawer-portal {
+  $_negative_drawer-width: calc((var(--ui-drawer-width) + 40px) * -1);
+  $_minimizedWidth: calc((var(--ui-drawer-width)) * -1);
+  $_drawer-width: var(--ui-drawer-width);
+  position: fixed;
+  bottom: 0;
+  width: $_drawer-width;
+  transition: all 0.3s ease;
+  z-index: var(--ui-drawer-portal--z-index, 4);
+  background: transparent;
+  pointer-events: none;
+  box-shadow: 0 0 5px 0 rgba(var(--box-shadow), 0.5);
+
+  &--anchor-left {
+    left: $_negative_drawer-width;
+    &.ui-drawer-portal--appear-active,
+    &.ui-drawer-portal--appear-done {
+      left: calc(var(--ui-drawer-offset, 0));
+    }
+    &.ui-drawer-portal--exit-done {
+      left: $_negative_drawer-width;
+    }
+    &.ui-drawer-portal--minimized {
+      left: $_minimizedWidth;
+    }
+  }
+
+  &--anchor-right {
+    right: $_negative_drawer-width;
+    &.ui-drawer-portal--appear-active,
+    &.ui-drawer-portal--appear-done {
+      right: calc(var(--ui-drawer-offset, 0));
+    }
+    &.ui-drawer-portal--exit-done {
+      right: $_negative_drawer-width;
+    }
+    &.ui-drawer-portal--minimized {
+      right: $_minimizedWidth;
+    }
+  }
+
+  &__tabs {
+    position: absolute;
+    left: -40px;
+    z-index: -2;
+  }
+}

@@ -1,0 +1,79 @@
+.ui-drawer-layout {
+  padding: var(--ui-drawer-layout__padding, 20px);
+  height: 100vh;
+  background-color: var(--app-backgroung-color);
+  display: flex;
+  // to override parent pointer-events: none
+  pointer-events: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  flex-direction: column;
+
+  &__header {
+    padding: 10px;
+    margin-bottom: 10px;
+    // Safari losses height of the flex children and the content is collapsed
+    min-height: 41px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--emphasis-primary);
+    border-radius: 3px 3px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10010;
+    border-bottom: 1px dotted var(--border-color);
+  }
+
+  &__header-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__header-text {
+    margin: 0 0 0 10px;
+    // to prevent text-overflow, when title has a too long word to fit into one line
+    word-break: break-all;
+    font-family: var(--font-secondary);
+    font-size: 18px;
+    color: var(--emphasis-primary);
+    letter-spacing: 0.5px;
+  }
+
+  &__header-action {
+    color: var(--emphasis-primary);
+  }
+
+  &__header-close-tab {
+    color: var(--red-4);
+    padding-right: 5px;
+    border-right: 1px solid var(--border-color);
+  }
+
+  &__header-minimize {
+    margin-left: 5px;
+  }
+
+  &__header-close {
+    color: var(--emphasis-primary);
+  }
+
+  &__content {
+    height: calc(100vh - 150px);
+    background-color: var(--app-backgroung-color);
+    flex-grow: 1;
+    font-family: var(--font-secondary);
+    overflow-y: var(--ui-drawer-layout__overflow-y-scroll, auto);
+    color: var(--emphasis-primary);
+  }
+  &--negative-margin-scroll {
+    margin-right: -15px;
+  }
+}
