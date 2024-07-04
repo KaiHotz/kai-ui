@@ -8,6 +8,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconPosition?: 'left' | 'right';
   small?: boolean;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger';
+  testId?: string;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -20,6 +21,7 @@ export const Button: FC<IButtonProps> = ({
   children,
   onClick,
   variant = 'primary',
+  testId = 'ui-btn',
   ...rest
 }) => {
   return (
@@ -37,6 +39,7 @@ export const Button: FC<IButtonProps> = ({
       type={type}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
+      data-testid={testId}
     >
       {icon && iconPosition === 'left' && icon}
       {children}
