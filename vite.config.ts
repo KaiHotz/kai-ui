@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '../fonts',
+        find: './fonts',
         replacement: resolve(__dirname, './src/styles/fonts'),
       },
     ],
