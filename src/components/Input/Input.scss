@@ -19,10 +19,8 @@
     &::placeholder {
       color: var(--emphasis-tertiary);
     }
-    &:hover {
-      &::placeholder {
-        color: var(--emphasis-quaternary);
-      }
+    &:hover::placeholder {
+      color: var(--emphasis-quaternary);
     }
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
@@ -52,6 +50,9 @@
     color: var(--emphasis-primary);
     font-size: 16px;
     padding: 5px 8px;
+    &:focus-within {
+      background-color: var(--positive);
+    }
 
     &--error {
       border-color: var(--error);

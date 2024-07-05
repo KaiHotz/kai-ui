@@ -225,8 +225,8 @@ $blue-violet-5: #251556;
 }
 
 @mixin colors-palette-light-theme() {
-  --app-backgroung-color: #f6f9fc;
-  --positive: color-mix(in srgb, var(--white), var(--blue-6) 93%);
+  --app-backgroung-color: var(--gray-1);
+  --positive: var(--white);
   --negative: color-mix(in srgb, var(--black) 20%, var(--blue-6) 60%);
 
   --emphasis-primary: #{lighten($black, 20%)};

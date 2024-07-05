@@ -22,10 +22,11 @@
     font-size: 16px;
     padding: 5px 12px;
 
-    &:hover {
-      &::placeholder {
-        color: var(--emphasis-quaternary);
-      }
+    &:focus-within {
+      background-color: var(--positive);
+    }
+    &:hover::placeholder {
+      color: var(--emphasis-quaternary);
     }
     &--error {
       border-color: var(--error);
