@@ -15,6 +15,9 @@ const meta: Meta<typeof MenuButton> = {
   title: 'components/MenuButton',
   component: MenuButton,
   argTypes: {
+    testId: {
+      control: false,
+    },
     icon: {
       options: Object.keys(iconOptions),
       mapping: iconOptions,
@@ -54,11 +57,11 @@ const menuItems = [
 export const Default = {
   args: {
     variant: 'transparent',
-    size: 'large',
+    small: false,
     children: 'Button',
     disabled: false,
-    isLoading: false,
     items: menuItems,
+    number: false,
   },
 };
 

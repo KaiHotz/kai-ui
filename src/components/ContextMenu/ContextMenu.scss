@@ -6,7 +6,6 @@
   box-shadow: var(--box-shadow);
 
   &__item {
-    color: currentColor;
     width: 100%;
     position: relative;
     display: inline-flex;
@@ -22,7 +21,7 @@
     background: inherit;
     cursor: pointer;
     padding: 16px;
-    color: var(--negative);
+    color: var(--emphasis-primary);
 
     &--disabled {
       opacity: 0.4;
@@ -30,12 +29,12 @@
     }
 
     &--active {
-      color: var(--orange-3);
+      color: var(--accent-3);
     }
 
     &:hover {
-      background-color: var(--negative);
-      color: var(--positive);
+      background-color: var(--accent-3);
+      color: var(--white);
       border-radius: 16px;
     }
   }

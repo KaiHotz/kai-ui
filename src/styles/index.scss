@@ -14,7 +14,7 @@
 
   //colors
   @include system-color-pallet();
-  @include brand-color-pallet();
+  @include primary-color-pallet();
   @include neutral-colors();
   @include gray-color-pallet();
   @include feedback-color-pallet();

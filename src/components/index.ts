@@ -22,4 +22,5 @@ export * from './Radio';
 export * from './Select';
 export * from './SideNav';
 export * from './Spinner';
+export * from './Stepper';
 export * from './Tabs';

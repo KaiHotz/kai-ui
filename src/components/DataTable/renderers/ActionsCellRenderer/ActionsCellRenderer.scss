@@ -1,10 +1,9 @@
 .ui-actions-cell-renderer {
   display: flex;
-  color: var(--emphasis-primary);
   width: 100%;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 
   &__icon {
     display: flex;
@@ -13,6 +12,8 @@
     cursor: pointer;
     outline: none;
     background: transparent;
+    width: 14px;
+    color: var(--emphasis-primary);
     &:hover {
       color: var(--accent-1);
     }

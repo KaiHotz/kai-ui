@@ -1,8 +1,7 @@
-//brand-colors
-$accent-1: #ffe81f;
-$accent-2: #e8ab22;
-$accent-3: #e19526;
-$accent-4: #d57a27;
+//primary-colors
+$accent-1: #f29f10;
+$accent-2: #e19526;
+$accent-3: #e8ab22;
 
 //neutral-colors
 $black: #000000;
@@ -96,11 +95,10 @@ $blue-violet-3: #4527a0;
 $blue-violet-4: #351e7b;
 $blue-violet-5: #251556;
 
-@mixin brand-color-pallet {
+@mixin primary-color-pallet {
   --accent-1: #{$accent-1};
   --accent-2: #{$accent-2};
   --accent-3: #{$accent-3};
-  --accent-4: #{$accent-4};
 }
 
 @mixin neutral-colors {
@@ -218,7 +216,7 @@ $blue-violet-5: #251556;
   --app-backgroung-color: var(--blue-7);
   --positive: color-mix(in srgb, var(--black), var(--blue-6) 93%);
   --negative: color-mix(in srgb, var(--white) 60%, var(--blue-6) 40%);
-  --emphasis-primary: var(--gray-4);
+  --emphasis-primary: var(--gray-3);
   --emphasis-secondary: #{darken($gray-3, 20%)};
   --emphasis-tertiary: #{darken($gray-3, 40%)};
   --emphasis-quaternary: #{darken($gray-3, 60%)};
@@ -227,13 +225,20 @@ $blue-violet-5: #251556;
 }
 
 @mixin colors-palette-light-theme() {
-  --app-backgroung-color: var(--gray-3);
+  --app-backgroung-color: #f6f9fc;
   --positive: color-mix(in srgb, var(--white), var(--blue-6) 93%);
   --negative: color-mix(in srgb, var(--black) 20%, var(--blue-6) 60%);
-  --emphasis-primary: var(--gray-10);
-  --emphasis-secondary: #{lighten($gray-10, 20%)};
-  --emphasis-tertiary: #{lighten($gray-10, 40%)};
-  --emphasis-quaternary: #{lighten($gray-10, 60%)};
+
+  --emphasis-primary: #{lighten($black, 20%)};
+  --emphasis-secondary: #{lighten($black, 40%)};
+  --emphasis-tertiary: #{lighten($black, 60%)};
+  --emphasis-quaternary: #{lighten($black, 80%)};
+
+  // --emphasis-primary: var(--gray-5);
+  // --emphasis-secondary: #{lighten($gray-5, 20%)};
+  // --emphasis-tertiary: #{lighten($gray-5, 40%)};
+  // --emphasis-quaternary: #{lighten($gray-5, 60%)};
+
   --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
   --box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
 }

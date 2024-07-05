@@ -12,7 +12,7 @@
   font-family: var(--d-din);
   font-size: 14px;
   font-weight: 700;
-  border-radius: 32px;
+  border-radius: 16px;
   outline: 0;
   padding: 0 16px;
   color: var(--emphasis-primary);
@@ -25,19 +25,27 @@
   }
 
   &--primary {
-    color: var(--gray-10);
-    background-color: var(--yellow-orange-3);
+    color: var(--white);
+    background-color: var(--accent-1);
     &:hover {
-      background-color: var(--orange-3);
+      background-color: var(--accent-2);
     }
     &:active {
-      background-color: var(--bad);
-      border-color: var(--bad);
+      background-color: var(--accent-1);
+      border-color: var(--accent-1);
     }
   }
 
   &--secondary {
-    background-color: var(--emphasis-quaternary);
+    color: var(--white);
+    background-color: var(--blue-3);
+    &:hover {
+      background-color: var(--blue-4);
+    }
+    &:active {
+      background-color: var(--blue-3);
+      border-color: var(--blue-3);
+    }
   }
 
   &--tertiary {

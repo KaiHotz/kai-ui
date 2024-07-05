@@ -1,0 +1,61 @@
+.ui-step {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  &__button-wrapper {
+    position: relative;
+  }
+  &__button {
+    outline: none;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    box-shadow: none;
+
+    &--active,
+    &--completed {
+      background-color: var(--accent-1);
+      border-color: var(--accent-1);
+      color: var(--white);
+    }
+
+    &--can-navigate-to {
+      cursor: pointer;
+      &:hover {
+        color: var(--white);
+        background-color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+    }
+  }
+
+  &__line {
+    height: 2px;
+    flex: auto;
+    background-color: var(--emphasis-secondary);
+    &--active,
+    &--completed {
+      background-color: var(--accent-3);
+    }
+  }
+
+  &__title {
+    font-size: 12px;
+    padding-top: 5px;
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--emphasis-primary);
+    &--active,
+    &--completed {
+      color: var(--accent-1);
+    }
+  }
+}
