@@ -228,17 +228,10 @@ $blue-violet-5: #251556;
   --app-backgroung-color: var(--gray-1);
   --positive: var(--white);
   --negative: color-mix(in srgb, var(--black) 20%, var(--blue-6) 60%);
-
   --emphasis-primary: #{lighten($black, 20%)};
   --emphasis-secondary: #{lighten($black, 40%)};
   --emphasis-tertiary: #{lighten($black, 60%)};
   --emphasis-quaternary: #{lighten($black, 80%)};
-
-  // --emphasis-primary: var(--gray-5);
-  // --emphasis-secondary: #{lighten($gray-5, 20%)};
-  // --emphasis-tertiary: #{lighten($gray-5, 40%)};
-  // --emphasis-quaternary: #{lighten($gray-5, 60%)};
-
   --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
   --box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
 }
