@@ -37,6 +37,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
   isCreatable,
   menuPlacement = 'auto',
   menuPosition = 'absolute',
+  placeholder,
   defaultOptions = false,
   loadOptions,
   formatOptionLabel,
@@ -49,10 +50,13 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
 }: IAsyncSelectProps<OptionType>) => {
   const AsyncSelectComponent = isCreatable ? AsyncCreatable : Async;
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
+  const placeholderText = typeof placeholder === 'string' ? `${placeholder}${required ? ' *' : ''}` : placeholder;
+
   const commonProps = useCommonProps({
     disabled,
     menuPlacement,
     menuPosition,
+    placeholder: placeholderText,
     onChange,
     formatOptionLabel,
     centerOptinons,

@@ -40,6 +40,7 @@ export const Select = <OptionType extends ISelectOption>({
   menuPlacement = 'auto',
   menuPosition = 'fixed',
   formatOptionLabel,
+  placeholder,
   options,
   small,
   labelEndAdornment,
@@ -47,11 +48,12 @@ export const Select = <OptionType extends ISelectOption>({
   ...rest
 }: ISelectProps<OptionType>) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
-
+  const placeholderText = typeof placeholder === 'string' ? `${placeholder}${required ? ' *' : ''}` : placeholder;
   const commonProps = useCommonProps({
     disabled,
     menuPlacement,
     menuPosition,
+    placeholder: placeholderText,
     onChange,
     formatOptionLabel,
     options,
