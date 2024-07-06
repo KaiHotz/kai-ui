@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo } from 'react-icons/fa6';
 
 import { Radio } from './Radio';
 import { RadioOption } from './RadioOption';
@@ -32,7 +33,7 @@ export const Default: Story = {
         <Radio {...args} name="radioExample" selected={checkedValue} onChange={handleChange}>
           <RadioOption value="option_1" label="Label 1" />
           <RadioOption value="option_2" label="Label 2" />
-          <RadioOption value="option_3" label="Label 3" />
+          <RadioOption value="option_3" label="Label 3" labelEndAdornment={<FaCircleInfo size={13} />} />
           <RadioOption value="option_4" label="Label 4" disabled />
         </Radio>
       </div>

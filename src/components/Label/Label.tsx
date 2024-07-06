@@ -3,7 +3,7 @@ import cx from 'clsx';
 import './Label.scss';
 
 export interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
-  text?: ReactNode;
+  text?: string;
   required?: boolean;
   disabled?: boolean;
   isError?: boolean;
@@ -26,8 +26,7 @@ export const Label: FC<ILabelProps> = ({
   small,
   ...rest
 }) => {
-  const shouldShowLabel = Boolean(text || text === 0);
-  const labelText = typeof text === 'string' ? `${text}${required ? ' *' : ''}` : text;
+  const labelText = required ? `${text}${required ? ' *' : ''}` : text;
   const isTopPosition = position === 'top';
   const isBottomPosition = position === 'bottom';
   const isRightPosition = position === 'right';
@@ -52,18 +51,18 @@ export const Label: FC<ILabelProps> = ({
       )}
       {...rest}
     >
-      {(isTopPosition || isLeftPosition) && shouldShowLabel && (
-        <>
-          <span className={cx('ui-label__text', `ui-label__text--${position}`)}>{labelText}</span>
-          {!!endAdornment && text && <div className="ui-label__end-adornment">{endAdornment}</div>}
-        </>
+      {(isTopPosition || isLeftPosition) && text && (
+        <div className="ui-label__text">
+          {labelText}
+          {!!endAdornment && <div className="ui-label__end-adornment">{endAdornment}</div>}
+        </div>
       )}
       {children}
-      {(isRightPosition || isBottomPosition) && shouldShowLabel && (
-        <>
-          <span className={cx('ui-label__text', `ui-label__text--${position}`)}>{labelText}</span>
-          {!!endAdornment && text && <div className="ui-label__end-adornment">{endAdornment}</div>}
-        </>
+      {(isRightPosition || isBottomPosition) && text && (
+        <div className="ui-label__text">
+          {labelText}
+          {!!endAdornment && <div className="ui-label__end-adornment">{endAdornment}</div>}
+        </div>
       )}
     </label>
   );

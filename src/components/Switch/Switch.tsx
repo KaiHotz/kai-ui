@@ -8,9 +8,10 @@ export interface ISwitchProps {
   name?: string;
   value?: boolean;
   disabled?: boolean;
-  size?: 'small' | 'medium';
+  size?: 'small' | 'medium' | 'large';
   label?: string;
   labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ILabelProps['endAdornment'];
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -26,6 +27,7 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
       value,
       label,
       labelPosition = 'right',
+      labelEndAdornment,
       size = 'medium',
       testId = 'ui-switch',
       className,
@@ -34,14 +36,12 @@ export const Switch = forwardRef<HTMLInputElement, ISwitchProps>(
     ref,
   ) => {
     return (
-      <Label text={label} position={labelPosition}>
+      <Label text={label} position={labelPosition} endAdornment={labelEndAdornment}>
         <span
           className={cx(
-            'ui-switch',
+            `ui-switch ui-switch--${size}`,
             {
               'ui-switch--disabled': disabled,
-              'ui-switch--small': size === 'small',
-              'ui-switch--medium': size === 'medium',
             },
             className,
           )}

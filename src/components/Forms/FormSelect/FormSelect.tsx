@@ -4,6 +4,7 @@ import { ActionMeta, GroupBase, Props as SelectProps, SingleValue } from 'react-
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import { noop } from 'lodash';
 
+import { ILabelProps } from '../../Label';
 import { AsyncSelect, ISelectOption, Select } from '../../Select';
 
 interface ICustomFieldError extends FieldError {
@@ -17,6 +18,8 @@ export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti exte
   name: string;
   small?: boolean;
   label?: string;
+  labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ILabelProps['endAdornment'];
   required?: boolean;
   hintText?: string;
   errorMsg?: FieldError;

@@ -3,12 +3,26 @@ import React from 'react';
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Form } from '../Form';
+import { Button } from '../../Button';
 import { FormCheckbox } from './FormCheckbox';
 
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
+
 const meta: Meta<typeof FormCheckbox> = {
-  title: 'Forms/FormCheckbox',
+  title: 'Components/Forms/FormCheckbox',
   component: FormCheckbox,
   argTypes: {
     name: {
@@ -17,6 +31,24 @@ const meta: Meta<typeof FormCheckbox> = {
     checked: {
       control: false,
     },
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
+    },
+  },
+  args: {
+    label: 'Get notified',
+    labelPosition: 'right',
+    labelEndAdornment: 'none',
+    hintText: '',
+    required: false,
+    disabled: false,
+    variant: 'checkmark',
+    reserveSpaceForError: false,
   },
 };
 
@@ -49,18 +81,11 @@ export const Default: Story = {
         onError={onError}
       >
         <FormCheckbox {...args} name="notification" />
-        <button type="submit">Submit</button>
+        <div style={{ marginTop: '1rem' }}>
+          <Button type="submit">Submit</Button>
+        </div>
       </Form>
     );
-  },
-  args: {
-    label: 'Get notified',
-    labelPosition: 'right',
-    hintText: '',
-    required: false,
-    disabled: false,
-    variant: 'checkmark',
-    reserveSpaceForError: false,
   },
 };
 

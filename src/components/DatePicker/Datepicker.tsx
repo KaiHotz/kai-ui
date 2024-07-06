@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 import ReactDatepicker, { ReactDatePickerProps } from 'react-datepicker';
 import { FaCalendarDays } from 'react-icons/fa6';
 
+import { ILabelProps } from '../Label';
 import { Input } from '../Input';
 import './Datepicker.scss';
 
 export interface IDatepickerProps extends ReactDatePickerProps {
   label?: string;
+  labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ILabelProps['endAdornment'];
   hintText?: string;
   errorMsg?: string;
   placeholder?: string;
@@ -19,6 +22,8 @@ export interface IDatepickerProps extends ReactDatePickerProps {
 export const Datepicker: FC<IDatepickerProps> = ({
   name,
   label,
+  labelPosition,
+  labelEndAdornment,
   hintText,
   errorMsg,
   onChange,
@@ -68,6 +73,8 @@ export const Datepicker: FC<IDatepickerProps> = ({
         customInput={
           <Input
             label={label}
+            labelPosition={labelPosition}
+            labelEndAdornment={labelEndAdornment}
             errorMsg={errorMsg}
             hintText={hintText}
             reserveSpaceForError={reserveSpaceForError}

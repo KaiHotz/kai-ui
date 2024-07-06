@@ -22,7 +22,7 @@ const stepOptionsMap = {
 };
 
 const meta: Meta<typeof Stepper> = {
-  title: 'components/Stepper',
+  title: 'Components/Stepper',
   component: Stepper,
   argTypes: {
     activeStep: {

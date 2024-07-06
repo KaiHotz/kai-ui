@@ -12,7 +12,7 @@ const iconOptions = {
 };
 
 const meta: Meta<typeof MenuButton> = {
-  title: 'components/MenuButton',
+  title: 'Components/MenuButton',
   component: MenuButton,
   argTypes: {
     testId: {

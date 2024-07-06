@@ -1,13 +1,14 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react';
 import cx from 'clsx';
 
-import { Label } from '../Label';
+import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import './Checkbox.scss';
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   labelPosition?: 'left' | 'right';
+  labelEndAdornment?: ILabelProps['endAdornment'];
   variant?: 'checkmark' | 'square';
   hintText?: string;
   errorMsg?: string;
@@ -19,11 +20,12 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
     {
       name,
       label,
+      labelPosition = 'right',
+      labelEndAdornment,
       required,
       disabled,
       hintText,
       checked,
-      labelPosition = 'right',
       errorMsg,
       variant = 'checkmark',
       reserveSpaceForError,
@@ -42,18 +44,26 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
         })}
       >
         <div className="ui-checkbox__wrapper">
-          <Label text={label} required={required} disabled={disabled} position={labelPosition}>
-            <input
-              id={name}
-              required={required}
-              disabled={disabled}
-              checked={checked}
-              ref={ref}
-              {...rest}
-              type="checkbox"
-              aria-hidden="true"
-            />
-            <div className="ui-checkbox__icon" />
+          <Label
+            text={label}
+            required={required}
+            disabled={disabled}
+            position={labelPosition}
+            endAdornment={labelEndAdornment}
+          >
+            <div className="ui-checkbox__input-wrapper">
+              <input
+                id={name}
+                required={required}
+                disabled={disabled}
+                checked={checked}
+                ref={ref}
+                {...rest}
+                type="checkbox"
+                aria-hidden="true"
+              />
+              <div className="ui-checkbox__icon" />
+            </div>
           </Label>
         </div>
         {shouldShowValidationWrapper && (

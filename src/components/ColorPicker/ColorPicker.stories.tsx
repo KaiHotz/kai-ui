@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColorResult } from 'react-color';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { ColorPicker } from './ColorPicker';
+
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
 
 const meta: Meta<typeof ColorPicker> = {
   title: 'Components/ColorPicker',
@@ -13,6 +26,14 @@ const meta: Meta<typeof ColorPicker> = {
     },
     color: {
       control: false,
+    },
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
     },
   },
 };
@@ -33,6 +54,7 @@ export const Default: Story = {
     color: '',
     label: '',
     labelPosition: 'top',
+    labelEndAdornment: 'none',
     hintText: '',
     errorMsg: '',
     disabled: false,

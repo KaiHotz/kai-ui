@@ -78,11 +78,16 @@ export default {
   args: {
     label: '',
     labelPosition: 'top',
+    labelEndAdornment: 'none',
+    startAdornment: 'none',
+    endAdornment: 'none',
     required: false,
     small: false,
     reserveSpaceForError: false,
     hintText: '',
     errorMsg: '',
+    hideError: false,
+    disabled: false,
   },
 };
 

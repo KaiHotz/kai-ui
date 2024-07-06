@@ -1,18 +1,19 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { omit } from 'lodash';
 import cx from 'clsx';
 
 import { useRadioOption } from './context';
-import { Label } from '../Label';
+import { ILabelProps, Label } from '../Label';
 import './RadioOption.scss';
 
 export interface IRadioOptionProps {
   value: string | number;
-  label: ReactNode;
+  label: string;
+  labelEndAdornment?: ILabelProps['endAdornment'];
   disabled?: boolean;
 }
 
-export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', disabled }) => {
+export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', labelEndAdornment, disabled }) => {
   const optionsAttr = useRadioOption();
   const isOptionDisabled = disabled || optionsAttr?.disabled;
   const isChecked = value === optionsAttr?.selected;
@@ -37,6 +38,7 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', dis
         small={optionsAttr?.small}
         text={label}
         disabled={isOptionDisabled}
+        endAdornment={labelEndAdornment}
       >
         <div className="ui-radio-option__input-wrapper">
           <input

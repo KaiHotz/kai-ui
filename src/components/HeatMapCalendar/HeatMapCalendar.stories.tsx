@@ -6,7 +6,7 @@ import { dateNDaysAgo, getRange, shiftDate } from '../../utils';
 import { HeatMapCalendar } from './HeatMapCalendar';
 
 const meta: Meta<typeof HeatMapCalendar> = {
-  title: 'components/HeatMapCalendar',
+  title: 'Components/HeatMapCalendar',
   component: HeatMapCalendar,
   argTypes: {
     testId: {

@@ -6,6 +6,16 @@
   font-size: var(--ui-label--text-font-size, 16px);
   color: var(--emphasis-primary);
 
+  &__text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__end-adornment {
+    margin-bottom: 2px;
+  }
+
   &--top,
   &--bottom {
     display: inline-flex;
@@ -29,9 +39,5 @@
 
   &--small {
     font-size: var(--ui-label--text-font-size, 14px);
-  }
-
-  &__end-adornment {
-    margin-left: 6px;
   }
 }

@@ -3,13 +3,26 @@ import React from 'react';
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Form } from '../Form';
 import { FormSwitch } from './FormSwitch';
 import { Button } from '../../Button';
 
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
+
 const meta: Meta<typeof FormSwitch> = {
-  title: 'components/Forms/FormSwitch',
+  title: 'Components/Forms/FormSwitch',
   component: FormSwitch,
   argTypes: {
     name: {
@@ -23,6 +36,14 @@ const meta: Meta<typeof FormSwitch> = {
     },
     testId: {
       control: false,
+    },
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
     },
   },
 };
@@ -64,7 +85,10 @@ export const Default: Story = {
     );
   },
   args: {
+    size: undefined,
     label: '',
+    labelPosition: 'right',
+    labelEndAdornment: 'none',
     disabled: false,
   },
 };

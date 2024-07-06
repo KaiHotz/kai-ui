@@ -17,6 +17,7 @@ export interface IColorPickerProps {
   variant?: 'palette' | 'picker';
   label?: string;
   labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ILabelProps['endAdornment'];
   icon?: ReactNode;
   errorMsg?: ReactNode;
   hintText?: string;
@@ -33,6 +34,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
   color,
   label,
   labelPosition = 'top',
+  labelEndAdornment,
   icon,
   errorMsg,
   hintText,
@@ -93,7 +95,14 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
         'ui-color-picker--disabled': disabled,
       })}
     >
-      <Label text={label} required={required} isError={Boolean(errorMsg)} small={small} position={labelPosition}>
+      <Label
+        text={label}
+        required={required}
+        isError={Boolean(errorMsg)}
+        small={small}
+        position={labelPosition}
+        endAdornment={labelEndAdornment}
+      >
         <Button
           type="button"
           variant="tertiary"

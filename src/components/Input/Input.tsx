@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes, ReactElement, ReactNode, useState } from 'react';
+import React, { forwardRef, InputHTMLAttributes, ReactElement, useState } from 'react';
 import cx from 'clsx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
@@ -11,6 +11,7 @@ import './Input.scss';
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ILabelProps['endAdornment'];
   hintText?: string;
   errorMsg?: string;
   hideError?: boolean;
@@ -19,7 +20,6 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   reserveSpaceForError?: boolean;
   startAdornment?: string | ReactElement;
   endAdornment?: string | ReactElement;
-  labelEndAdornment?: ReactNode;
   passwordToggle?: boolean;
   passwordToggleTooltip?: string;
 }

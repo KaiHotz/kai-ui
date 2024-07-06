@@ -8,6 +8,7 @@
   &--disabled {
     opacity: 0.3;
   }
+
   &--small {
     --ui-swich__slider-size: 12px;
     --ui-swich__height: 8px;
@@ -15,6 +16,11 @@
   &--medium {
     --ui-swich__slider-size: 20px;
     --ui-swich__height: 12px;
+  }
+
+  &--large {
+    --ui-swich__slider-size: 28px;
+    --ui-swich__height: 16px;
   }
 
   &__input {

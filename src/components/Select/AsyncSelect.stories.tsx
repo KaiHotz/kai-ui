@@ -1,9 +1,22 @@
 /* eslint-disable no-console */
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { AsyncSelect } from './AsyncSelect';
 import { ISelectOption } from './types';
+
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
 
 const optionsDefault: ISelectOption[] = [
   { value: 'opt-1', label: 'Option 1' },
@@ -13,12 +26,22 @@ const optionsDefault: ISelectOption[] = [
 ];
 
 const meta: Meta<typeof AsyncSelect> = {
-  title: 'components/Select/AsyncSelect',
+  title: 'Components/Select/AsyncSelect',
   component: AsyncSelect,
-  argTypes: {},
+  argTypes: {
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
+    },
+  },
   args: {
     label: '',
     labelPosition: 'top',
+    labelEndAdornment: 'none',
     placeholder: '',
     hintText: '',
     errorMsg: '',

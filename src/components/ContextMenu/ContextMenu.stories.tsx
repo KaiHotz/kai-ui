@@ -6,7 +6,7 @@ import { ContextMenu } from './ContextMenu';
 import { MenuItemProps } from './ContextMenuItem';
 
 const meta: Meta<typeof ContextMenu> = {
-  title: 'components/ContextMenu',
+  title: 'Components/ContextMenu',
   component: ContextMenu,
 };
 

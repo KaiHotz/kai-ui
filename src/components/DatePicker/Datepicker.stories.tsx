@@ -2,8 +2,21 @@
 import React, { useState } from 'react';
 import { addDays, format } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Datepicker } from './Datepicker';
+
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
 
 const meta: Meta<typeof Datepicker> = {
   title: 'Components/Datepicker',
@@ -12,9 +25,19 @@ const meta: Meta<typeof Datepicker> = {
     dropdownMode: {
       description: 'type for year and month dropdown',
     },
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
+    },
   },
   args: {
     label: '',
+    labelPosition: 'top',
+    labelEndAdornment: 'none',
     placeholder: 'Select a date',
     hintText: '',
     errorMsg: '',

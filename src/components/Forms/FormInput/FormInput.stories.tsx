@@ -29,14 +29,21 @@ const meta: Meta<typeof FormInput> = {
   title: 'Components/Forms/FormInput',
   component: FormInput,
   args: {
-    label: '',
     type: 'text',
+    label: '',
+    labelPosition: 'top',
+    labelEndAdornment: 'none',
+    startAdornment: 'none',
+    endAdornment: 'none',
     small: false,
     disabled: false,
     required: false,
     placeholder: 'value',
     hintText: '',
+    passwordToggleTooltip: '',
+    passwordToggle: false,
     reserveSpaceForError: false,
+    hideError: false,
   },
   argTypes: {
     name: {
@@ -55,6 +62,14 @@ const meta: Meta<typeof FormInput> = {
       },
     },
     endAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
+    },
+    labelEndAdornment: {
       options: Object.keys(iconOptions),
       mapping: iconOptions,
       control: {

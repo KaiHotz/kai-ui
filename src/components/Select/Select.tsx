@@ -15,6 +15,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
   small?: boolean;
   label?: string;
   labelPosition?: ILabelProps['position'];
+  labelEndAdornment?: ReactNode;
   required?: boolean;
   hintText?: string;
   errorMsg?: string;
@@ -22,7 +23,6 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
   centerOptinons?: boolean;
-  labelEndAdornment?: ReactNode;
   options: OptionType[];
 }
 
@@ -30,6 +30,7 @@ export const Select = <OptionType extends ISelectOption>({
   name,
   label,
   labelPosition = 'top',
+  labelEndAdornment,
   hintText,
   errorMsg,
   disabled,
@@ -43,7 +44,6 @@ export const Select = <OptionType extends ISelectOption>({
   placeholder,
   options,
   small,
-  labelEndAdornment,
   centerOptinons,
   ...rest
 }: ISelectProps<OptionType>) => {

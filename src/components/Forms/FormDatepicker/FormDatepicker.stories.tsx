@@ -1,10 +1,23 @@
 import React from 'react';
 import * as yup from 'yup';
 import type { Meta, StoryObj } from '@storybook/react';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
 import { Form } from '../Form';
 import { FormDatepicker } from './FormDatepicker';
+
+const iconOptions = {
+  none: undefined,
+  searchIcon: <FaSistrix size={13} />,
+  infoIcon: <FaCircleInfo size={13} />,
+};
+
+const iconMap = {
+  none: 'None',
+  searchIcon: 'Search',
+  infoIcon: 'Information',
+};
 
 const meta: Meta<typeof FormDatepicker> = {
   title: 'Components/Forms/FormDatepicker',
@@ -12,6 +25,14 @@ const meta: Meta<typeof FormDatepicker> = {
   argTypes: {
     dropdownMode: {
       description: 'type for year and month dropdown',
+    },
+    labelEndAdornment: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+        labels: iconMap,
+      },
     },
   },
 };
@@ -41,6 +62,8 @@ export const Default: Story = {
   },
   args: {
     label: '',
+    labelEndAdornment: 'none',
+    labelPosition: 'top',
     placeholder: 'Select a date',
     hintText: '',
     required: false,
