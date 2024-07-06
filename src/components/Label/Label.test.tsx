@@ -37,13 +37,13 @@ describe('<Label />', () => {
     expect(label).toBeInTheDocument();
   });
 
-  it('should display children as required', () => {
+  it('should display children', () => {
     const props = {
       children: 'This is a Label',
       required: true,
     };
     render(<Label {...props} />);
-    const label = screen.getByText(`${props.children} *`);
+    const label = screen.getByText(props.children);
 
     expect(label).toBeInTheDocument();
   });

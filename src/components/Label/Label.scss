@@ -1,10 +1,24 @@
 .ui-label {
-  display: flex;
-  align-items: center;
+  display: block;
+  width: 100%;
+  position: relative;
   font-family: var(--font-primary);
-  font-size: 16px;
+  font-size: var(--ui-label--text-font-size, 16px);
   color: var(--emphasis-primary);
 
+  &--top,
+  &--bottom {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &--right,
+  &--left {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
   &--error {
     color: var(--error);
   }
@@ -14,11 +28,10 @@
   }
 
   &--small {
-    font-size: 14px;
+    font-size: var(--ui-label--text-font-size, 14px);
   }
 
   &__end-adornment {
     margin-left: 6px;
-    margin-bottom: 3px;
   }
 }

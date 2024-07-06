@@ -36,8 +36,9 @@ const meta: Meta<typeof Label> = {
 
 export const Default = {
   args: {
+    text: 'Label text',
     position: 'top',
-    children: 'Label',
+    children: <div>Children</div>,
     isError: false,
     disabled: false,
     required: false,

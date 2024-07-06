@@ -12,11 +12,11 @@ export interface IRadioOptionProps {
   disabled?: boolean;
 }
 
-export const RadioOption: FC<IRadioOptionProps> = ({ value, label, disabled }) => {
+export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', disabled }) => {
   const optionsAttr = useRadioOption();
   const isOptionDisabled = disabled || optionsAttr?.disabled;
   const isChecked = value === optionsAttr?.selected;
-  const rest = omit(optionsAttr, ['disabled', 'selected', 'labelPosition', 'onChange', 'name', 'variant', 'isInline']);
+  const rest = omit(optionsAttr, ['disabled', 'selected', 'onChange', 'name', 'variant', 'isInline']);
 
   return (
     <div
@@ -32,10 +32,10 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label, disabled }) =
       <Label
         className={cx('ui-radio-option__label', {
           'ui-radio-option__label--small': optionsAttr?.small,
-          'ui-radio-option__label--right': optionsAttr?.labelPosition === 'right',
         })}
-        text={label}
+        position={optionsAttr?.labelPosition}
         small={optionsAttr?.small}
+        text={label}
         disabled={isOptionDisabled}
       >
         <div className="ui-radio-option__input-wrapper">

@@ -5,7 +5,7 @@ import cx from 'clsx';
 import { ColorResult, GithubPicker as Palette, SketchPicker } from 'react-color';
 
 import { Button } from '../Button';
-import { Label } from '../Label';
+import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { colors } from './colors';
 import { useClickOutside } from '../../hooks';
@@ -16,6 +16,7 @@ export interface IColorPickerProps {
   color: ColorResult['hex'];
   variant?: 'palette' | 'picker';
   label?: string;
+  labelPosition?: ILabelProps['position'];
   icon?: ReactNode;
   errorMsg?: ReactNode;
   hintText?: string;
@@ -31,6 +32,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
   variant = 'picker',
   color,
   label,
+  labelPosition = 'top',
   icon,
   errorMsg,
   hintText,
@@ -91,18 +93,19 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
         'ui-color-picker--disabled': disabled,
       })}
     >
-      <Label text={label} required={required} isError={Boolean(errorMsg)} small={small} />
-      <Button
-        type="button"
-        variant="tertiary"
-        small={small}
-        onClick={handleShowPicker}
-        disabled={disabled}
-        icon={icon}
-        style={{ backgroundColor: color }}
-      >
-        {children}
-      </Button>
+      <Label text={label} required={required} isError={Boolean(errorMsg)} small={small} position={labelPosition}>
+        <Button
+          type="button"
+          variant="tertiary"
+          small={small}
+          onClick={handleShowPicker}
+          disabled={disabled}
+          icon={icon}
+          style={{ backgroundColor: color }}
+        >
+          {children}
+        </Button>
+      </Label>
       {colorPickerElement &&
         ReactDOM.createPortal(
           <div className="ui-color-picker__popover" ref={setPopperElement} {...attributes.popper} style={styles.popper}>

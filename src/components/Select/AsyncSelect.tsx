@@ -4,7 +4,7 @@ import AsyncCreatable from 'react-select/async-creatable';
 import { GroupBase } from 'react-select';
 import Async, { AsyncProps } from 'react-select/async';
 
-import { Label } from '../Label';
+import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
@@ -14,6 +14,7 @@ export interface IAsyncSelectProps<OptionType extends ISelectOption, IsMulti ext
   extends AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
+  labelPosition?: ILabelProps['position'];
   required?: boolean;
   hintText?: string;
   errorMsg?: ReactNode;
@@ -27,6 +28,7 @@ export interface IAsyncSelectProps<OptionType extends ISelectOption, IsMulti ext
 export const AsyncSelect = <OptionType extends ISelectOption>({
   name,
   label,
+  labelPosition = 'top',
   hintText,
   errorMsg,
   disabled,
@@ -60,27 +62,27 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
 
   return (
     <div className="ui-select">
-      {label && (
-        <Label
-          text={label}
-          htmlFor={name}
-          required={required}
-          disabled={disabled}
-          isError={!!errorMsg}
-          endAdornment={labelEndAdornment}
-          className="ui-select__label"
-          small={small}
-        />
-      )}
-      <div
-        className={cx(`ui-select__container `, {
-          'ui-select__container--small': small,
-          'ui-select__container--disabled': disabled,
-          'ui-select__container--error': !!errorMsg,
-        })}
+      <Label
+        text={label}
+        htmlFor={name}
+        required={required}
+        disabled={disabled}
+        isError={!!errorMsg}
+        position={labelPosition}
+        endAdornment={labelEndAdornment}
+        className="ui-select__label"
+        small={small}
       >
-        <AsyncSelectComponent {...commonProps} defaultOptions={defaultOptions} loadOptions={loadOptions} />
-      </div>
+        <div
+          className={cx(`ui-select__container `, {
+            'ui-select__container--small': small,
+            'ui-select__container--disabled': disabled,
+            'ui-select__container--error': !!errorMsg,
+          })}
+        >
+          <AsyncSelectComponent {...commonProps} defaultOptions={defaultOptions} loadOptions={loadOptions} />
+        </div>
+      </Label>
       {shouldShowValidationWrapper && (
         <div className="ui-select__validation-wrapper">
           {errorMsg && <Hint variant="error">{errorMsg}</Hint>}

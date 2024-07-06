@@ -42,27 +42,18 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
         })}
       >
         <div className="ui-checkbox__wrapper">
-          <Label
-            text={label}
-            required={required}
-            disabled={disabled}
-            className={cx('ui-checkbox__label', {
-              'ui-checkbox__label--left': labelPosition === 'left',
-            })}
-          >
-            <div className="ui-checkbox__input-wrapper">
-              <input
-                id={name}
-                required={required}
-                disabled={disabled}
-                checked={checked}
-                ref={ref}
-                {...rest}
-                type="checkbox"
-                aria-hidden="true"
-              />
-              <div className="ui-checkbox__icon" />
-            </div>
+          <Label text={label} required={required} disabled={disabled} position={labelPosition}>
+            <input
+              id={name}
+              required={required}
+              disabled={disabled}
+              checked={checked}
+              ref={ref}
+              {...rest}
+              type="checkbox"
+              aria-hidden="true"
+            />
+            <div className="ui-checkbox__icon" />
           </Label>
         </div>
         {shouldShowValidationWrapper && (

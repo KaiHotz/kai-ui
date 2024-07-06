@@ -17,6 +17,7 @@ const meta: Meta<typeof Select> = {
   argTypes: {},
   args: {
     label: '',
+    labelPosition: 'top',
     placeholder: '',
     hintText: '',
     errorMsg: '',

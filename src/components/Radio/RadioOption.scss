@@ -38,19 +38,12 @@
   }
 
   &__label {
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
     gap: 10px;
-
-    &--right {
-      flex-direction: row-reverse;
-    }
-
-    &--small {
-      gap: 6px;
-    }
   }
 
   &__input-wrapper {

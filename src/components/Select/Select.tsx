@@ -3,7 +3,7 @@ import cx from 'clsx';
 import Creatable, { CreatableProps } from 'react-select/creatable';
 import SelectComp, { GroupBase, Props as ReactSelectProps } from 'react-select';
 
-import { Label } from '../Label';
+import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
@@ -14,6 +14,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
     CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
+  labelPosition?: ILabelProps['position'];
   required?: boolean;
   hintText?: string;
   errorMsg?: string;
@@ -28,6 +29,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
 export const Select = <OptionType extends ISelectOption>({
   name,
   label,
+  labelPosition = 'top',
   hintText,
   errorMsg,
   disabled,
@@ -60,27 +62,27 @@ export const Select = <OptionType extends ISelectOption>({
 
   return (
     <div className="ui-select">
-      {label && (
-        <Label
-          text={label}
-          htmlFor={name}
-          required={required}
-          disabled={disabled}
-          isError={!!errorMsg}
-          endAdornment={labelEndAdornment}
-          small={small}
-          className="ui-select__label"
-        />
-      )}
-      <div
-        className={cx(`ui-select__container `, {
-          'ui-select__container--small': small,
-          'ui-select__container--disabled': disabled,
-          'ui-select__container--error': !!errorMsg,
-        })}
+      <Label
+        text={label}
+        htmlFor={name}
+        required={required}
+        disabled={disabled}
+        isError={!!errorMsg}
+        position={labelPosition}
+        endAdornment={labelEndAdornment}
+        small={small}
+        className="ui-select__label"
       >
-        {isCreatable ? <Creatable isCreatable {...commonProps} /> : <SelectComp {...commonProps} />}
-      </div>
+        <div
+          className={cx(`ui-select__container `, {
+            'ui-select__container--small': small,
+            'ui-select__container--disabled': disabled,
+            'ui-select__container--error': !!errorMsg,
+          })}
+        >
+          {isCreatable ? <Creatable isCreatable {...commonProps} /> : <SelectComp {...commonProps} />}
+        </div>
+      </Label>
       {shouldShowValidationWrapper && (
         <div className="ui-select__validation-wrapper">
           {errorMsg && <Hint variant="error">{errorMsg}</Hint>}

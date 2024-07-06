@@ -40,6 +40,7 @@ export const Default: Story = {
   },
   args: {
     label: '',
+    labelPosition: 'right',
     disabled: false,
     size: 'medium',
     name: '',

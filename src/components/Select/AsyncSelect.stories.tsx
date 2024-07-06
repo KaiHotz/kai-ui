@@ -18,6 +18,7 @@ const meta: Meta<typeof AsyncSelect> = {
   argTypes: {},
   args: {
     label: '',
+    labelPosition: 'top',
     placeholder: '',
     hintText: '',
     errorMsg: '',
@@ -36,16 +37,14 @@ type Story = StoryObj<typeof AsyncSelect>;
 export const Default: Story = {
   render(args) {
     return (
-      <div>
-        <AsyncSelect
-          {...args}
-          loadOptions={(search, cb: (options: ISelectOption[]) => void) => {
-            console.log(search);
+      <AsyncSelect
+        {...args}
+        loadOptions={(search, cb: (options: ISelectOption[]) => void) => {
+          console.log(search);
 
-            return cb(optionsDefault);
-          }}
-        />
-      </div>
+          return cb(optionsDefault);
+        }}
+      />
     );
   },
 };

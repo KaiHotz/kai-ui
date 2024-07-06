@@ -22,15 +22,6 @@ const iconMap = {
 export default {
   title: 'Components/Input',
   component: Input,
-  args: {
-    label: '',
-    disabled: false,
-    required: false,
-    small: false,
-    reserveSpaceForError: false,
-    hintText: '',
-    errorMsg: '',
-  },
   argTypes: {
     type: {
       options: [
@@ -83,6 +74,15 @@ export default {
         labels: iconMap,
       },
     },
+  },
+  args: {
+    label: '',
+    labelPosition: 'top',
+    required: false,
+    small: false,
+    reserveSpaceForError: false,
+    hintText: '',
+    errorMsg: '',
   },
 };
 

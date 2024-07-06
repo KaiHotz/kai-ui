@@ -2,14 +2,15 @@ import React, { forwardRef, InputHTMLAttributes, ReactElement, ReactNode, useSta
 import cx from 'clsx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
+import { ILabelProps, Label } from '../Label';
 import { Button } from '../Button';
 import { Hint } from '../Hint';
-import { Label } from '../Label';
 
 import './Input.scss';
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelPosition?: ILabelProps['position'];
   hintText?: string;
   errorMsg?: string;
   hideError?: boolean;
@@ -29,6 +30,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
       name,
       type,
       label,
+      labelPosition = 'top',
       small,
       disabled,
       hintText,
@@ -59,50 +61,50 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
           'ui-input--disabled': disabled,
         })}
       >
-        {label && (
-          <Label
-            text={label}
-            htmlFor={name}
-            required={required}
-            disabled={disabled}
-            isError={!!errorMsg}
-            endAdornment={labelEndAdornment}
-            className="ui-input__label"
-            small={small}
-          />
-        )}
-        <div
-          className={cx('ui-input__wrapper', {
-            'ui-input__wrapper--small': small,
-            'ui-input__wrapper--error': errorMsg,
-            'ui-input__wrapper--disabled': disabled,
-          })}
+        <Label
+          text={label}
+          htmlFor={name}
+          required={required}
+          disabled={disabled}
+          isError={!!errorMsg}
+          position={labelPosition}
+          endAdornment={labelEndAdornment}
+          className="ui-input__label"
+          small={small}
         >
-          {startAdornment && <div className="ui-input__start-adornment">{startAdornment}</div>}
-          <input
-            ref={ref}
-            name={name}
-            type={showPassword ? 'text' : type}
-            placeholder={placeholderText}
-            disabled={disabled}
-            {...rest}
-          />
-          {type === 'password'
-            ? (endAdornment || passwordToggle) && (
-                <div className="ui-input__end-adornment">
-                  {endAdornment}
-                  {passwordToggle && (
-                    <Button
-                      variant="ghost"
-                      title={passwordToggleTooltip}
-                      icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
-                      onClick={toggleShowPassword}
-                    />
-                  )}
-                </div>
-              )
-            : endAdornment && <div className="ui-input__end-adornment">{endAdornment}</div>}
-        </div>
+          <div
+            className={cx('ui-input__wrapper', {
+              'ui-input__wrapper--small': small,
+              'ui-input__wrapper--error': errorMsg,
+              'ui-input__wrapper--disabled': disabled,
+            })}
+          >
+            {startAdornment && <div className="ui-input__start-adornment">{startAdornment}</div>}
+            <input
+              ref={ref}
+              name={name}
+              type={showPassword ? 'text' : type}
+              placeholder={placeholderText}
+              disabled={disabled}
+              {...rest}
+            />
+            {type === 'password'
+              ? (endAdornment || passwordToggle) && (
+                  <div className="ui-input__end-adornment">
+                    {endAdornment}
+                    {passwordToggle && (
+                      <Button
+                        variant="ghost"
+                        title={passwordToggleTooltip}
+                        icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
+                        onClick={toggleShowPassword}
+                      />
+                    )}
+                  </div>
+                )
+              : endAdornment && <div className="ui-input__end-adornment">{endAdornment}</div>}
+          </div>
+        </Label>
         {shouldShowValidationWrapper && (
           <div className="ui-input__validation-wrapper">
             <div className="ui-input__validation-messages">

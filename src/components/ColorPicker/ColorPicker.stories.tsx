@@ -32,6 +32,7 @@ export const Default: Story = {
     variant: 'picker',
     color: '',
     label: '',
+    labelPosition: 'top',
     hintText: '',
     errorMsg: '',
     disabled: false,
