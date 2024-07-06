@@ -7,6 +7,6 @@ import { Switch } from './Switch';
 describe('<Switch />', () => {
   it('should render Switch', () => {
     render(<Switch name="name" value onChange={() => vi.fn} />);
-    expect(screen.getByTestId('dm-switch')).toMatchSnapshot();
+    expect(screen.getByTestId('ui-switch')).toMatchSnapshot();
   });
 });

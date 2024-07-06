@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Switch /> > should render Switch 1`] = `
+<span
+  class="ui-switch ui-switch--medium"
+  data-testid="ui-switch"
+>
+  <input
+    checked=""
+    class="ui-switch__input"
+    data-testid="ui-switch-input"
+    name="name"
+    type="checkbox"
+  />
+  <span
+    class="ui-switch__slider"
+    data-testid="ui-switch-slider"
+  />
+</span>
+`;
