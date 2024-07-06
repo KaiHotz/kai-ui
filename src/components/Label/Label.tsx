@@ -48,7 +48,6 @@ export const Label: FC<ILabelProps> = ({
         </>
       )}
       {typeof children === 'string' ? `${children}${required ? ' *' : ''}` : children}
-      {!!endAdornment && children && <div className="ui-label__end-adornment">{endAdornment}</div>}
     </label>
   );
 };

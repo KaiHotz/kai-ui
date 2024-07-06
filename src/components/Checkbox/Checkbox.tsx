@@ -5,7 +5,7 @@ import { Label } from '../Label';
 import { Hint } from '../Hint';
 import './Checkbox.scss';
 
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   labelPosition?: 'left' | 'right';
   variant?: 'checkmark' | 'square';
@@ -14,7 +14,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   reserveSpaceForError?: boolean;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
   (
     {
       name,

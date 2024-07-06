@@ -6,8 +6,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
 
 import { Form } from '../Form';
-import { Button } from '../../Button';
 import { FormInput } from './FormInput';
+import { Button } from '../../Button';
 
 const iconOptions = {
   none: undefined,
