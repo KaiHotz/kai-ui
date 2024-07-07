@@ -93,7 +93,7 @@ export const Default: Story = {
     type TFormData = yup.InferType<typeof schema>;
 
     const onSubmit = (data: TFormData) => {
-      console.log(JSON.stringify(data));
+      alert(JSON.stringify(data));
     };
 
     const onError = (errors: FieldErrors<TFormData>) => {

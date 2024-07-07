@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
-import { Switch } from './Switch';
+import { Textarea } from './Textarea';
 
 const iconOptions = {
   none: undefined,
@@ -16,9 +16,9 @@ const iconMap = {
   infoIcon: 'Information',
 };
 
-const meta: Meta<typeof Switch> = {
-  title: 'Components/Switch',
-  component: Switch,
+const meta: Meta<typeof Textarea> = {
+  title: 'Components/Textarea',
+  component: Textarea,
   argTypes: {
     name: {
       control: false,
@@ -46,25 +46,30 @@ const meta: Meta<typeof Switch> = {
   },
 };
 
-type Story = StoryObj<typeof Switch>;
+type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {
   render: function useSwitchStory(args) {
-    const [inputValue, setInputValue] = useState(false);
+    const [inputValue, setInputValue] = useState('');
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const { checked } = e.target;
-      setInputValue(checked);
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const { value } = e.target;
+      setInputValue(value);
     };
 
-    return <Switch {...args} value={inputValue} onChange={handleChange} />;
+    return <Textarea {...args} value={inputValue} onChange={handleChange} />;
   },
   args: {
-    size: 'medium',
     label: '',
-    labelPosition: 'right',
+    labelPosition: 'top',
     labelEndAdornment: 'none',
+    placeholder: '',
+    hintText: '',
+    errorMsg: '',
     disabled: false,
+    required: false,
+    reserveSpaceForError: false,
+    maxLength: 0,
   },
 };
 

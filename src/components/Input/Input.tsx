@@ -16,7 +16,6 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMsg?: string;
   hideError?: boolean;
   small?: boolean;
-  disabled?: boolean;
   reserveSpaceForError?: boolean;
   startAdornment?: string | ReactElement;
   endAdornment?: string | ReactElement;
@@ -69,7 +68,6 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
           isError={!!errorMsg}
           position={labelPosition}
           endAdornment={labelEndAdornment}
-          className="ui-input__label"
           small={small}
         >
           <div

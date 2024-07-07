@@ -29,13 +29,8 @@
       -webkit-text-fill-color: var(--emphasis-primary);
     }
   }
-
   [readonly] {
-    cursor: default;
-  }
-
-  &__label {
-    margin: 0 0 5px 5px;
+    cursor: not-allowed;
   }
 
   &__wrapper {
@@ -53,7 +48,10 @@
     &:focus-within {
       background-color: var(--positive);
     }
-
+    &:hover,
+    &:focus-within {
+      border-color: var(--negative);
+    }
     &--error {
       border-color: var(--error);
       &:hover,
@@ -68,7 +66,6 @@
         }
       }
     }
-
     &--disabled {
       color: var(--emphasis-quaternary);
       background-color: var(--green-6);
@@ -86,7 +83,6 @@
       padding: 4px 6px 4px 8px;
     }
   }
-
   &__start-adornment,
   &__end-adornment {
     display: flex;
@@ -97,7 +93,6 @@
       fill: var(--emphasis-tertiary);
     }
   }
-
   &__validation-wrapper {
     display: flex;
     padding: 5px 2px;

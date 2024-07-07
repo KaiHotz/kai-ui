@@ -21,7 +21,10 @@
     height: 42px;
     font-size: 16px;
     padding: 5px 12px;
-
+    &:hover,
+    &:focus-within {
+      border-color: var(--negative);
+    }
     &:focus-within {
       background-color: var(--positive);
     }
@@ -31,23 +34,19 @@
     &--error {
       border-color: var(--error);
     }
-
     &--small {
       height: 26px;
       font-size: 14px;
       padding: 4px 8px;
       border-radius: 4px;
     }
-
     &--disabled {
       background-color: var(--green-6);
     }
   }
-
   &__label {
     margin: 0 0 5px 5px;
   }
-
   &__validation-wrapper {
     display: flex;
     padding: 5px 2px;
