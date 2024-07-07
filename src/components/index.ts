@@ -19,6 +19,7 @@ export * from './Modal';
 export * from './Pagination';
 export * from './PseudoLink';
 export * from './Radio';
+export * from './Score';
 export * from './Select';
 export * from './SideNav';
 export * from './Spinner';
