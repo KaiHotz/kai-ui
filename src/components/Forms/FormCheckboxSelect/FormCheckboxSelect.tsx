@@ -1,20 +1,14 @@
 import React, { MutableRefObject, useEffect, useImperativeHandle } from 'react';
-import { AsyncProps } from 'react-select/async';
-import { ActionMeta, GroupBase, Props as ReactSelectProps, SingleValue } from 'react-select';
+import { ActionMeta, Props as ReactSelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import noop from 'lodash/noop';
 
 import { ILabelProps } from '../../Label';
-import { AsyncSelect, ISelectOption, Select } from '../../Select';
+import { IFormSelectFieldError } from '../FormSelect';
+import { CheckboxSelect, ISelectOption } from '../../Select';
 
-export interface IFormSelectFieldError extends FieldError {
-  label: FieldError;
-  value: FieldError;
-}
-
-export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends ReactSelectProps<OptionType, IsMulti>,
-    AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
+export interface IFormCheckboxSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
+  extends ReactSelectProps<OptionType, IsMulti> {
   name: string;
   small?: boolean;
   label?: string;
@@ -33,20 +27,18 @@ export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti exte
   }>;
 }
 
-export const FormSelect = <OptionType extends ISelectOption>({
+export const FormCheckboxSelect = <OptionType extends ISelectOption>({
   name,
   options,
   required,
-  defaultOptions,
   reserveSpaceForError,
-  loadOptions,
   errorMsg,
   onChange = noop,
   placeholder,
   selectRef,
   small,
   ...rest
-}: IFormSelectProps<OptionType>) => {
+}: IFormCheckboxSelectProps<OptionType>) => {
   const { control, setError, resetField } = useFormContext();
   const {
     field: { value, onChange: onOptionChange, onBlur },
@@ -73,30 +65,16 @@ export const FormSelect = <OptionType extends ISelectOption>({
     }
   }, [name, setError, errorMsg]);
 
-  const selectErrorMsg =
-    error?.message ||
-    (error as IFormSelectFieldError)?.value.message ||
-    (error as IFormSelectFieldError)?.label.message;
-
-  return loadOptions ? (
-    <AsyncSelect
-      {...rest}
-      defaultOptions={defaultOptions}
-      value={value}
-      errorMsg={selectErrorMsg}
-      onChange={onHandleChange}
-      loadOptions={loadOptions}
-      reserveSpaceForError={reserveSpaceForError}
-      placeholder={placeholder}
-      required={required}
-      small={small}
-    />
-  ) : (
-    <Select
+  return (
+    <CheckboxSelect
       {...rest}
       options={options || []}
       value={value}
-      errorMsg={selectErrorMsg}
+      errorMsg={
+        error?.message ||
+        (error as IFormSelectFieldError)?.value.message ||
+        (error as IFormSelectFieldError)?.label.message
+      }
       onChange={onHandleChange}
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}

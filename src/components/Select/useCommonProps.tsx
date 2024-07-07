@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import omit from 'lodash/omit';
-import { FaAngleDown, FaXmark } from 'react-icons/fa6';
+import { FaChevronDown, FaXmark } from 'react-icons/fa6';
 
 import { getCSSVariable } from '../../utils';
 import { ISelectProps } from './Select';
@@ -47,7 +47,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         IndicatorSeparator: () => null,
         DropdownIndicator: ({ innerProps }) => (
           <div {...innerProps} className="ui-select__dropdown-indicator">
-            <FaAngleDown size={small ? 14 : 18} color={colors.emphasisTertiary} />
+            <FaChevronDown size={small ? 14 : 18} color={colors.emphasisTertiary} />
           </div>
         ),
         ClearIndicator: ({ innerProps }) => (
@@ -97,7 +97,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         }),
         placeholder: (style, state) => ({
           ...style,
-          color: state.isFocused ? colors.emphasisSecondary : colors.emphasisQuaternary,
+          color: state.isFocused ? colors.emphasisQuaternary : colors.emphasisTertiary,
         }),
         menuList: (style) => ({
           ...style,

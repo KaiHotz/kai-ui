@@ -1,5 +1,6 @@
 export * from './Form';
 export * from './FormCheckbox';
+export * from './FormCheckboxSelect';
 export * from './FormDatepicker';
 export * from './FormInput';
 export * from './FormRadio';
