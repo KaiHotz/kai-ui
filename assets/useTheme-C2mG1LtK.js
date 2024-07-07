@@ -1,0 +1,1 @@
+import{r as o}from"./index-BP8_t0zE.js";import{T as s}from"./ThemeProvider-DX_3E3qS.js";const n=()=>{const{theme:e,setTheme:t,isDark:r}=o.useContext(s);return{theme:e,isDark:r,setTheme:t}};export{n as u};
