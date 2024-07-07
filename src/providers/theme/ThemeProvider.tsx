@@ -1,5 +1,5 @@
 import React, { createContext, FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 import { EThemeOptions } from './types';
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 type TUseEventListenerSignature = <T extends keyof GlobalEventHandlersEventMap>(
   eventName: T,

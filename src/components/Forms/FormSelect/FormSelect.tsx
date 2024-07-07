@@ -2,7 +2,7 @@ import React, { MutableRefObject, useEffect, useImperativeHandle } from 'react';
 import { AsyncProps } from 'react-select/async';
 import { ActionMeta, GroupBase, Props as SelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 import { ILabelProps } from '../../Label';
 import { AsyncSelect, ISelectOption, Select } from '../../Select';

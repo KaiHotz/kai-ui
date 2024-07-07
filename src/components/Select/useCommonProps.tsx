@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import { FaAngleDown, FaXmark } from 'react-icons/fa6';
 
 import { getCSSVariable } from '../../utils';

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 export interface TAccordionSectionContext {
   onClick: () => void;

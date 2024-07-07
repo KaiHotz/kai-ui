@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import cx from 'clsx';
 
 import { useRadioOption } from './context';

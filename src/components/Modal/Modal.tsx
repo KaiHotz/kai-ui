@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 import { FaXmark } from 'react-icons/fa6';
 import cx from 'clsx';
 
