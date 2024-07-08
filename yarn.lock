@@ -3265,6 +3265,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^8.4.1":
+  version: 8.4.1
+  resolution: "@faker-js/faker@npm:8.4.1"
+  checksum: 10/5983c2ea64f26055ad6648de748878e11ebe2fb751e3c7435ae141cdffabc2dccfe4c4f49da69a3d2add71e21b415c683ac5fba196fab0d5ed6779fbec436c80
+  languageName: node
+  linkType: hard
+
 "@fal-works/esbuild-plugin-global-externals@npm:^2.1.2":
   version: 2.1.2
   resolution: "@fal-works/esbuild-plugin-global-externals@npm:2.1.2"
@@ -11512,6 +11519,7 @@ __metadata:
   resolution: "kai-ui@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^1.6.0"
+    "@faker-js/faker": "npm:^8.4.1"
     "@hookform/resolvers": "npm:^3.7.0"
     "@popperjs/core": "npm:^2.11.8"
     "@rollup/plugin-commonjs": "npm:^26.0.1"
@@ -11605,6 +11613,7 @@ __metadata:
     react-hook-form: 7.x
     react-icons: 5.x
     react-popper: 2.x
+    react-tooltip: 5.x
     react-transition-group: 4.x
     yup: ^1.x
   languageName: unknown

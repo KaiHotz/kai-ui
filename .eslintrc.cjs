@@ -118,6 +118,7 @@ module.exports = {
           './src/setupTests.ts',
           './src/main.tsx',
           './vite.config.ts',
+          '@faker-js/faker',
         ],
       },
     ],

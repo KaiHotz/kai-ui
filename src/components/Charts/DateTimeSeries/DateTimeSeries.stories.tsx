@@ -59,7 +59,7 @@ const meta: Meta<typeof DateTimeSeries> = {
       control: false,
     },
     seriesType: {
-      options: ['column', 'bar', 'line', 'area'],
+      options: ['column', 'bar', 'line', 'spline', 'area', 'areaspline'],
       control: {
         type: 'select',
       },
