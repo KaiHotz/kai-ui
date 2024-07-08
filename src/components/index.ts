@@ -12,6 +12,7 @@ export * from './Drawer';
 export * from './Forms';
 export * from './HeatMapCalendar';
 export * from './Hint';
+export * from './DataRows';
 export * from './Input';
 export * from './Label';
 export * from './MenuButton';
