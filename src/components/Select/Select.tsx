@@ -48,7 +48,8 @@ export const Select = <OptionType extends ISelectOption>({
   ...rest
 }: ISelectProps<OptionType>) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
-  const placeholderText = typeof placeholder === 'string' ? `${placeholder}${required ? ' *' : ''}` : placeholder;
+  const placeholderText =
+    typeof placeholder === 'string' ? `${placeholder}${required && !label ? ' *' : ''}` : placeholder;
   const commonProps = useCommonProps({
     disabled,
     menuPlacement,

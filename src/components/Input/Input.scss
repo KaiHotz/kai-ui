@@ -16,6 +16,8 @@
     color: inherit;
     background-color: inherit;
     background-clip: text;
+    color: var(--emphasis-primary);
+
     &::placeholder {
       color: var(--emphasis-tertiary);
     }
@@ -58,13 +60,6 @@
       &:focus-within {
         border-color: var(--error);
       }
-      input {
-        cursor: not-allowed;
-        &:hover,
-        &:hover::placeholder {
-          color: var(--emphasis-quaternary);
-        }
-      }
     }
     &--disabled {
       color: var(--emphasis-quaternary);
@@ -83,16 +78,19 @@
       padding: 4px 6px 4px 8px;
     }
   }
+
   &__start-adornment,
   &__end-adornment {
     display: flex;
     align-items: center;
     height: 100%;
+    gap: 5px;
     user-select: none;
     svg {
       fill: var(--emphasis-tertiary);
     }
   }
+
   &__validation-wrapper {
     display: flex;
     padding: 5px 2px;

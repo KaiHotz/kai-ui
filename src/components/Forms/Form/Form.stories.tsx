@@ -3,10 +3,14 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import * as yup from 'yup';
 import { FieldErrors, UseFormReset } from 'react-hook-form';
+import { FaEnvelope } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
 import { Form } from './Form';
 import { FormInput } from '../FormInput';
+import { FormRadio, RadioOption } from '../FormRadio';
+import { FormCheckbox } from '../FormCheckbox';
+import { FormSelect } from '../FormSelect';
 import { capitalizeWords } from '../../../utils';
 
 const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] as const;
@@ -82,7 +86,7 @@ export const Default: Story = {
           firstName: '',
           lastName: '',
           email: '',
-          user: { label: '', value: '' },
+          user: undefined,
           password: '',
           formRadioExample: 'opt_1',
           notification: false,
@@ -99,35 +103,40 @@ export const Default: Story = {
                   gap: '10px',
                 }}
               >
-                <div style={{ width: '100%' }}>
-                  <FormInput
-                    name="firstName"
-                    label="First name"
-                    placeholder="First name"
-                    required
-                    reserveSpaceForError
-                    onChange={(e) => {
-                      setValue('firstName', capitalizeWords(e.target.value));
-                    }}
-                  />
-                </div>
-                <div style={{ width: '100%' }}>
-                  <FormInput
-                    name="lastName"
-                    label="Last name"
-                    placeholder="Last name"
-                    required
-                    reserveSpaceForError
-                    onChange={(e) => {
-                      setValue('lastName', capitalizeWords(e.target.value));
-                    }}
-                  />
-                </div>
+                <FormInput
+                  name="firstName"
+                  label="First name"
+                  placeholder="Enter your first name"
+                  required
+                  reserveSpaceForError
+                  onChange={(e) => {
+                    setValue('firstName', capitalizeWords(e.target.value));
+                  }}
+                />
+                <FormInput
+                  name="lastName"
+                  label="Last name"
+                  placeholder="Enter your last name"
+                  required
+                  reserveSpaceForError
+                  onChange={(e) => {
+                    setValue('lastName', capitalizeWords(e.target.value));
+                  }}
+                />
               </div>
-              <FormInput name="email" label="Email" placeholder="E-mail" required reserveSpaceForError />
-              {/* <FormSelect
+              <FormInput
+                name="email"
+                label="Email"
+                placeholder="Enter your E-mail"
+                required
+                reserveSpaceForError
+                withVaildationIcon
+                endAdornment={<FaEnvelope />}
+              />
+              <FormSelect
                 name="user"
                 label="User"
+                placeholder="Select a user"
                 required
                 reserveSpaceForError
                 options={[
@@ -136,23 +145,24 @@ export const Default: Story = {
                   { value: 'user-3', label: 'User 3' },
                   { value: 'user-4', label: 'User 4' },
                 ]}
-              /> */}
+              />
               <FormInput
                 name="password"
                 label="Password"
-                placeholder="Password"
+                placeholder="Enter your password"
                 type="password"
                 passwordToggle
                 required
+                withVaildationIcon
                 reserveSpaceForError
               />
-              {/* <FormRadio name="formRadioExample" reserveSpaceForError isInline>
+              <FormRadio name="formRadioExample" reserveSpaceForError isInline>
                 <RadioOption value="option_1" label="Label 1" />
                 <RadioOption value="option_2" label="Label 2" />
                 <RadioOption value="option_3" label="Label 3" />
                 <RadioOption value="option_4" label="Label 4" disabled />
               </FormRadio>
-              <FormCheckbox name="notification" reserveSpaceForError label="Get notified" /> */}
+              <FormCheckbox name="notification" reserveSpaceForError label="Get notified" />
               <div
                 style={{
                   display: 'flex',

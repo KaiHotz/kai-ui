@@ -50,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => setShowPassword((prev) => !prev);
     const shouldShowValidationWrapper = Boolean(reserveSpaceForError || (errorMsg && !hideError) || hintText);
-    const placeholderText = `${placeholder}${required ? ' *' : ''}`;
+    const placeholderText = `${placeholder}${required && !label ? ' *' : ''}`;
     const iconSize = small ? 14 : 18;
 
     return (

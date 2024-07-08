@@ -44,6 +44,7 @@ const meta: Meta<typeof FormInput> = {
     passwordToggle: false,
     reserveSpaceForError: false,
     hideError: false,
+    withVaildationIcon: false,
   },
   argTypes: {
     name: {

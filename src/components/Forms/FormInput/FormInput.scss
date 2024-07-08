@@ -1,0 +1,12 @@
+.ui-form-input {
+  &__icon {
+    svg {
+      fill: var(--success);
+    }
+    &--error {
+      svg {
+        fill: var(--error);
+      }
+    }
+  }
+}
