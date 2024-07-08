@@ -2708,16 +2708,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chromatic-com/storybook@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "@chromatic-com/storybook@npm:1.6.0"
+"@chromatic-com/storybook@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@chromatic-com/storybook@npm:1.6.1"
   dependencies:
     chromatic: "npm:^11.4.0"
     filesize: "npm:^10.0.12"
     jsonfile: "npm:^6.1.0"
     react-confetti: "npm:^6.1.0"
     strip-ansi: "npm:^7.1.0"
-  checksum: 10/5f1d332f40bb9d53a45aacbb3e995d09b44bb79e77bcb59914cc96c238aab9c2003fb322bca4fee2add73c6070f0535f1f20228276a24ce5c3416acb3525d61c
+  checksum: 10/759a37ace8c82ee277d2722a0a1f724a8700be6efee9611cede7a328df20f85fcd4d9cb3a6813352a53c65e8267e6985c305d09dab0f16f3495198d0300e8798
   languageName: node
   linkType: hard
 
@@ -3364,12 +3364,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@hookform/resolvers@npm:3.7.0"
+"@hookform/resolvers@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "@hookform/resolvers@npm:3.9.0"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 10/155776a1fb22882d147d9bdc776ebf101296636c54c4a225e11d9f0a251b30675b7f0efaf3977b6b72f70489b1daa7aeb1ce61d6b8d432cc12e11068cfef1c8d
+  checksum: 10/b878e92cebc703106a70987437ab4add0e71a327a0bb9864f82ab480b5d9a38b0d639f6154b138c3c4828af0db00c1b413279c102715146b19edc76b9786f1c3
   languageName: node
   linkType: hard
 
@@ -5620,12 +5620,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.14.9":
-  version: 20.14.9
-  resolution: "@types/node@npm:20.14.9"
+"@types/node@npm:^20.14.10":
+  version: 20.14.10
+  resolution: "@types/node@npm:20.14.10"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/f313b06c79be92f5d3541159ef813b9fc606941f951ecf826e940658c6d4952755ca2f06277b746326cef0697ed79a04676ecde053d32e1121b3352c8168d2e9
+  checksum: 10/672892cf94d0d95cf052f11271990686a0fd204cd1e5fe7a4ef240e5315e06711765dc47b9ec98627d3adac18b8c92bb7e2d8db21d18faa20bc3e3203a143e79
   languageName: node
   linkType: hard
 
@@ -10441,10 +10441,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"highcharts@npm:^11.4.4":
-  version: 11.4.4
-  resolution: "highcharts@npm:11.4.4"
-  checksum: 10/01d2c38e386e3d8bab1aa8d31b4bdee9149f481c268b132c61615cf044c2b8f3eec2d0acec03fbd7502a725a585f6b6d7182cea1956dc5f5f2996973bac8dce5
+"highcharts@npm:^11.4.6":
+  version: 11.4.6
+  resolution: "highcharts@npm:11.4.6"
+  checksum: 10/aef289e94b8740f3cd56ae115015e46961e5c64676cacaa6fec24765177df2ac1e14fcf78beb56ab214073331f57a5d206e3503b0e4a39d812cf1a4f52ff7c4a
   languageName: node
   linkType: hard
 
@@ -11518,9 +11518,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "kai-ui@workspace:."
   dependencies:
-    "@chromatic-com/storybook": "npm:^1.6.0"
+    "@chromatic-com/storybook": "npm:^1.6.1"
     "@faker-js/faker": "npm:^8.4.1"
-    "@hookform/resolvers": "npm:^3.7.0"
+    "@hookform/resolvers": "npm:^3.9.0"
     "@popperjs/core": "npm:^2.11.8"
     "@rollup/plugin-commonjs": "npm:^26.0.1"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
@@ -11538,7 +11538,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.4.6"
     "@testing-library/react": "npm:^16.0.0"
     "@testing-library/user-event": "npm:^14.5.2"
-    "@types/node": "npm:^20.14.9"
+    "@types/node": "npm:^20.14.10"
     "@types/react": "npm:^18.3.3"
     "@types/react-color": "npm:^3.0.12"
     "@types/react-datepicker": "npm:^6.2.0"
@@ -11561,7 +11561,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.7"
     eslint-plugin-storybook: "npm:^0.8.0"
     gh-pages: "npm:^6.1.1"
-    highcharts: "npm:^11.4.4"
+    highcharts: "npm:^11.4.6"
     highcharts-react-official: "npm:^3.2.1"
     jsdom: "npm:^24.1.0"
     lodash: "npm:^4.17.21"
@@ -11581,7 +11581,7 @@ __metadata:
     react-tooltip: "npm:^5.27.1"
     react-transition-group: "npm:^4.4.5"
     regenerator-runtime: "npm:^0.14.1"
-    rimraf: "npm:^5.0.7"
+    rimraf: "npm:^5.0.8"
     rollup: "npm:^4.18.0"
     rollup-plugin-dts: "npm:^6.1.1"
     rollup-plugin-peer-deps-external: "npm:^2.2.4"
@@ -14817,14 +14817,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^5.0.7":
-  version: 5.0.7
-  resolution: "rimraf@npm:5.0.7"
+"rimraf@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "rimraf@npm:5.0.8"
   dependencies:
     glob: "npm:^10.3.7"
   bin:
     rimraf: dist/esm/bin.mjs
-  checksum: 10/1e3cecfe59ee2383dfd9ba5373caeed48ed941318a0360119419b7dffc63115661408b9427f67e1f66b5bbb8855a3953db09e55a7362b3df904a44453dfa22fb
+  checksum: 10/ab8f1bcb49762d16120813a127f90773da657bb5c6f29d3865c1b3c1ceb0d2291cd3e7b439adb7571024be47dce8443b3ffd1b116ec78b6122fca0571da87a79
   languageName: node
   linkType: hard
 
