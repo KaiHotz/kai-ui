@@ -34,7 +34,7 @@
     "release": "yarn ci && yarn build && npm publish",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:deploy": "yarn storybook:build && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t true",
+    "storybook:deploy": "rimraf ./storybook-static && yarn ci && yarn storybook:build && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t true",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
