@@ -149,7 +149,7 @@ export const Default: Story = {
   },
   args: {
     data,
-    rowDef: [],
+    rowDef: rowDefs.default as IDataRowsdDef<NonNullable<unknown>>[],
     hasDivider: true,
   },
 };
