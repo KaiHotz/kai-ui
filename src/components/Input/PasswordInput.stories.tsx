@@ -55,6 +55,7 @@ export default {
     reserveSpaceForError: false,
     hintText: '',
     errorMsg: '',
+    isValid: false,
     hideError: false,
     disabled: false,
   },

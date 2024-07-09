@@ -39,7 +39,6 @@ export const Default = {
     text: 'Label text',
     position: 'top',
     children: <div>Children</div>,
-    isError: false,
     disabled: false,
     required: false,
   },

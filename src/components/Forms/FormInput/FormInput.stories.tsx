@@ -47,6 +47,9 @@ const meta: Meta<typeof FormInput> = {
     name: {
       control: false,
     },
+    isValid: {
+      control: false,
+    },
     type: {
       options: ['text', 'password', 'email', 'number', 'search', 'tel', 'url'],
       control: { type: 'select' },

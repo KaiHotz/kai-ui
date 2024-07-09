@@ -14,6 +14,7 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMsg?: string;
   hideError?: boolean;
   small?: boolean;
+  isValid?: boolean;
   reserveSpaceForError?: boolean;
   startAdornment?: string | ReactElement;
   endAdornment?: string | ReactElement;
@@ -37,6 +38,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
       endAdornment,
       labelEndAdornment,
       required,
+      isValid,
       ...rest
     },
     ref,
@@ -45,18 +47,12 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
     const placeholderText = `${placeholder}${required && !label ? ' *' : ''}`;
 
     return (
-      <div
-        className={cx('ui-input', {
-          'ui-input--error': errorMsg,
-          'ui-input--disabled': disabled,
-        })}
-      >
+      <div className="ui-input">
         <Label
           text={label}
           htmlFor={name}
           required={required}
           disabled={disabled}
-          isError={!!errorMsg}
           position={labelPosition}
           endAdornment={labelEndAdornment}
           small={small}
@@ -65,6 +61,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
             className={cx('ui-input__wrapper', {
               'ui-input__wrapper--small': small,
               'ui-input__wrapper--error': errorMsg,
+              'ui-input__wrapper--success': isValid && !errorMsg,
               'ui-input__wrapper--disabled': disabled,
             })}
           >

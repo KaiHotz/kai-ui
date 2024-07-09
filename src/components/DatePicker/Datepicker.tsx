@@ -17,6 +17,7 @@ export interface IDatepickerProps extends ReactDatePickerProps {
   dropdownMode?: 'scroll' | 'select';
   autoComplete?: 'on' | 'off';
   inputSmall?: boolean;
+  isValid?: boolean;
 }
 
 export const Datepicker: FC<IDatepickerProps> = ({
@@ -38,6 +39,7 @@ export const Datepicker: FC<IDatepickerProps> = ({
   showPopperArrow,
   popperModifiers,
   inputSmall,
+  isValid,
   ...rest
 }) => {
   const shouldModifyPopperOffeset = reserveSpaceForError || Boolean(hintText) || Boolean(errorMsg);
@@ -80,6 +82,7 @@ export const Datepicker: FC<IDatepickerProps> = ({
             reserveSpaceForError={reserveSpaceForError}
             small={inputSmall}
             endAdornment={<FaCalendarDays size={inputSmall ? 14 : 18} />}
+            isValid={isValid}
           />
         }
       />

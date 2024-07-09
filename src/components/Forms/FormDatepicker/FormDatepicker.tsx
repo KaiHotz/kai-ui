@@ -10,7 +10,7 @@ export interface IFormDatepickerProps extends Omit<IDatepickerProps, 'onChange' 
 }
 
 export const FormDatepicker: FC<IFormDatepickerProps> = ({ name, required, errorMsg, ...rest }) => {
-  const { control, setError } = useFormContext();
+  const { control, setError, getFieldState } = useFormContext();
   const {
     field: { value, onChange },
     fieldState: { error },
@@ -22,6 +22,8 @@ export const FormDatepicker: FC<IFormDatepickerProps> = ({ name, required, error
     }
   }, [name, setError, errorMsg]);
 
+  const isValid = !getFieldState(name).invalid && !!value;
+
   return (
     <Datepicker
       {...rest}
@@ -31,6 +33,7 @@ export const FormDatepicker: FC<IFormDatepickerProps> = ({ name, required, error
       value={value}
       errorMsg={error?.message}
       selected={value}
+      isValid={isValid}
     />
   );
 };

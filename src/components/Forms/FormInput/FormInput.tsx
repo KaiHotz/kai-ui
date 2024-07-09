@@ -12,8 +12,9 @@ export interface IFormInputProps extends Omit<IInputProps, 'errorMsg'> {
 export const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
   ({ name, required, disabled, errorMsg, onChange, ...rest }, ref) => {
     const {
-      setError,
       control,
+      setError,
+      getFieldState,
       formState: { errors },
     } = useFormContext();
 
@@ -27,6 +28,8 @@ export const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
       }
     }, [name, setError, errorMsg]);
 
+    const isValid = !getFieldState(name).invalid && !!value;
+
     return (
       <Input
         {...rest}
@@ -34,6 +37,7 @@ export const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
         errorMsg={errors?.[name] ? (errors[name]?.message as string) : undefined}
         required={required}
         value={value}
+        isValid={isValid}
         ref={ref}
       />
     );

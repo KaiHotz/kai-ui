@@ -47,7 +47,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
   small,
   ...rest
 }: IFormSelectProps<OptionType>) => {
-  const { control, setError, resetField } = useFormContext();
+  const { control, setError, resetField, getFieldState } = useFormContext();
   const {
     field: { value, onChange: onOptionChange, onBlur },
     fieldState: { error },
@@ -78,12 +78,15 @@ export const FormSelect = <OptionType extends ISelectOption>({
     (error as IFormSelectFieldError)?.value.message ||
     (error as IFormSelectFieldError)?.label.message;
 
+  const isValid = !getFieldState(name).invalid && !!value;
+
   return loadOptions ? (
     <AsyncSelect
       {...rest}
       defaultOptions={defaultOptions}
       value={value}
       errorMsg={selectErrorMsg}
+      isValid={isValid}
       onChange={onHandleChange}
       loadOptions={loadOptions}
       reserveSpaceForError={reserveSpaceForError}
@@ -97,6 +100,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
       options={options || []}
       value={value}
       errorMsg={selectErrorMsg}
+      isValid={isValid}
       onChange={onHandleChange}
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}

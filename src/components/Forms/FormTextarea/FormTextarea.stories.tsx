@@ -28,6 +28,9 @@ const meta: Meta<typeof FormTextarea> = {
     name: {
       control: false,
     },
+    isValid: {
+      control: false,
+    },
     value: {
       control: false,
     },

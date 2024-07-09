@@ -18,6 +18,7 @@ export interface IAsyncSelectProps<OptionType extends ISelectOption, IsMulti ext
   required?: boolean;
   hintText?: string;
   errorMsg?: ReactNode;
+  isValid?: boolean;
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
@@ -31,6 +32,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
   labelPosition = 'top',
   hintText,
   errorMsg,
+  isValid,
   disabled,
   reserveSpaceForError,
   required,
@@ -71,7 +73,6 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
         htmlFor={name}
         required={required}
         disabled={disabled}
-        isError={!!errorMsg}
         position={labelPosition}
         endAdornment={labelEndAdornment}
         className="ui-select__label"
@@ -82,6 +83,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
             'ui-select__container--small': small,
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
+            'ui-select__container--success': isValid && !errorMsg,
           })}
         >
           <AsyncSelectComponent {...commonProps} defaultOptions={defaultOptions} loadOptions={loadOptions} />

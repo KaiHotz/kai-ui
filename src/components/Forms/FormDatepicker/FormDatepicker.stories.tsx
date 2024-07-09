@@ -23,6 +23,9 @@ const meta: Meta<typeof FormDatepicker> = {
   title: 'Components/Forms/FormDatepicker',
   component: FormDatepicker,
   argTypes: {
+    isValid: {
+      control: false,
+    },
     dropdownMode: {
       description: 'type for year and month dropdown',
     },

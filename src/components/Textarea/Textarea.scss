@@ -40,6 +40,12 @@
       border-color: var(--error);
     }
   }
+  &--success {
+    color: var(--success);
+    textarea {
+      border-color: var(--success);
+    }
+  }
   &__validation-wrapper {
     display: flex;
     min-height: 20px;

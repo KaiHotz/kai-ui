@@ -39,7 +39,7 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
   small,
   ...rest
 }: IFormCheckboxSelectProps<OptionType>) => {
-  const { control, setError, resetField } = useFormContext();
+  const { control, setError, resetField, getFieldState } = useFormContext();
   const {
     field: { value, onChange: onOptionChange, onBlur },
     fieldState: { error },
@@ -65,6 +65,8 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
     }
   }, [name, setError, errorMsg]);
 
+  const isValid = !getFieldState(name).invalid && !!value;
+
   return (
     <CheckboxSelect
       {...rest}
@@ -75,6 +77,7 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
         (error as IFormSelectFieldError)?.value.message ||
         (error as IFormSelectFieldError)?.label.message
       }
+      isValid={isValid}
       onChange={onHandleChange}
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}

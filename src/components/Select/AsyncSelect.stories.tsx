@@ -45,6 +45,7 @@ const meta: Meta<typeof AsyncSelect> = {
     placeholder: '',
     hintText: '',
     errorMsg: '',
+    isValid: false,
     small: false,
     required: false,
     disabled: false,

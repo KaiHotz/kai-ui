@@ -41,6 +41,7 @@ const meta: Meta<typeof Datepicker> = {
     placeholder: 'Select a date',
     hintText: '',
     errorMsg: '',
+    isValid: false,
     required: false,
     disabled: false,
     reserveSpaceForError: false,

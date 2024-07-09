@@ -35,6 +35,9 @@
     &--error {
       border-color: var(--error);
     }
+    &--success {
+      border-color: var(--success);
+    }
     &--small {
       height: 26px;
       font-size: 14px;

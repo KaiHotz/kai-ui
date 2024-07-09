@@ -46,6 +46,9 @@ const meta: Meta<typeof FormPasswordInput> = {
     name: {
       control: false,
     },
+    isValid: {
+      control: false,
+    },
     startAdornment: {
       options: Object.keys(iconOptions),
       mapping: iconOptions,

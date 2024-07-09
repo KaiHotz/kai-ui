@@ -44,6 +44,7 @@ const meta: Meta<typeof Select> = {
     placeholder: '',
     hintText: '',
     errorMsg: '',
+    isValid: false,
     small: false,
     required: false,
     disabled: false,

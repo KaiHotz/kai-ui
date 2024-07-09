@@ -66,6 +66,7 @@ export const Default: Story = {
     placeholder: '',
     hintText: '',
     errorMsg: '',
+    isValid: false,
     disabled: false,
     required: false,
     reserveSpaceForError: false,

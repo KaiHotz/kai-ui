@@ -95,14 +95,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
         'ui-color-picker--disabled': disabled,
       })}
     >
-      <Label
-        text={label}
-        required={required}
-        isError={Boolean(errorMsg)}
-        small={small}
-        position={labelPosition}
-        endAdornment={labelEndAdornment}
-      >
+      <Label text={label} required={required} small={small} position={labelPosition} endAdornment={labelEndAdornment}>
         <Button
           type="button"
           variant="tertiary"

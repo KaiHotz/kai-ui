@@ -23,6 +23,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
   centerOptinons?: boolean;
+  isValid?: boolean;
   options: OptionType[];
 }
 
@@ -33,6 +34,7 @@ export const Select = <OptionType extends ISelectOption>({
   labelEndAdornment,
   hintText,
   errorMsg,
+  isValid,
   disabled,
   reserveSpaceForError,
   required,
@@ -70,7 +72,6 @@ export const Select = <OptionType extends ISelectOption>({
         htmlFor={name}
         required={required}
         disabled={disabled}
-        isError={!!errorMsg}
         position={labelPosition}
         endAdornment={labelEndAdornment}
         small={small}
@@ -81,6 +82,7 @@ export const Select = <OptionType extends ISelectOption>({
             'ui-select__container--small': small,
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
+            'ui-select__container--success': isValid && !errorMsg,
           })}
         >
           {isCreatable ? <Creatable isCreatable {...commonProps} /> : <SelectComp {...commonProps} />}

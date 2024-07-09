@@ -6,7 +6,6 @@ export interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   text?: string;
   required?: boolean;
   disabled?: boolean;
-  isError?: boolean;
   position?: 'top' | 'bottom' | 'right' | 'left';
   endAdornment?: ReactNode;
   className?: string;
@@ -20,7 +19,6 @@ export const Label: FC<ILabelProps> = ({
   disabled,
   required,
   position = 'top',
-  isError,
   endAdornment,
   className,
   small,
@@ -40,7 +38,6 @@ export const Label: FC<ILabelProps> = ({
         'ui-label',
         {
           'ui-label--small': small,
-          'ui-label--error': isError,
           'ui-label--top': isTopPosition,
           'ui-label--right': isRightPosition,
           'ui-label--bottom': isBottomPosition,

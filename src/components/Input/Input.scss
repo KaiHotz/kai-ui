@@ -61,6 +61,13 @@
         border-color: var(--error);
       }
     }
+    &--success {
+      border-color: var(--success);
+      &:hover,
+      &:focus-within {
+        border-color: var(--success);
+      }
+    }
     &--disabled {
       color: var(--emphasis-quaternary);
       background-color: var(--green-6);

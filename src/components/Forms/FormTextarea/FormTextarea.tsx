@@ -12,9 +12,10 @@ export interface IFormTextareaProps extends Omit<ITextareaProps, 'errorMsg'> {
 export const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
   ({ name, required, disabled, errorMsg, onChange, ...rest }, ref) => {
     const {
-      formState: { errors },
-      setError,
       control,
+      setError,
+      getFieldState,
+      formState: { errors },
     } = useFormContext();
 
     const {
@@ -27,6 +28,8 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
       }
     }, [name, setError, errorMsg]);
 
+    const isValid = !getFieldState(name).invalid && !!value;
+
     return (
       <Textarea
         {...rest}
@@ -34,6 +37,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, IFormTextareaProps>(
         errorMsg={errors?.[name] ? (errors[name]?.message as string) : undefined}
         required={required}
         value={value}
+        isValid={isValid}
         ref={ref}
       />
     );

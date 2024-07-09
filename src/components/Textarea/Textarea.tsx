@@ -15,6 +15,7 @@ export interface ITextareaProps extends InputHTMLAttributes<HTMLTextAreaElement>
   reserveSpaceForError?: boolean;
   testId?: string;
   children?: ReactNode;
+  isValid?: boolean;
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
@@ -34,6 +35,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
       name,
       placeholder,
       maxLength,
+      isValid,
       testId = 'ui-textarea',
       ...rest
     },
@@ -43,14 +45,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
     const symbolsLength = typeof value === 'string' ? value?.length : 0;
 
     return (
-      <div className={cx('ui-textarea', { 'ui-textarea--error': errorMsg, 'ui-textarea--disabled': disabled })}>
-        <Label
-          text={label}
-          required={required}
-          isError={Boolean(errorMsg)}
-          position={labelPosition}
-          endAdornment={labelEndAdornment}
-        >
+      <div
+        className={cx('ui-textarea', {
+          'ui-textarea--error': errorMsg,
+          'ui-textarea--success': isValid && !errorMsg,
+          'ui-textarea--disabled': disabled,
+        })}
+      >
+        <Label text={label} required={required} position={labelPosition} endAdornment={labelEndAdornment}>
           <textarea
             ref={ref}
             name={name}

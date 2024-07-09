@@ -44,6 +44,7 @@ const meta: Meta<typeof CheckboxSelect> = {
     placeholder: '',
     hintText: '',
     errorMsg: '',
+    isValid: false,
     small: false,
     required: false,
     disabled: false,

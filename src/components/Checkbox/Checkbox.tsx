@@ -50,7 +50,6 @@ export const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
             disabled={disabled}
             position={labelPosition}
             endAdornment={labelEndAdornment}
-            isError={!!errorMsg}
           >
             <div className="ui-checkbox__input-wrapper">
               <input

@@ -19,6 +19,7 @@ export interface ICheckboxSelectProps<OptionType extends ISelectOption, IsMulti 
   required?: boolean;
   hintText?: string;
   errorMsg?: string;
+  isValid?: boolean;
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   options: OptionType[];
@@ -43,6 +44,7 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
   placeholder,
   hintText,
   errorMsg,
+  isValid,
   disabled,
   required,
   small,
@@ -68,7 +70,6 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
         htmlFor={name}
         required={required}
         disabled={disabled}
-        isError={!!errorMsg}
         position={labelPosition}
         endAdornment={labelEndAdornment}
         small={small}
@@ -79,6 +80,7 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
             'ui-select__container--small': small,
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
+            'ui-select__container--success': isValid && !errorMsg,
           })}
         >
           <Select
