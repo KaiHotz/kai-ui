@@ -19,7 +19,7 @@ const meta: Meta<typeof Pagination> = {
 type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {
-  render: function usePagination(args) {
+  render: (args) => {
     const [currentPage, setCurrentPage] = useState(3);
 
     const handleSetPage = (page: number) => {

@@ -63,7 +63,7 @@ const meta: Meta<typeof FormCheckboxSelect> = {
 type Story = StoryObj<typeof FormCheckboxSelect>;
 
 export const Default: Story = {
-  render: function useFormSelect(args) {
+  render: (args) => {
     const schema = args.isMulti
       ? yup
           .object({

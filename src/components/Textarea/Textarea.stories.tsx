@@ -49,7 +49,7 @@ const meta: Meta<typeof Textarea> = {
 type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {
-  render: function useSwitchStory(args) {
+  render: (args) => {
     const [inputValue, setInputValue] = useState('');
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

@@ -1,7 +1,7 @@
-import React, { PropsWithChildren, useState } from 'react';
-import { Meta } from '@storybook/react';
+import React, { useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { IModalProps, Modal } from './Modal';
+import { Modal } from './Modal';
 import { Button } from '../Button';
 
 const ModalBody = () => (
@@ -34,6 +34,9 @@ const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
   argTypes: {
+    onClose: {
+      control: false,
+    },
     children: {
       options: Object.keys(childrenOptions),
       mapping: childrenOptions,
@@ -44,8 +47,10 @@ const meta: Meta<typeof Modal> = {
     },
   },
 };
-export const Default = {
-  render: function useModal(args: PropsWithChildren<Omit<IModalProps, 'onClose'>>) {
+type Story = StoryObj<typeof Modal>;
+
+export const Default: Story = {
+  render: (args) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (

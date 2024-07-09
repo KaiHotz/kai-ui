@@ -63,7 +63,7 @@ const meta: Meta<typeof FormSelect> = {
 type Story = StoryObj<typeof FormSelect>;
 
 export const Default: Story = {
-  render: function useFormSelect(args) {
+  render: (args) => {
     const schema = yup
       .object({
         user: args.required

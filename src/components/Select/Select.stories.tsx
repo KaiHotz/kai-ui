@@ -58,7 +58,7 @@ const meta: Meta<typeof Select> = {
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
-  render: function useSelect(args) {
+  render: (args) => {
     return <Select {...args} options={optionsDefault} />;
   },
 };

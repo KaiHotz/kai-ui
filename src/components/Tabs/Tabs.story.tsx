@@ -14,7 +14,7 @@ const meta: Meta<typeof Tabs> = {
 };
 
 export const Default: Story = {
-  render: function useTabs(args) {
+  render: (args) => {
     const [selected, setSelected] = useState(0);
 
     return (

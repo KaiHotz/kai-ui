@@ -57,7 +57,7 @@ const meta: Meta<typeof CheckboxSelect> = {
 type Story = StoryObj<typeof CheckboxSelect>;
 
 export const Default: Story = {
-  render: function useSelect(args) {
+  render: (args) => {
     return <CheckboxSelect {...args} options={optionsDefault} />;
   },
 };
