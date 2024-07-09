@@ -1,0 +1,17 @@
+import{j as e}from"./jsx-runtime-CexXSJP5.js";import{r as m}from"./index-BP8_t0zE.js";import{r as C}from"./index-BxmsGmlx.js";import{n as y}from"./noop-Bj0g98VJ.js";import{o as O}from"./index-YfRCopfe.js";import{c as b}from"./clsx-B-dksMZM.js";import"./ThemeProvider-DX_3E3qS.js";import{u as g}from"./useClickOutside-SG2YzVLV.js";import{a as j}from"./useCountdown-lkACsVJv.js";import"./highlightText-BfWprMrp.js";import{B}from"./Backdrop-3itdTq8u.js";import{B as n}from"./Button-C0GdinNN.js";const M=a=>a?["textarea","input","select"].includes(a.tagName.toLowerCase())||!!(a!=null&&a.isContentEditable):!1,r=({size:a="small",onClose:s,disableCloseButton:o,disableBackdrop:f,disableCoseOnClickOutside:h,hasFrozenBackdrop:i,children:x})=>{const d=m.useRef(null);return j(()=>{M(document.activeElement)||s()}),g(d,h?y:s),C.createPortal(e.jsxs(e.Fragment,{children:[(!f||i)&&e.jsx(B,{isFrosted:i}),e.jsxs("div",{className:b("ui-modal",`ui-modal--${a}`),ref:d,children:[!o&&e.jsx("div",{className:"ui-modal__close-icon",children:e.jsx(n,{icon:e.jsx(O,{size:18}),iconPosition:"left",variant:"ghost",onClick:s})}),x]})]}),document.body)};try{r.displayName="Modal",r.__docgenInfo={description:"",displayName:"Modal",props:{size:{defaultValue:{value:"small"},description:"",name:"size",required:!1,type:{name:"enum",value:[{value:'"small"'},{value:'"medium"'},{value:'"large"'},{value:'"full-page"'}]}},disableBackdrop:{defaultValue:null,description:"",name:"disableBackdrop",required:!1,type:{name:"boolean"}},hasFrozenBackdrop:{defaultValue:null,description:"",name:"hasFrozenBackdrop",required:!1,type:{name:"boolean"}},disableCloseButton:{defaultValue:null,description:"",name:"disableCloseButton",required:!1,type:{name:"boolean"}},disableCoseOnClickOutside:{defaultValue:null,description:"",name:"disableCoseOnClickOutside",required:!1,type:{name:"boolean"}},onClose:{defaultValue:null,description:"",name:"onClose",required:!0,type:{name:"() => void"}}}}}catch{}const k=()=>e.jsxs("div",{style:{display:"flex",fontFamily:"sans-serif",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:20},children:[e.jsx("h1",{children:"Welcome"}),e.jsx("p",{children:"Get in touch for with us"}),e.jsx(n,{style:{width:180},children:"Sign Up"}),e.jsx(n,{style:{width:180},variant:"tertiary",children:"Contact Us"})]}),t={normalModal:e.jsx(k,{})},v={normalModal:"Simple Modal",largeModal:"Huge Modal with large Form"},P={title:"Components/Modal",component:r,argTypes:{onClose:{control:!1},children:{options:Object.keys(t),mapping:t,control:{type:"radio",labels:v}}}},l={render:a=>{const[s,o]=m.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(n,{onClick:()=>o(!0),children:"Open Modal"}),s&&e.jsx(r,{...a,onClose:()=>o(!1),children:a.children})]})},args:{disableCloseButton:!1,disableBackdrop:!1,disableCoseOnClickOutside:!0,children:t.normalModal}};var c,u,p;l.parameters={...l.parameters,docs:{...(c=l.parameters)==null?void 0:c.docs,source:{originalSource:`{
+  render: args => {
+    const [isOpen, setIsOpen] = useState(false);
+    return <>
+        <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+        {isOpen && <Modal {...args} onClose={() => setIsOpen(false)}>
+            {args.children}
+          </Modal>}
+      </>;
+  },
+  args: {
+    disableCloseButton: false,
+    disableBackdrop: false,
+    disableCoseOnClickOutside: true,
+    children: childrenOptions.normalModal
+  }
+}`,...(p=(u=l.parameters)==null?void 0:u.docs)==null?void 0:p.source}}};const U=["Default"];export{l as Default,U as __namedExportsOrder,P as default};
