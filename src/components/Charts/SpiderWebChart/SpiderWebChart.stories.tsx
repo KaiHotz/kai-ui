@@ -7,13 +7,13 @@ import { ISpiderWebChartDataAxis, SpiderWebChart } from './SpiderWebChart';
 
 const data: ISpiderWebChartDataAxis[] = [
   {
-    id: 'score',
-    label: 'SCORE',
+    id: 'chart_1',
+    label: 'CHART 1',
     values: [10, 20, 30, 40, 50],
   },
   {
-    id: 'benchmark',
-    label: 'BENCHMARK',
+    id: 'chart_2"',
+    label: 'CHART 2',
     values: [90, 70, 60, 80, 10],
     type: 'line',
     dashStyle: 'ShortDash',
@@ -56,7 +56,7 @@ export const Default: Story = {
   args: {
     options: {
       xAxis: {
-        categories: ['CHIE', 'CHEE', 'CHTT', 'CHII', 'CHEA'],
+        categories: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
       },
     },
   },
@@ -74,7 +74,7 @@ export const WithIntercativeLabels: Story = {
     const chartOptions = useMemo<Highcharts.Options>(() => {
       return {
         xAxis: {
-          categories: ['CHIE', 'CHEE', 'CHTT', 'CHII', 'CHEA'],
+          categories: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
           labels: {
             useHTML: true,
             formatter() {
