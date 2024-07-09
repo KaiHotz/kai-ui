@@ -56,7 +56,7 @@ export const Default: Story = {
   args: {
     options: {
       xAxis: {
-        categories: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
+        categories: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
       },
     },
   },
@@ -74,7 +74,7 @@ export const WithIntercativeLabels: Story = {
     const chartOptions = useMemo<Highcharts.Options>(() => {
       return {
         xAxis: {
-          categories: ['Value 1', 'Value 2', 'Value 3', 'Value 4', 'Value 5'],
+          categories: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
           labels: {
             useHTML: true,
             formatter() {
