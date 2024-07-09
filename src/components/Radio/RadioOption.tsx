@@ -17,7 +17,7 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', lab
   const optionsAttr = useRadioOption();
   const isOptionDisabled = disabled || optionsAttr?.disabled;
   const isChecked = value === optionsAttr?.selected;
-  const rest = omit(optionsAttr, ['disabled', 'selected', 'onChange', 'name', 'variant', 'isInline']);
+  const rest = omit(optionsAttr, ['disabled', 'selected', 'onChange', 'name', 'variant', 'isInline', 'labelPosition']);
 
   return (
     <div

@@ -28,6 +28,9 @@ export const useCommonProps = <OptionType extends ISelectOption>({
       emphasisSecondary: getCSSVariable('--emphasis-secondary'),
       emphasisTertiary: getCSSVariable('--emphasis-tertiary'),
       emphasisQuaternary: getCSSVariable('--emphasis-quaternary'),
+      appBackGroundColor: getCSSVariable('--app-backgroung-color'),
+      borderColor: getCSSVariable('--border-color'),
+      boxShadow: getCSSVariable('--box-shadow'),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [theme],
@@ -103,12 +106,17 @@ export const useCommonProps = <OptionType extends ISelectOption>({
           ...style,
           fontFamily: mainFont,
           textAlign: centerOptinons ? 'center' : style.textAlign,
+          backgroundColor: colors.appBackGroundColor,
+          border: `1px solid ${colors.borderColor}`,
+          boxShadow: colors.boxShadow,
         }),
-        option: (style) => ({
+        option: (style, { isFocused, isSelected }) => ({
           ...style,
           fontFamily: mainFont,
           fontSize: small ? '14px' : style.fontSize,
           padding: small ? '6px 8px' : style.padding,
+          color: colors.emphasisPrimary,
+          backgroundColor: isFocused || isSelected ? colors.emphasisQuaternary : colors.appBackGroundColor,
         }),
         menuPortal: (style) => ({ ...style, zIndex: 99, minWidth: '50px' }),
       },
