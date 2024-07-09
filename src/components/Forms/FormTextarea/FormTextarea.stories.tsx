@@ -76,13 +76,7 @@ export const Default: Story = {
     };
 
     return (
-      <Form<TFormData>
-        validationSchema={schema}
-        defaultValues={{ textarea: '' }}
-        onSubmit={onSubmit}
-        onError={onError}
-        shouldValidateOnChange
-      >
+      <Form<TFormData> validationSchema={schema} defaultValues={{ textarea: '' }} onSubmit={onSubmit} onError={onError}>
         <FormTextarea {...args} name="textarea" reserveSpaceForError />
         <Button type="submit">Submit</Button>
       </Form>

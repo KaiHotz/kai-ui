@@ -98,13 +98,7 @@ export const Default: Story = {
     };
 
     return (
-      <Form<TFormData>
-        validationSchema={schema}
-        defaultValues={{ password: '' }}
-        onSubmit={onSubmit}
-        onError={onError}
-        shouldValidateOnChange
-      >
+      <Form<TFormData> validationSchema={schema} defaultValues={{ password: '' }} onSubmit={onSubmit} onError={onError}>
         <FormPasswordInput {...args} name="password" reserveSpaceForError />
 
         <Button type="submit">Submit</Button>

@@ -72,7 +72,7 @@ export const InputFilter = ({
           onModelChange({ filter: normalizeEmptyValue(values.filter), filterType: 'text' });
         }}
         validationSchema={validationSchema}
-        shouldValidateOnChange={Boolean(validationSchema)}
+        validationMode={validationSchema ? 'onChange' : 'onSubmit'}
       >
         {({ watch, trigger, resetField, formState: { errors } }) => {
           const values = watch();

@@ -108,7 +108,6 @@ export const Default: Story = {
         defaultValues={{ textinput: '' }}
         onSubmit={onSubmit}
         onError={onError}
-        shouldValidateOnChange
       >
         <FormInput {...args} name="textinput" reserveSpaceForError />
 
