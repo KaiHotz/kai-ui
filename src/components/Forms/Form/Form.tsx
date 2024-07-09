@@ -19,7 +19,6 @@ export interface IFormProps<T extends FieldValues> {
   validationSchema?: yup.ObjectSchema<T>;
   defaultValues?: DefaultValues<T>;
   onError?: SubmitErrorHandler<T>;
-  shouldValidateOnChange?: boolean;
   validationMode?: keyof ValidationMode;
   submitOnChange?: boolean;
 }
@@ -29,9 +28,8 @@ export function Form<T extends FieldValues>({
   onSubmit,
   onError,
   validationSchema,
-  shouldValidateOnChange,
   defaultValues,
-  validationMode,
+  validationMode = 'onSubmit',
   submitOnChange,
   ...rest
 }: IFormProps<T>) {
@@ -39,7 +37,7 @@ export function Form<T extends FieldValues>({
     //due to a type error in react-hook-form/resolvers, we need to cast the yupResolver to Resolver<T>
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
     defaultValues,
-    mode: shouldValidateOnChange ? 'onChange' : validationMode ? validationMode : 'onSubmit',
+    mode: validationMode,
   });
   const { handleSubmit, reset, watch } = methods;
 

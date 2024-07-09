@@ -22,7 +22,7 @@ export const FormDatepicker: FC<IFormDatepickerProps> = ({ name, required, error
     }
   }, [name, setError, errorMsg]);
 
-  const isValid = !getFieldState(name).invalid && !!value;
+  const isValid = !getFieldState(name).invalid && Boolean(value);
 
   return (
     <Datepicker

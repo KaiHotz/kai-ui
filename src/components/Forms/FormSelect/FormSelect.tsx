@@ -78,7 +78,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
     (error as IFormSelectFieldError)?.value.message ||
     (error as IFormSelectFieldError)?.label.message;
 
-  const isValid = !getFieldState(name).invalid && !!value;
+  const isValid = !getFieldState(name).invalid && Boolean(value);
 
   return loadOptions ? (
     <AsyncSelect

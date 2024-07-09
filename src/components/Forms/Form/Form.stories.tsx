@@ -21,7 +21,6 @@ const meta: Meta<typeof Form> = {
   component: Form,
   args: {
     submitOnChange: false,
-    shouldValidateOnChange: true,
     validationMode: 'onChange',
   },
   argTypes: {
@@ -38,9 +37,6 @@ const meta: Meta<typeof Form> = {
       control: false,
     },
     onError: {
-      control: false,
-    },
-    shouldValidateOnChange: {
       control: false,
     },
     validationMode: {
@@ -111,7 +107,7 @@ export const Default: Story = {
                   required
                   reserveSpaceForError
                   onChange={(e) => {
-                    setValue('firstName', capitalizeWords(e.target.value));
+                    setValue('firstName', capitalizeWords(e.target.value), { shouldValidate: true });
                   }}
                 />
                 <FormInput
@@ -121,7 +117,7 @@ export const Default: Story = {
                   required
                   reserveSpaceForError
                   onChange={(e) => {
-                    setValue('lastName', capitalizeWords(e.target.value));
+                    setValue('lastName', capitalizeWords(e.target.value), { shouldValidate: true });
                   }}
                 />
               </div>

@@ -22,13 +22,13 @@ export const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
       field: { value, onChange: onChangeField },
     } = useController({ name, control, disabled });
 
+    const isValid = !getFieldState(name).invalid && Boolean(value);
+
     useEffect(() => {
       if (errorMsg?.message) {
         setError(name, errorMsg);
       }
     }, [name, setError, errorMsg]);
-
-    const isValid = !getFieldState(name).invalid && !!value;
 
     return (
       <Input

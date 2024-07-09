@@ -65,7 +65,7 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
     }
   }, [name, setError, errorMsg]);
 
-  const isValid = !getFieldState(name).invalid && !!value;
+  const isValid = !getFieldState(name).invalid && Boolean(value);
 
   return (
     <CheckboxSelect
