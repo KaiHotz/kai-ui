@@ -5,7 +5,7 @@ import HighchartsMore from 'highcharts/highcharts-more';
 import NoChartData from 'highcharts/modules/no-data-to-display';
 import Accessibility from 'highcharts/modules/accessibility';
 import HighchartsCustomEvents from 'highcharts-custom-events';
-
+import VariablePie from 'highcharts/modules/variable-pie';
 import { ThemeProvider } from '../src/providers';
 import { defaultHighchartsTheme } from '../src/components/Charts';
 import { StoryThemeWrapper } from './StoryThemeWrapper';
@@ -16,6 +16,7 @@ NoChartData(Highcharts);
 Accessibility(Highcharts);
 setOptions(defaultHighchartsTheme);
 HighchartsCustomEvents(Highcharts);
+VariablePie(Highcharts);
 
 
 const preview: Preview = {
