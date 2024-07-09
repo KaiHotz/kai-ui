@@ -65,7 +65,7 @@ export const Default: Story = {
 export const WithIntercativeLabels: Story = {
   render: (args) => {
     const { theme } = useTheme();
-    const [selected, setSelected] = useState<string | number>('CHEE');
+    const [selected, setSelected] = useState<string | number>('Label 1');
 
     const click = useCallback(function click(this: AxisLabelsFormatterContextObject) {
       setSelected(this.value);
