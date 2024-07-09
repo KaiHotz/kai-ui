@@ -8,6 +8,7 @@ import { FaEnvelope } from 'react-icons/fa6';
 import { Button } from '../../Button';
 import { Form } from './Form';
 import { FormInput } from '../FormInput';
+import { FormPasswordInput } from '../FormPasswordInput';
 import { FormRadio, RadioOption } from '../FormRadio';
 import { FormCheckbox } from '../FormCheckbox';
 import { FormSelect } from '../FormSelect';
@@ -130,7 +131,6 @@ export const Default: Story = {
                 placeholder="Enter your E-mail"
                 required
                 reserveSpaceForError
-                withVaildationIcon
                 endAdornment={<FaEnvelope />}
               />
               <FormSelect
@@ -146,14 +146,12 @@ export const Default: Story = {
                   { value: 'user-4', label: 'User 4' },
                 ]}
               />
-              <FormInput
+              <FormPasswordInput
                 name="password"
                 label="Password"
                 placeholder="Enter your password"
-                type="password"
                 passwordToggle
                 required
-                withVaildationIcon
                 reserveSpaceForError
               />
               <FormRadio name="formRadioExample" reserveSpaceForError isInline>

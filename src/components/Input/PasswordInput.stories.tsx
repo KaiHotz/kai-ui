@@ -1,13 +1,11 @@
 import React from 'react';
-import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
-import { Input } from './Input';
+import { PasswordInput } from './PasswordInput';
 
 const iconOptions = {
   none: undefined,
   searchIcon: <FaSistrix />,
-  eyeIcon: <FaEye />,
-  eyeSlashIcon: <FaEyeSlash />,
   infoIcon: <FaCircleInfo size={13} />,
 };
 
@@ -15,41 +13,12 @@ const iconMap = {
   none: 'None',
   searchIcon: 'Search',
   infoIcon: 'Information',
-  eyeIcon: 'Eye',
-  eyeSlashIcon: 'Eye Slash',
 };
 
 export default {
-  title: 'Components/Inputs/Input',
-  component: Input,
+  title: 'Components/Inputs/PasswordInput',
+  component: PasswordInput,
   argTypes: {
-    type: {
-      options: [
-        'text',
-        'password',
-        'button',
-        'checkbox',
-        'color',
-        'date',
-        'datetime-local',
-        'email',
-        'file',
-        'hidden',
-        'image',
-        'month',
-        'number',
-        'radio',
-        'range',
-        'reset',
-        'search',
-        'submit',
-        'tel',
-        'time',
-        'url',
-        'week',
-      ],
-      control: { type: 'select' },
-    },
     startAdornment: {
       options: Object.keys(iconOptions),
       mapping: iconOptions,
@@ -93,7 +62,8 @@ export default {
 
 export const Default = {
   args: {
-    type: 'text',
-    placeholder: 'value',
+    placeholder: 'Password',
+    passwordToggleTooltip: 'Show/Hide password',
+    passwordToggle: true,
   },
 };

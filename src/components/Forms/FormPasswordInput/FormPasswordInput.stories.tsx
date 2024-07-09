@@ -3,17 +3,15 @@ import React from 'react';
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react';
-import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
+import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Form } from '../Form';
-import { FormInput } from './FormInput';
+import { FormPasswordInput } from './FormPasswordInput';
 import { Button } from '../../Button';
 
 const iconOptions = {
   none: undefined,
   searchIcon: <FaSistrix />,
-  eyeIcon: <FaEye />,
-  eyeSlashIcon: <FaEyeSlash />,
   infoIcon: <FaCircleInfo size={13} />,
 };
 
@@ -25,11 +23,10 @@ const iconMap = {
   eyeSlashIcon: 'Eye Slash',
 };
 
-const meta: Meta<typeof FormInput> = {
-  title: 'Components/Forms/FormInput',
-  component: FormInput,
+const meta: Meta<typeof FormPasswordInput> = {
+  title: 'Components/Forms/FormPasswordInput',
+  component: FormPasswordInput,
   args: {
-    type: 'text',
     label: '',
     labelPosition: 'top',
     labelEndAdornment: 'none',
@@ -40,16 +37,14 @@ const meta: Meta<typeof FormInput> = {
     required: false,
     placeholder: 'value',
     hintText: '',
+    passwordToggleTooltip: '',
+    passwordToggle: false,
     reserveSpaceForError: false,
     hideError: false,
   },
   argTypes: {
     name: {
       control: false,
-    },
-    type: {
-      options: ['text', 'password', 'email', 'number', 'search', 'tel', 'url'],
-      control: { type: 'select' },
     },
     startAdornment: {
       options: Object.keys(iconOptions),
@@ -78,13 +73,13 @@ const meta: Meta<typeof FormInput> = {
   },
 };
 
-type Story = StoryObj<typeof FormInput>;
+type Story = StoryObj<typeof FormPasswordInput>;
 
 export const Default: Story = {
   render: (args) => {
     const schema = yup
       .object({
-        textinput: args.required ? yup.string().required() : yup.string(),
+        password: args.required ? yup.string().required() : yup.string(),
       })
       .required();
 
@@ -102,12 +97,12 @@ export const Default: Story = {
     return (
       <Form<TFormData>
         validationSchema={schema}
-        defaultValues={{ textinput: '' }}
+        defaultValues={{ password: '' }}
         onSubmit={onSubmit}
         onError={onError}
         shouldValidateOnChange
       >
-        <FormInput {...args} name="textinput" reserveSpaceForError />
+        <FormPasswordInput {...args} name="password" reserveSpaceForError />
 
         <Button type="submit">Submit</Button>
       </Form>

@@ -1,9 +1,7 @@
-import React, { forwardRef, InputHTMLAttributes, ReactElement, useState } from 'react';
+import React, { forwardRef, InputHTMLAttributes, ReactElement } from 'react';
 import cx from 'clsx';
-import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
 import { ILabelProps, Label } from '../Label';
-import { Button } from '../Button';
 import { Hint } from '../Hint';
 
 import './Input.scss';
@@ -19,8 +17,6 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   reserveSpaceForError?: boolean;
   startAdornment?: string | ReactElement;
   endAdornment?: string | ReactElement;
-  passwordToggle?: boolean;
-  passwordToggleTooltip?: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
@@ -40,18 +36,13 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
       startAdornment,
       endAdornment,
       labelEndAdornment,
-      passwordToggle,
-      passwordToggleTooltip,
       required,
       ...rest
     },
     ref,
   ) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const toggleShowPassword = () => setShowPassword((prev) => !prev);
     const shouldShowValidationWrapper = Boolean(reserveSpaceForError || (errorMsg && !hideError) || hintText);
     const placeholderText = `${placeholder}${required && !label ? ' *' : ''}`;
-    const iconSize = small ? 14 : 18;
 
     return (
       <div
@@ -78,29 +69,8 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
             })}
           >
             {startAdornment && <div className="ui-input__start-adornment">{startAdornment}</div>}
-            <input
-              ref={ref}
-              name={name}
-              type={showPassword ? 'text' : type}
-              placeholder={placeholderText}
-              disabled={disabled}
-              {...rest}
-            />
-            {type === 'password'
-              ? (endAdornment || passwordToggle) && (
-                  <div className="ui-input__end-adornment">
-                    {endAdornment}
-                    {passwordToggle && (
-                      <Button
-                        variant="ghost"
-                        title={passwordToggleTooltip}
-                        icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
-                        onClick={toggleShowPassword}
-                      />
-                    )}
-                  </div>
-                )
-              : endAdornment && <div className="ui-input__end-adornment">{endAdornment}</div>}
+            <input ref={ref} name={name} type={type} placeholder={placeholderText} disabled={disabled} {...rest} />
+            {endAdornment && <div className="ui-input__end-adornment">{endAdornment}</div>}
           </div>
         </Label>
         {shouldShowValidationWrapper && (

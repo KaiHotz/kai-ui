@@ -3,6 +3,7 @@ export * from './FormCheckbox';
 export * from './FormCheckboxSelect';
 export * from './FormDatepicker';
 export * from './FormInput';
+export * from './FormPasswordInput';
 export * from './FormRadio';
 export * from './FormSelect';
 export * from './FormSwitch';
