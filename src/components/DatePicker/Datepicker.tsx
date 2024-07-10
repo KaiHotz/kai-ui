@@ -64,7 +64,7 @@ export const Datepicker: FC<IDatepickerProps> = ({
                 {
                   name: 'offset',
                   fn(state) {
-                    state.y = 80;
+                    state.y = state.y - 30;
 
                     return state;
                   },

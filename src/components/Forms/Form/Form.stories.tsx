@@ -9,6 +9,7 @@ import { Button } from '../../Button';
 import { Form } from './Form';
 import { FormInput } from '../FormInput';
 import { FormPasswordInput } from '../FormPasswordInput';
+import { FormDatepicker } from '../FormDatepicker';
 import { FormRadio, RadioOption } from '../FormRadio';
 import { FormCheckbox } from '../FormCheckbox';
 import { FormSelect } from '../FormSelect';
@@ -60,6 +61,7 @@ export const Default: Story = {
           label: yup.string().required('this field is required'),
           value: yup.string().required('this field is required'),
         }),
+        dob: yup.date().required('this field is required'),
         password: yup.string().required('this field is required'),
         formRadioExample: yup.string(),
         notification: yup.boolean(),
@@ -84,6 +86,7 @@ export const Default: Story = {
           lastName: '',
           email: '',
           user: undefined,
+          dob: undefined,
           password: '',
           formRadioExample: 'opt_1',
           notification: false,
@@ -141,6 +144,14 @@ export const Default: Story = {
                   { value: 'user-3', label: 'User 3' },
                   { value: 'user-4', label: 'User 4' },
                 ]}
+              />
+              <FormDatepicker
+                label="Date of birth"
+                name="dob"
+                placeholder="Date of birth"
+                maxDate={new Date()}
+                required
+                reserveSpaceForError
               />
               <FormPasswordInput
                 name="password"

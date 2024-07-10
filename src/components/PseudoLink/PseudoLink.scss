@@ -10,11 +10,11 @@
   font-family: var(--font-primary);
   font-size: var(--ui-pseudo-link-font-size, 14px);
   letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     text-decoration: underline;
   }
-  overflow: hidden;
-  text-overflow: ellipsis;
   &--strong {
     font-weight: 700;
   }
