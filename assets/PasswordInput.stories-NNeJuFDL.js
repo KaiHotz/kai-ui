@@ -1,7 +1,0 @@
-import{j as r}from"./jsx-runtime-CexXSJP5.js";import{b as p,c as l}from"./index-YfRCopfe.js";import{P as i}from"./PasswordInput-DgCMTlWS.js";import"./index-BP8_t0zE.js";import"./Button-C0GdinNN.js";import"./clsx-B-dksMZM.js";import"./Input-DF4M-RAo.js";import"./Label-U7w9Tf6e.js";import"./Hint-BgND6QIn.js";const o={none:void 0,searchIcon:r.jsx(p,{}),infoIcon:r.jsx(l,{size:13})},s={none:"None",searchIcon:"Search",infoIcon:"Information"},h={title:"Components/Inputs/PasswordInput",component:i,argTypes:{startAdornment:{options:Object.keys(o),mapping:o,control:{type:"select",labels:s}},endAdornment:{options:Object.keys(o),mapping:o,control:{type:"select",labels:s}},labelEndAdornment:{options:Object.keys(o),mapping:o,control:{type:"select",labels:s}}},args:{label:"",labelPosition:"top",labelEndAdornment:"none",startAdornment:"none",endAdornment:"none",required:!1,small:!1,reserveSpaceForError:!1,hintText:"",errorMsg:"",isValid:!1,hideError:!1,disabled:!1}},e={args:{placeholder:"Password",passwordToggleTooltip:"Show/Hide password",passwordToggle:!0}};var n,t,a;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:`{
-  args: {
-    placeholder: 'Password',
-    passwordToggleTooltip: 'Show/Hide password',
-    passwordToggle: true
-  }
-}`,...(a=(t=e.parameters)==null?void 0:t.docs)==null?void 0:a.source}}};const x=["Default"];export{e as Default,x as __namedExportsOrder,h as default};
