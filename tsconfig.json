@@ -31,6 +31,7 @@
     "noUnusedParameters": true,
     "downlevelIteration": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "types": ["@testing-library/jest-dom"],
     "useDefineForClassFields": true,
   },
