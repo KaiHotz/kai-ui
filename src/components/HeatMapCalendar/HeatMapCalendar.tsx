@@ -13,6 +13,7 @@ const DAYS_IN_WEEK = 7;
 const CIRCLE_RADIUS = 5;
 const CIRCLE_DIAMETER = CIRCLE_RADIUS * 2;
 const MONTH_LABEL_GUTTER_SIZE = 10;
+
 export type HeatMapCalendarValue = {
   date: string | number | Date;
   value: number;
@@ -41,7 +42,7 @@ export interface IHeatMapCalendarProps {
   /** An array with 12 strings representing the text from janurary to december */
   monthLabels?: string[];
   /** function which returns text for value */
-  renderTooltipText: (value: HeatMapCalendarValue) => string | ReactNode;
+  renderTooltipText: (value: HeatMapCalendarValue) => ReactNode;
   /** callback function when a circle is clicked */
   onClick?: (value: HeatMapCalendarValue) => void;
   theme?: EThemeOptions;

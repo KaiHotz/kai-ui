@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, Ref, useMemo } from 'react';
+import React, { forwardRef, Ref, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -32,7 +32,7 @@ interface ISpiderWebChartProps {
  * HighchartsMore(Highcharts);
  * NoChartData(Highcharts);
  */
-export const SpiderWebChart: FC<ISpiderWebChartProps> = forwardRef<HighchartsReact.RefObject, ISpiderWebChartProps>(
+export const SpiderWebChart = forwardRef<HighchartsReact.RefObject, ISpiderWebChartProps>(
   ({ data, seriesType = 'area', options, containerProps, callback, className, colorByPoint }, ref) => {
     const memoizedContainerProps = useMemo(
       () => ({

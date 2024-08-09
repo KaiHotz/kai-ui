@@ -85,6 +85,7 @@ export const DrawerPortal = forwardRef<HTMLDivElement, IDrawerPortalProps>(
             appear
             timeout={0}
             in={!isMinimized && !closing}
+            nodeRef={drawerRef}
             classNames={{
               enterActive: 'ui-drawer-portal--appear-active',
               enterDone: 'ui-drawer-portal--appear-done',

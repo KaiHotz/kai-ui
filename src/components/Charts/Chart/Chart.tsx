@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, Ref, useMemo } from 'react';
+import React, { forwardRef, Ref, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -24,7 +24,7 @@ export interface IChartProps {
   ref?: Ref<HighchartsReact.RefObject>;
 }
 
-export const Chart: FC<IChartProps> = forwardRef<HighchartsReact.RefObject, IChartProps>(
+export const Chart = forwardRef<HighchartsReact.RefObject, IChartProps>(
   (
     { data, containerProps, options, onColumnClick, seriesType = 'line', callback, colorByPoint = true, className },
     ref,

@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, Ref, useMemo } from 'react';
+import React, { forwardRef, Ref, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -24,7 +24,7 @@ export interface IDateTimeSeriesProps {
   ref?: Ref<HighchartsReact.RefObject>;
 }
 
-export const DateTimeSeries: FC<IDateTimeSeriesProps> = forwardRef<HighchartsReact.RefObject, IDateTimeSeriesProps>(
+export const DateTimeSeries = forwardRef<HighchartsReact.RefObject, IDateTimeSeriesProps>(
   (
     { data, containerProps, options, onColumnClick, seriesType = 'column', callback, colorByPoint = true, className },
     ref,

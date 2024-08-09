@@ -2,10 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { HeatMapCalendar, HeatMapCalendarValue } from './HeatMapCalendar';
+import { HeatMapCalendar, IHeatMapCalendarProps } from './HeatMapCalendar';
 import { dateNDaysAgo } from '../../utils/heatmapHelpers';
 
-const defaultprops = {
+const defaultprops: IHeatMapCalendarProps = {
   data: [
     { date: new Date('2019-06-01'), value: 1234 },
     { date: new Date('2019-06-02'), value: 4321 },
@@ -13,7 +13,7 @@ const defaultprops = {
     { date: new Date('2020-06-02'), value: 0 },
     { date: new Date('2020-06-03'), value: 2431 },
   ],
-  renderTooltipText: (value: HeatMapCalendarValue) => value,
+  renderTooltipText: (el) => `${el.date.toLocaleString()} ${el.value}`,
 };
 
 describe('<HeatMapCalendar />', () => {

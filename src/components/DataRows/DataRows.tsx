@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import cx from 'clsx';
 import get from 'lodash/get';
 import { FaChevronRight } from 'react-icons/fa6';
@@ -45,7 +45,7 @@ export const DataRows = <DataType extends NonNullable<unknown>>({
             >
               <div className="ui-data-rows__label">{rowLabel}</div>
               <div className="ui-data-rows__value">
-                {value}
+                {value as ReactNode}
                 {!!onClick && <FaChevronRight />}
               </div>
             </div>
