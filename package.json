@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/KaiHotz/kai-ui",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/<YourGitUserName>"
+    "registry": "https://npm.pkg.github.com/KaiHotz"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
