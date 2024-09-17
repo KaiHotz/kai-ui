@@ -50,7 +50,7 @@ const meta: Meta<typeof Modal> = {
 type Story = StoryObj<typeof Modal>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (

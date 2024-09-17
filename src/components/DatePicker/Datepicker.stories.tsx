@@ -61,7 +61,7 @@ const meta: Meta<typeof Datepicker> = {
 type Story = StoryObj<typeof Datepicker>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
@@ -73,7 +73,7 @@ export const Default: Story = {
 };
 
 export const RangeDatepicker: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -109,7 +109,7 @@ export const RangeDatepicker: Story = {
 };
 
 export const AsRangePicker: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
 

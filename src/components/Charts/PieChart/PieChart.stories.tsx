@@ -37,7 +37,7 @@ const meta: Meta<typeof PieChart> = {
 type Story = StoryObj<typeof PieChart>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const { theme } = useTheme();
 
     return <PieChart {...args} className={`highcharts-${theme}`} />;

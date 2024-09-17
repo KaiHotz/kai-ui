@@ -48,7 +48,7 @@ const meta: Meta<typeof SpiderWebChart> = {
 type Story = StoryObj<typeof SpiderWebChart>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const { theme } = useTheme();
 
     return <SpiderWebChart {...args} className={`highcharts-${theme}`} />;
@@ -63,7 +63,7 @@ export const Default: Story = {
 };
 
 export const WithIntercativeLabels: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const { theme } = useTheme();
     const [selected, setSelected] = useState<string | number>('Label 1');
 

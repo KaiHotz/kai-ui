@@ -1,7 +1,0 @@
-.git
-.npmrc
-.yarnrc
-dist
-coverage
-storybook-static
-.storybook

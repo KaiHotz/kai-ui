@@ -55,7 +55,7 @@ const meta: Meta<typeof Drawer> = {
 type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [open, setOpen] = useState(false);
     const toggleOpen = () => setOpen((prevOpen) => !prevOpen);
 

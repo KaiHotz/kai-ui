@@ -49,7 +49,7 @@ const meta: Meta<typeof Switch> = {
 type Story = StoryObj<typeof Switch>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [inputValue, setInputValue] = useState(false);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

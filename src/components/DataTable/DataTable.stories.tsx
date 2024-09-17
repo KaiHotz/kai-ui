@@ -156,7 +156,7 @@ export const Default: Story = {
 };
 
 export const WithSelectorColumn: Story = {
-  render: (args) => {
+  render: function useStory(args) {
     const [selected, setSelected] = useState<NonNullable<unknown>[]>([]);
 
     console.log(selected);
