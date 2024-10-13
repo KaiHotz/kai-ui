@@ -1,4 +1,4 @@
-@import '../../styles/mixins.scss';
+@use '../../styles/mixins';
 
 .ui-accordion {
   width: 100%;
@@ -24,12 +24,12 @@
 
     &--separator {
       margin-bottom: 15px;
-      @include separator;
+      @include mixins.separator;
     }
 
     &--simple-separator {
       margin-bottom: 5px;
-      @include simple-separator;
+      @include mixins.simple-separator;
     }
   }
   &__section-header-title {

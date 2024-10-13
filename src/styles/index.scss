@@ -1,22 +1,17 @@
+@use './fontFaces';
+@use './colors';
+
 @import 'highcharts/css/highcharts.css';
 @import 'react-tooltip/dist/react-tooltip.css';
-@import './animations.scss';
-@import './fontFaces.scss';
-@import './colors.scss';
-@import './typography.scss';
-@import './mixins.scss';
 
-@include font-faces();
+@include fontFaces.font-faces();
 
 :root {
-  --font-primary: #{$font-primary};
-  --font-secondary: #{$font-secondary};
-
   //colors
-  @include system-color-pallet();
-  @include primary-color-pallet();
-  @include neutral-colors();
-  @include gray-color-pallet();
-  @include feedback-color-pallet();
-  @include severity-color-pallet();
+  @include colors.system-color-pallet();
+  @include colors.primary-color-pallet();
+  @include colors.neutral-colors();
+  @include colors.gray-color-pallet();
+  @include colors.feedback-color-pallet();
+  @include colors.severity-color-pallet();
 }

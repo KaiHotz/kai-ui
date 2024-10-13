@@ -1,3 +1,4 @@
+@use '../src/styles/colors';
 @import '../src/styles/index.scss';
 
 *,
@@ -31,11 +32,11 @@ h6 {
 
 html {
   &.dark {
-    @include colors-palette-dark-theme();
+    @include colors.colors-palette-dark-theme();
   }
 
   &.light {
-    @include colors-palette-light-theme();
+    @include colors.colors-palette-light-theme();
   }
 }
 
@@ -63,11 +64,11 @@ body {
 
   .ui-docs-story {
     &--dark {
-      @include colors-palette-dark-theme();
+      @include colors.colors-palette-dark-theme();
     }
 
     &--light {
-      @include colors-palette-light-theme();
+      @include colors.colors-palette-light-theme();
     }
   }
 }
