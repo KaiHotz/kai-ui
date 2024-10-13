@@ -27,6 +27,7 @@ export default defineConfig(
     plugins: [
       postcss({
         plugins: [],
+        sourceMap: false,
         modules: true,
         minimize: true,
       }),
@@ -65,7 +66,7 @@ export default defineConfig(
     ],
   },
   {
-    input: 'dist/esm/types/src/index.d.ts',
+    input: 'dist/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.(sc|sa|c)ss$/],
     plugins: [dts()],

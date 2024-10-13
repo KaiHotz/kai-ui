@@ -1,3 +1,5 @@
+@use "sass:color";
+
 //primary-colors
 $accent-1: #f29f10;
 $accent-2: #e19526;
@@ -217,9 +219,9 @@ $blue-violet-5: #251556;
   --positive: color-mix(in srgb, var(--black), var(--blue-6) 93%);
   --negative: color-mix(in srgb, var(--white) 60%, var(--blue-6) 40%);
   --emphasis-primary: var(--gray-3);
-  --emphasis-secondary: #{darken($gray-3, 20%)};
-  --emphasis-tertiary: #{darken($gray-3, 40%)};
-  --emphasis-quaternary: #{darken($gray-3, 60%)};
+  --emphasis-secondary: #{color.adjust($gray-3, $lightness: -20%)};
+  --emphasis-tertiary: #{color.adjust($gray-3, $lightness: -40%)};
+  --emphasis-quaternary: #{color.adjust($gray-3, $lightness: -60%)};
   --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
   --box-shadow: 0 0 7px 1px rgba(251, 251, 251, 0.2);
 }
@@ -228,10 +230,10 @@ $blue-violet-5: #251556;
   --app-backgroung-color: var(--gray-1);
   --positive: var(--white);
   --negative: color-mix(in srgb, var(--black) 20%, var(--blue-6) 60%);
-  --emphasis-primary: #{lighten($black, 20%)};
-  --emphasis-secondary: #{lighten($black, 40%)};
-  --emphasis-tertiary: #{lighten($black, 60%)};
-  --emphasis-quaternary: #{lighten($black, 80%)};
+  --emphasis-primary: #{color.adjust($black, $lightness: 20%)};
+  --emphasis-secondary: #{color.adjust($black, $lightness: 40%)};
+  --emphasis-tertiary: #{color.adjust($black, $lightness: 60%)};
+  --emphasis-quaternary: #{color.adjust($black, $lightness: 80%)};
   --border-color: color-mix(in srgb, var(--emphasis-tertiary) 70%, transparent);
   --box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
 }

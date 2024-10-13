@@ -12,7 +12,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "types",
 
     "noEmit": false,
     "baseUrl": "./src",
