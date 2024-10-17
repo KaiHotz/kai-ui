@@ -14,9 +14,9 @@ import './preview.scss';
 HighchartsMore(Highcharts);
 NoChartData(Highcharts);
 Accessibility(Highcharts);
-setOptions(defaultHighchartsTheme);
 HighchartsCustomEvents(Highcharts);
 VariablePie(Highcharts);
+setOptions(defaultHighchartsTheme);
 
 
 const preview: Preview = {
