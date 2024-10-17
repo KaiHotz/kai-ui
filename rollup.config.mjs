@@ -57,6 +57,7 @@ export default defineConfig(
           '**/*.stories.ts+(|x)',
           '**/*.stories.js+(|x)',
           'setupTests.ts',
+          'vite.config.ts',
           'vitest.config.ts',
         ],
       }),
