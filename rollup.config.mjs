@@ -30,6 +30,7 @@ export default defineConfig(
         sourceMap: false,
         modules: true,
         minimize: true,
+        extensions: ['.scss', '.css']
       }),
       external({ includeDependencies: true }),
       resolve(),

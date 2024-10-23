@@ -1,5 +1,9 @@
 @use '../src/styles/colors';
-@import '../src/styles/styles.scss';
+@use '../src/styles/fontFaces';
+@import 'highcharts/css/highcharts.css';
+@import 'react-tooltip/dist/react-tooltip.css';
+
+@include fontFaces.font-faces();
 
 *,
 *:before,
@@ -72,3 +76,14 @@ body {
     }
   }
 }
+
+:root {
+  //colors
+  @include colors.system-color-pallet();
+  @include colors.primary-color-pallet();
+  @include colors.neutral-colors();
+  @include colors.gray-color-pallet();
+  @include colors.feedback-color-pallet();
+  @include colors.severity-color-pallet();
+}
+

@@ -7,12 +7,11 @@
     "outDir": "dist",
     "strict": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-
     "noEmit": false,
     "baseUrl": "./src",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -34,7 +33,7 @@
     "types": ["@testing-library/jest-dom"],
     "useDefineForClassFields": true,
   },
-  "include": ["src", "*.tsx", "*.ts", "eslint.config.js"],
+  "include": ["src", "*.tsx", "*.ts", "eslint.config.ts", "vitest.config.mts", "vite.config.mts"],
   "exclude": [
     "coverage",
     "config",

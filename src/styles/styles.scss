@@ -1,9 +1,6 @@
 @use './fontFaces';
 @use './colors';
 
-@import 'highcharts/css/highcharts.css';
-@import 'react-tooltip/dist/react-tooltip.css';
-
 @include fontFaces.font-faces();
 
 :root {
