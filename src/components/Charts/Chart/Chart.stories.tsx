@@ -8,7 +8,7 @@ import { useTheme } from '../../../hooks';
 
 const data = times(2, () => ({
   label: faker.hacker.abbreviation(),
-  values: times(15, () => faker.datatype.number()),
+  values: times(15, () => faker.number.float()),
 }));
 
 const options: Highcharts.Options = {

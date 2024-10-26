@@ -9,7 +9,7 @@ import { useTheme } from '../../../hooks';
 const data = times(3, () => ({
   label: faker.hacker.abbreviation(),
   id: faker.hacker.abbreviation(),
-  value: faker.datatype.number(),
+  value: faker.number.float(),
 }));
 
 const meta: Meta<typeof PieChart> = {
