@@ -43,21 +43,6 @@ const columnDefs: ColumnDef<TableData>[] = [
   },
 ];
 
-const columnDefsWithLargeheaderText: ColumnDef<TableData>[] = [
-  {
-    headerName: 'This is a large header text that wraps into multiple lines',
-    field: 'first_name',
-    maxWidth: 180,
-    sortable: true,
-  },
-  {
-    headerName: 'Last name',
-    field: 'last_name',
-    flex: 1,
-    sortable: true,
-  },
-];
-
 const columnDefsWithSelector: ColumnDef<TableData>[] = [
   selectorColumn(),
   {
@@ -170,21 +155,23 @@ export const WithSelectorColumn: Story = {
   },
 };
 
+export const WithInitialSorting: Story = {
+  render: (args) => {
+    return <DataTable {...args} />;
+  },
+  args: {
+    columnDefs: columnDefsWithActions as ColumnDef<NonNullable<unknown>>[],
+    initialSortField: 'first_name',
+    initialSortOperator: 'desc',
+  },
+};
+
 export const WithActionColumn: Story = {
   render: (args) => {
     return <DataTable {...args} />;
   },
   args: {
     columnDefs: columnDefsWithActions as ColumnDef<NonNullable<unknown>>[],
-  },
-};
-
-export const WithMultiLineHeader: Story = {
-  render: (args) => {
-    return <DataTable {...args} />;
-  },
-  args: {
-    columnDefs: columnDefsWithLargeheaderText as ColumnDef<NonNullable<unknown>>[],
   },
 };
 

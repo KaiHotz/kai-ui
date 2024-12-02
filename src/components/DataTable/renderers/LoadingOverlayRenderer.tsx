@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
+import type { CustomLoadingOverlayProps } from 'ag-grid-react';
 
-interface ILoadingOverlayRendererProps {
+interface ILoadingOverlayRendererProps extends CustomLoadingOverlayProps {
   loadingMessage: ReactNode;
 }
 

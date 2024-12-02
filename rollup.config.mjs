@@ -1,3 +1,4 @@
+import path from 'path';
 import { readFileSync } from 'fs';
 import { defineConfig } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
@@ -6,7 +7,7 @@ import typescript from '@rollup/plugin-typescript';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 import external from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
+import scss from 'rollup-plugin-scss';
 import dts from 'rollup-plugin-dts';
 import terser from '@rollup/plugin-terser';
 import typescriptEngine from 'typescript';
@@ -25,12 +26,10 @@ export default defineConfig(
       },
     ],
     plugins: [
-      postcss({
-        plugins: [],
-        sourceMap: false,
-        modules: true,
+      scss({
+        includePaths: [path.resolve('node_modules')], // Add this line to resolve node_modules
+        insert: true,
         minimize: true,
-        extensions: ['.scss', '.css']
       }),
       external({ includeDependencies: true }),
       resolve(),

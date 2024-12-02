@@ -34,8 +34,6 @@ interface DataTableProps<DataType extends NonNullable<unknown>>
   noRowsMessage?: ReactNode;
   initialSortField?: string;
   initialSortOperator?: SortOperator;
-  suppressRowClickSelection?: boolean;
-  rowMultiSelectWithClick?: boolean;
   rowSelection?: 'single' | 'multiple';
   /** Disables the automatic resizing of the columns */
   disableFitSizeColumns?: boolean;
@@ -69,8 +67,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   noRowsMessage,
   rowSelection,
   onChangeSelection,
-  suppressRowClickSelection,
-  rowMultiSelectWithClick,
   onGridReadyEvent,
   disableFitSizeColumns,
   initialSortField,
@@ -115,7 +111,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     window.clearInterval(overlayTimeoutRef.current);
     overlayTimeoutRef.current = window.setTimeout(() => {
       if (apiRef.current && (isLoading || loadingRef.current)) {
-        apiRef.current.showLoadingOverlay();
+        apiRef.current.setGridOption('loading', true);
       }
     }, 100);
   }, [isLoading]);
@@ -262,8 +258,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     };
   }, []);
 
-  const isClickableRow =
-    gridOptions?.onRowClicked || (onChangeSelection && !suppressRowClickSelection) || Boolean(onCellClicked);
+  const isClickableRow = gridOptions?.onRowClicked || onChangeSelection || Boolean(onCellClicked);
 
   return (
     <div
@@ -288,18 +283,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
           suppressFloatingFilterButton: true,
           sortable: false,
           resizable: false,
-          headerComponentParams: {
-            template: `<div class="ag-cell-label-container" role="presentation">
-              <span ref="eMenu" class="ag-header-icon ag-header-cell-menu-button"></span>
-              <div ref="eLabel" class="ag-header-cell-label" role="presentation">
-                <span ref="eText" class="ag-header-cell-text" role="columnheader" style="white-space: normal;"></span>
-                <span ref="eSortOrder" class="ag-sort-indicator-icon ag-sort-order"></span>
-                <span ref="eSortAsc" class="ag-sort-indicator-icon ag-sort-ascending-icon"></span>
-                <span ref="eSortDesc" class="ag-sort-indicator-icon ag-sort-descending-icon"></span>
-                <span ref="eSortNone" class="ag-sort-indicator-icon ag-sort-none-icon"></span>
-              </div>
-            </div>`,
-          },
+          ...rest.defaultColDef,
         }}
         domLayout={isAutoHeight ? 'autoHeight' : 'normal'}
         gridOptions={{
@@ -311,21 +295,18 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         suppressMovableColumns
         enableCellTextSelection
         enableBrowserTooltips
-        tooltipShowDelay={500}
+        tooltipShowDelay={200}
         onGridReady={handleGridReady}
         onCellClicked={onCellClicked}
         onSortChanged={handleSort}
-        sortingOrder={sortingOrder || ['asc', 'desc']}
+        sortingOrder={sortingOrder || ['asc', 'desc', null]}
         onGridColumnsChanged={sizeColumnsToFitIsEnabled}
         onSelectionChanged={handleSelectionChanged}
-        rowMultiSelectWithClick={rowMultiSelectWithClick}
         rowSelection={rowSelection}
-        suppressRowClickSelection={suppressRowClickSelection}
         loadingOverlayComponent={loadingOverlayComponent}
         loadingOverlayComponentParams={loadingOverlayComponentParams}
         noRowsOverlayComponent={noRowsOverlayComponent}
         noRowsOverlayComponentParams={noRowsOverlayComponentParams}
-        reactiveCustomComponents
         rowHeight={rowHeight}
         onColumnResized={(event: ColumnResizedEvent) => {
           const isColumnResized = event.type === 'columnResized' && event.finished;
