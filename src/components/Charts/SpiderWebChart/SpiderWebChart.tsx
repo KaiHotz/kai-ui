@@ -48,9 +48,6 @@ export const SpiderWebChart = forwardRef<HighchartsReact.RefObject, ISpiderWebCh
             polar: true,
             animation: false,
           },
-          lang: {
-            noData: 'No data to display',
-          },
           noData: {
             style: {
               fontWeight: 'bold',

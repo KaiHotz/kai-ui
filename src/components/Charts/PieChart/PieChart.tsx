@@ -84,9 +84,6 @@ export const PieChart: FC<IPieChartProps> = forwardRef<HighchartsReact.RefObject
           legend: {
             enabled: false,
           },
-          lang: {
-            noData: 'No data to display',
-          },
           noData: {
             position: {
               verticalAlign: 'top',

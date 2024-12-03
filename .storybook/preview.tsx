@@ -12,10 +12,10 @@ import { StoryThemeWrapper } from './StoryThemeWrapper';
 import './preview.scss';
 
 highchartsMore(Highcharts);
-noChartData(Highcharts);
 accessibility(Highcharts);
 variablePie(Highcharts);
 highchartsCustomEvents(Highcharts as any);
+noChartData(Highcharts);
 setOptions(defaultHighchartsTheme);
 
 

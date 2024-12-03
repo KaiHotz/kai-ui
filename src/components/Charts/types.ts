@@ -1,2 +1,2 @@
-export const chartSeriesTypes = ['column', 'bar', 'line', 'area', 'spline', 'areaspline'] as const;
+export const chartSeriesTypes = ['area', 'areaspline', 'bar', 'column', 'line', 'spline'] as const;
 export type TChartSeriesTypes = (typeof chartSeriesTypes)[number];

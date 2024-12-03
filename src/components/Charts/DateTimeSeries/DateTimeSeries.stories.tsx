@@ -42,9 +42,6 @@ const options: Highcharts.Options = {
       text: 'Y values',
     },
   },
-  lang: {
-    resetZoom: 'Reset zoom 2',
-  },
   subtitle: { text: 'Click and drag in the plot area to zoom in' },
 };
 
