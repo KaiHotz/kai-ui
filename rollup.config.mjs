@@ -26,14 +26,16 @@ export default defineConfig(
       },
     ],
     plugins: [
+      external({ includeDependencies: true }),
+      resolve(),
+      commonjs(),
+      svgr(),
+      url(),
       scss({
         includePaths: [path.resolve('node_modules')], // Add this line to resolve node_modules
         insert: true,
         minimize: true,
       }),
-      external({ includeDependencies: true }),
-      resolve(),
-      commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
         typescript: typescriptEngine,
@@ -48,6 +50,7 @@ export default defineConfig(
           '*.cjs',
           '*.mjs',
           '**/__snapshots__/*',
+          '**/.storybook/*',
           '**/__tests__',
           '**/*.test.js+(|x)',
           '**/*.test.ts+(|x)',
@@ -61,8 +64,6 @@ export default defineConfig(
           'vitest.config.ts',
         ],
       }),
-      url(),
-      svgr(),
       terser(),
     ],
   },

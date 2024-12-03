@@ -6,11 +6,12 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import configPrettier from 'eslint-config-prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import pluginReact from 'eslint-plugin-react';
+import pluginStorybook from 'eslint-plugin-storybook';
 import tseslint from 'typescript-eslint';
 import pluginImport from 'eslint-plugin-import';
 export default tseslint.config(
   {
-    ignores: ['dist', '.git', '.npmrc', '.yarnrc', 'coverage', 'storybook-static', '.storybook', '.yarn'],
+    ignores: ['dist', '.git', '.npmrc', '.yarnrc', 'coverage', 'storybook-static', '.yarn'],
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, configPrettier],
@@ -29,6 +30,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       'import': pluginImport,
       'jsx-a11y': jsxA11y,
+      'storybook': pluginStorybook,
       'prettier': eslintPluginPrettier,
     },
     rules: {
@@ -89,6 +91,7 @@ export default tseslint.config(
           aspects: ['invalidHref'],
         },
       ],
+      'sort-imports': ['error', { 'ignoreCase': true, 'ignoreDeclarationSort': true }],
       'import/no-duplicates': 'error',
       'import/no-self-import': 'error',
       'import/order': [

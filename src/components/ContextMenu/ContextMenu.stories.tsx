@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta } from '@storybook/react';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa6';
 

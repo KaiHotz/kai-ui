@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useMemo } from 'react';
+import { FC, forwardRef, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge, Point, PointLegendItemClickCallbackFunction } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';

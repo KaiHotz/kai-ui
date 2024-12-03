@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import cx from 'clsx';
 import get from 'lodash/get';
 import { FaChevronRight } from 'react-icons/fa6';

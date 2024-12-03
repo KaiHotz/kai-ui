@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Select, { components, Props as ReactSelectProps } from 'react-select';
 import cx from 'clsx';
 import omit from 'lodash/omit';

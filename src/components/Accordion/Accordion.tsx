@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import { Children, FC, ReactElement, useState } from 'react';
 import cx from 'clsx';
 
 import { AccordionSectionContext } from './context';
@@ -32,7 +32,7 @@ export const Accordion: FC<IAccordionProps> = ({
 
   return (
     <div className={cx('ui-accordion', className)} data-testid={testId}>
-      {React.Children.map(children, (child, i) => {
+      {Children.map(children, (child, i) => {
         return (
           <AccordionSectionContext.Provider
             value={{

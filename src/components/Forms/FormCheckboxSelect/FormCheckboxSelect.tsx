@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useImperativeHandle } from 'react';
+import { MutableRefObject, useEffect, useImperativeHandle } from 'react';
 import { ActionMeta, Props as ReactSelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import noop from 'lodash/noop';

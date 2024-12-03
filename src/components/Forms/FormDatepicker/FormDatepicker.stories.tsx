@@ -1,4 +1,3 @@
-import React from 'react';
 import * as yup from 'yup';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';

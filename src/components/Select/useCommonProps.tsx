@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import omit from 'lodash/omit';
 import { FaChevronDown, FaXmark } from 'react-icons/fa6';
 

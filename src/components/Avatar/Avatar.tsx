@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import cx from 'clsx';
 import { FaCameraRotate } from 'react-icons/fa6';
 

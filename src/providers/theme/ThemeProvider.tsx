@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ThemeContext } from './context';
 import { EThemeOptions } from './types';

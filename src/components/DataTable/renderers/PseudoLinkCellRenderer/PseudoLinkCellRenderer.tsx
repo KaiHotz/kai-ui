@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { ICellRendererParams } from 'ag-grid-community';
 
 import { PseudoLink } from '../../../PseudoLink';

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { IActionsRendererProps } from './types';
 import { excludeHiddenActions } from './excludeHiddenActions';

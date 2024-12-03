@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { addDays, subDays } from 'date-fns';
 import cx from 'clsx';
 import { Tooltip } from 'react-tooltip';

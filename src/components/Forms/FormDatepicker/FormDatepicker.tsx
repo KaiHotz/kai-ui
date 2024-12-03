@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 
 import { Datepicker, IDatepickerProps } from '../../DatePicker';

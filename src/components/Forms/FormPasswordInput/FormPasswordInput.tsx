@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect } from 'react';
 import { FieldError, RegisterOptions, useController, useFormContext } from 'react-hook-form';
 
 import { IPasswordInputProps, PasswordInput } from '../../Input';

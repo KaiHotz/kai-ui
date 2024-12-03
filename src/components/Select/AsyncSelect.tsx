@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cx from 'clsx';
 import AsyncCreatable from 'react-select/async-creatable';
 import { GroupBase } from 'react-select';

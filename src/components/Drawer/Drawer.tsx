@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import noop from 'lodash/noop';
 
 import { DrawerPortal } from './DrawerPortal';

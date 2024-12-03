@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { addDays, format } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';

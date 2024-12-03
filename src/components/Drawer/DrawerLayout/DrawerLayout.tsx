@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, ReactNode } from 'react';
+import { forwardRef, ReactElement, ReactNode } from 'react';
 import cx from 'clsx';
 import { FaAngleLeft, FaAngleRight, FaCompress, FaExpand, FaRegCircleXmark, FaXmark } from 'react-icons/fa6';
 

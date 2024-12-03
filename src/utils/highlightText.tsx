@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { getCSSVariable } from './getCSSVariable';
 
 export const highlightText = ({ highlight, text }: { highlight: string; text?: string }) => {

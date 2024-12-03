@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import cx from 'clsx';
 import Creatable, { CreatableProps } from 'react-select/creatable';
 import SelectComp, { GroupBase, Props as ReactSelectProps } from 'react-select';

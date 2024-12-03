@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import omit from 'lodash/omit';
 import cx from 'clsx';
 

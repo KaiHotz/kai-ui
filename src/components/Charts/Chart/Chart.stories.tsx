@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { faker } from '@faker-js/faker';
 import times from 'lodash/times';

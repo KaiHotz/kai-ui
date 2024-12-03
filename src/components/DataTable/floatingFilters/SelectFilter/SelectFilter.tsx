@@ -1,4 +1,4 @@
-import React, { CustomFloatingFilterProps } from 'ag-grid-react';
+import { CustomFloatingFilterProps } from 'ag-grid-react';
 
 import { ISelectOption } from '../../../Select';
 import { Form, FormSelect } from '../../../Forms';

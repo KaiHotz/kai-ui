@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 import cx from 'clsx';
 
 import { ILabelProps, Label } from '../Label';

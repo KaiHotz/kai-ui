@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 

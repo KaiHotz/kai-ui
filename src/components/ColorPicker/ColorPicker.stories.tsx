@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColorResult } from 'react-color';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';

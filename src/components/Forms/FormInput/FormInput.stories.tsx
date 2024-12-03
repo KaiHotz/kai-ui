@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
 import type { Meta, StoryObj } from '@storybook/react';

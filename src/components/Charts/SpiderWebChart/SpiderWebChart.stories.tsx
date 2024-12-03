@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Highcharts, { AxisLabelsFormatterContextObject } from 'highcharts';
 

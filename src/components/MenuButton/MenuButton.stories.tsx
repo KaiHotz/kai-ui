@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+
 import type { Meta } from '@storybook/react';
 import { FaInfo, FaSistrix } from 'react-icons/fa6';
 

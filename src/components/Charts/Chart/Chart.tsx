@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useMemo } from 'react';
+import { forwardRef, Ref, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';

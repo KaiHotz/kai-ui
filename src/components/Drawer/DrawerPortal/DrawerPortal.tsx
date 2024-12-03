@@ -1,4 +1,4 @@
-import React, { cloneElement, forwardRef, ReactElement, useEffect, useRef } from 'react';
+import { cloneElement, forwardRef, ReactElement, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { createPortal } from 'react-dom';
 import noop from 'lodash/noop';

@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, PropsWithChildren, ReactNode, useCallback, useRef, useState } from 'react';
+import { FC, MouseEvent, PropsWithChildren, ReactNode, useCallback, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 import cx from 'clsx';

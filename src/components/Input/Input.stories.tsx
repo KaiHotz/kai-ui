@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCircleInfo, FaEye, FaEyeSlash, FaSistrix } from 'react-icons/fa6';
 
 import { Input } from './Input';

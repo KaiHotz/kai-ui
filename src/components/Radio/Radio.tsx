@@ -1,4 +1,4 @@
-import React, { Children, FC, InputHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
+import { Children, FC, InputHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import cx from 'clsx';
 
 import { Hint } from '../Hint';

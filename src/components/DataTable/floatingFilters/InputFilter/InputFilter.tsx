@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import cx from 'clsx';
 import { createPortal } from 'react-dom';
 import { CustomFloatingFilterProps } from 'ag-grid-react';
