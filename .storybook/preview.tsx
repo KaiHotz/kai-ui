@@ -15,7 +15,7 @@ import './preview.scss';
 highchartsMore(Highcharts);
 accessibility(Highcharts);
 variablePie(Highcharts);
-highchartsCustomEvents(Highcharts);
+highchartsCustomEvents(Highcharts as never);
 noChartData(Highcharts);
 setOptions(defaultHighchartsTheme);
 
