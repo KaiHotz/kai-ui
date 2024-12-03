@@ -1,7 +1,7 @@
 {
   "name": "kai-ui",
   "version": "5.0.0",
-  "description": "Design system bundled with Rollup.js to ES6 Modules and Storybookt",
+  "description": "Design system bundled with Rollup.js to ES6 Modules and Storybook",
   "author": "Kai Hotz",
   "license": "MIT",
   "repository": {
