@@ -11,13 +11,13 @@ import tseslint from 'typescript-eslint';
 import pluginImport from 'eslint-plugin-import';
 export default tseslint.config(
   {
-    ignores: ['dist', '.git', '.npmrc', '.yarnrc', 'coverage', 'storybook-static', '.yarn'],
+    ignores: ['dist', '.git', '.npmrc', '.yarnrc', 'coverage', 'storybook-static', '.yarn', 'node_modules'],
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, configPrettier],
     files: ['**/*.{ts,tsx}', '**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',
       globals: globals.browser,
       parser: tseslint.parser,
       parserOptions: {
