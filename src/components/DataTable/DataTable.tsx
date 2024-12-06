@@ -80,7 +80,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   const { theme } = useTheme();
   const loadingRef = useRef(isLoading);
   const apiRef = useRef<GridApi | null>(null);
-  const overlayTimeoutRef = useRef<number>();
+  const overlayTimeoutRef = useRef<number>(0);
   const mutableRowData = useMemo(() => cloneDeep(rowData), [rowData]);
   const hasColumnAutoHeight = useMemo(() => columnDefs.some((colDef) => colDef.autoHeight), [columnDefs]);
   const hasFloatingFilters = useMemo(() => {

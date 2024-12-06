@@ -45,7 +45,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
   small,
 }) => {
   const isPalette = variant === 'palette';
-  const coverRef = useRef(null);
+  const coverRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
   const [colorPickerElement, setColorPickerElement] = useState<HTMLElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
@@ -85,7 +85,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
     [isPalette, onChange],
   );
 
-  useClickOutside(coverRef, handleClosePicker);
+  useClickOutside<HTMLDivElement>(coverRef, handleClosePicker);
 
   return (
     <div

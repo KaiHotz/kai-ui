@@ -83,7 +83,7 @@ export const InputFilter = ({
           }
 
           return (
-            <>
+            <div>
               <FormInput
                 small
                 name="filter"
@@ -126,7 +126,7 @@ export const InputFilter = ({
                 </div>,
                 document.body,
               )}
-            </>
+            </div>
           );
         }}
       </Form>

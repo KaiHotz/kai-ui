@@ -12,7 +12,7 @@ interface MenuButtonProps extends IButtonProps {
 }
 
 export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', items, ...rest }) => {
-  const menu = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(menuElement, popperElement, {
@@ -34,7 +34,7 @@ export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', i
     setMenuElement(null);
   }, []);
 
-  useClickOutside(menu, closeMenu);
+  useClickOutside(menuRef, closeMenu);
 
   return (
     <>
@@ -52,7 +52,7 @@ export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', i
       {menuElement &&
         ReactDOM.createPortal(
           <div ref={setPopperElement} style={styles.popper} {...attributes.popper} className="ui-menu-button__menu">
-            <ContextMenu ref={menu} menuItems={items} onClose={closeMenu} />
+            <ContextMenu ref={menuRef} menuItems={items} onClose={closeMenu} />
           </div>,
           document.body,
         )}

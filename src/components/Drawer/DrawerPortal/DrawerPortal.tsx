@@ -8,9 +8,16 @@ import { useCloseByEscape } from '../../../hooks';
 import { Backdrop } from '../../Backdrop';
 import './DrawerPortal.scss';
 
-interface IDrawerPortalProps {
-  children: ReactElement;
+interface IDrawerPortalChildrenProps {
   anchor: 'right' | 'left';
+  onClose: (tabId?: string) => void;
+  isFullWidth?: boolean;
+  toggleFullwidth?: () => void;
+  toggleMinimize?: () => void;
+}
+
+interface IDrawerPortalProps extends IDrawerPortalChildrenProps {
+  children: ReactElement<IDrawerPortalChildrenProps>;
   width: string;
   offset: number;
   shouldCloseByEsc?: boolean;
@@ -19,12 +26,8 @@ interface IDrawerPortalProps {
   className?: string;
   activeTab?: string;
   isMinimized?: boolean;
-  isFullWidth?: boolean;
   testId?: string;
-  onClose: (tabId?: string) => void;
   onExpand?: () => void;
-  toggleMinimize?: () => void;
-  toggleFullwidth?: () => void;
 }
 
 export const DrawerPortal = forwardRef<HTMLDivElement, IDrawerPortalProps>(

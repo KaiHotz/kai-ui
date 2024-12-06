@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 import type { Preview, StoryFn } from '@storybook/react';
 import Highcharts, { setOptions } from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';

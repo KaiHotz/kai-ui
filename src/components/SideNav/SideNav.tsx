@@ -1,5 +1,6 @@
 import { cloneElement, FC, Fragment, ReactElement, ReactNode, useState } from 'react';
 import cx from 'clsx';
+import { IconBaseProps, IconType } from 'react-icons';
 import { FaChevronDown } from 'react-icons/fa6';
 
 import './SideNav.scss';
@@ -13,7 +14,7 @@ interface SideNavSubItem {
 export type SideNavItem = {
   title: string;
   pathName?: string;
-  icon?: ReactElement;
+  icon?: ReactElement<IconBaseProps, IconType>;
   badge?: ReactNode;
   subItems?: SideNavSubItem[];
   hidden?: boolean;
@@ -82,10 +83,7 @@ export const SideNav: FC<SideNavProps> = ({ items }) => {
                 >
                   {icon && (
                     <span className="ui-side-nav__menu-item-icon">
-                      {cloneElement(icon, {
-                        ...icon.props,
-                        size: 16,
-                      })}
+                      {cloneElement(icon, { ...icon.props, size: 16 })}
                     </span>
                   )}
                   <span
