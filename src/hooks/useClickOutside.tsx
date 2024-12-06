@@ -3,7 +3,7 @@ import { RefObject, useCallback } from 'react';
 import { useEventListener } from './useEventListener';
 
 export const useClickOutside = <T extends HTMLElement>(
-  ref: RefObject<T> | null,
+  ref: RefObject<T | undefined>,
   handler: (e: MouseEvent | TouchEvent) => void,
 ) => {
   const handleClickOutside = useCallback(

@@ -79,7 +79,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
 }: DataTableProps<DataType>) {
   const { theme } = useTheme();
   const loadingRef = useRef(isLoading);
-  const apiRef = useRef<GridApi | null>(null);
+  const apiRef = useRef<GridApi | undefined>(undefined);
   const overlayTimeoutRef = useRef<number>(0);
   const mutableRowData = useMemo(() => cloneDeep(rowData), [rowData]);
   const hasColumnAutoHeight = useMemo(() => columnDefs.some((colDef) => colDef.autoHeight), [columnDefs]);

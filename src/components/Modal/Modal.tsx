@@ -28,7 +28,7 @@ export const Modal: FC<PropsWithChildren<IModalProps>> = ({
   hasFrozenBackdrop,
   children,
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
+  const modalRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
   useCloseByEscape(() => {
     // to avoid loosing user's input = close by escape disabled when editable element is in focus
     if (!isEditableElement(document.activeElement)) {

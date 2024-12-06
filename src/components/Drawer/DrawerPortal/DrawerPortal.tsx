@@ -52,7 +52,7 @@ export const DrawerPortal = forwardRef<HTMLDivElement, IDrawerPortalProps>(
     },
     ref,
   ) => {
-    const drawerRef = useRef<HTMLDivElement | null>(null);
+    const drawerRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
     const drawerWidth = width.includes('%') ? width : `${parseInt(width, 10)}px`;
 
     useEffect(() => {

@@ -19,7 +19,7 @@ interface ContextMenuItemProps {
 }
 
 export const ContextMenuItem: FC<ContextMenuItemProps> = ({ item, onClick, onClose }) => {
-  const itemRef = useRef<HTMLButtonElement | null>(null);
+  const itemRef = useRef<HTMLButtonElement>(undefined as unknown as HTMLButtonElement);
 
   const onItemClicked = useCallback(() => {
     if (!item.disabled) {

@@ -35,10 +35,10 @@ export const InputFilter = ({
   onModelChange,
 }: InputFilterParams) => {
   const [showHint, setShowHint] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const popupRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(undefined as unknown as HTMLInputElement);
+  const popupRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const hintAndErrorPopper = useRef<any>(null);
+  const hintAndErrorPopper = useRef<any>(undefined);
 
   useEffect(() => {
     if (popupRef.current && inputRef.current) {

@@ -12,7 +12,7 @@ interface MenuButtonProps extends IButtonProps {
 }
 
 export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', items, ...rest }) => {
-  const menuRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
+  const menuRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
   const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(menuElement, popperElement, {
