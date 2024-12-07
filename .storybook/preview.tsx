@@ -33,16 +33,15 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => ({
-      components: { ThemeProvider, StoryThemeWrapper, Story },
-      template: `
+    (Story) => {
+      return (
         <ThemeProvider name="kai-ui">
           <StoryThemeWrapper>
             <Story />
           </StoryThemeWrapper>
         </ThemeProvider>
-      `,
-    }),
+      );
+    },
   ],
 };
 
