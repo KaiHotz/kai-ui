@@ -2,8 +2,7 @@ name: deploy-storybook
 
 on:
   push:
-    branches:
-      - "main" # change to the branch you wish to deploy from
+    branches: [ main ]
 
 permissions:
   contents: read
