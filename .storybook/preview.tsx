@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
-import type { Preview, StoryFn } from '@storybook/react';
+import type { Preview } from '@storybook/react';
 import Highcharts, { setOptions } from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';
 import noChartData from 'highcharts/modules/no-data-to-display';
@@ -35,15 +33,16 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story: StoryFn) => {
-      return (
+    (Story) => ({
+      components: { ThemeProvider, StoryThemeWrapper, Story },
+      template: `
         <ThemeProvider name="kai-ui">
           <StoryThemeWrapper>
             <Story />
           </StoryThemeWrapper>
         </ThemeProvider>
-      );
-    },
+      `,
+    }),
   ],
 };
 
