@@ -10,6 +10,7 @@ const meta: Meta<typeof Spinner> = {
 export const Default = {
   args: {
     size: 35,
+    speedMultiplier: 1.5,
   },
 };
 
