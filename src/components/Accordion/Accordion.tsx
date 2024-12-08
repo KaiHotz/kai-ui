@@ -34,7 +34,7 @@ export const Accordion: FC<IAccordionProps> = ({
     <div className={cx('ui-accordion', className)} data-testid={testId}>
       {Children.map(children, (child, i) => {
         return (
-          <AccordionSectionContext.Provider
+          <AccordionSectionContext
             value={{
               onClick: () => handleExpand(i),
               isExpanded: expandedIndex === i,
@@ -43,7 +43,7 @@ export const Accordion: FC<IAccordionProps> = ({
             }}
           >
             {child}
-          </AccordionSectionContext.Provider>
+          </AccordionSectionContext>
         );
       })}
     </div>

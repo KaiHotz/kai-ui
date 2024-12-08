@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, use } from 'react';
 import noop from 'lodash/noop';
 
 export interface TAccordionSectionContext {
@@ -15,7 +15,7 @@ export const AccordionSectionContext = createContext<TAccordionSectionContext>({
 });
 
 export const useAccordionSection = () => {
-  const accordionContextData = useContext(AccordionSectionContext);
+  const accordionContextData = use(AccordionSectionContext);
   if (AccordionSectionContext === null) {
     throw Error('A Accordion Section must have a Accordion parent');
   }

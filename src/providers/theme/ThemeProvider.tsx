@@ -35,5 +35,5 @@ export const ThemeProvider: FC<{ name: string; children: ReactNode }> = ({ child
     };
   }, [handleTheme, theme]);
 
-  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
+  return <ThemeContext value={contextValue}>{children}</ThemeContext>;
 };

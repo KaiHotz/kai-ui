@@ -42,11 +42,11 @@ export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
       >
         {Children.map(children, (child) => {
           return (
-            <RadioOptionContext.Provider
+            <RadioOptionContext
               value={{ onChange, disabled, selected, labelPosition, variant, isInline, small, ...rest }}
             >
               {child}
-            </RadioOptionContext.Provider>
+            </RadioOptionContext>
           );
         })}
       </div>

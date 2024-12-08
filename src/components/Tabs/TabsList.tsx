@@ -36,7 +36,7 @@ export const TabsList: FC<PropsWithChildren<unknown>> = ({ children }) => {
         const isSelected = index === selected;
 
         return (
-          <TabContext.Provider
+          <TabContext
             // (!) in real life this would need to be restructured
             // (!) and memoized to use a stable references everywhere
             value={{
@@ -53,7 +53,7 @@ export const TabsList: FC<PropsWithChildren<unknown>> = ({ children }) => {
             }}
           >
             {child}
-          </TabContext.Provider>
+          </TabContext>
         );
       })}
     </div>

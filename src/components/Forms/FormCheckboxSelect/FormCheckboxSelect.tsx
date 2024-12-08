@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useImperativeHandle } from 'react';
+import { RefObject, useEffect, useImperativeHandle } from 'react';
 import { ActionMeta, Props as ReactSelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import noop from 'lodash/noop';
@@ -21,7 +21,7 @@ export interface IFormCheckboxSelectProps<OptionType extends ISelectOption, IsMu
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
   options?: OptionType[];
-  selectRef?: MutableRefObject<{
+  selectRef?: RefObject<{
     setValue?: (option: ISelectOption) => void;
     onBlur?: () => void;
   }>;

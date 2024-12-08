@@ -1,7 +1,9 @@
+@use '../../styles/animations';
+
 .ui-spinner {
   --ui-spinner-color: var(--accent-1);
   color: var(--ui-spinner-color);
   display: flex;
   justify-content: center;
-  animation: ui-loading-spinner var(--ui-spinner-speed) 0s infinite linear;
+  animation: ui-spin var(--ui-spinner-speed) 0s infinite linear;
 }
