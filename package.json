@@ -98,7 +98,6 @@
     "date-fns": "^4.1.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-deprecation": "^3.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.2.1",
@@ -143,6 +142,8 @@
     "yup": "^1.5.0"
   },
   "resolutions": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1"
   },
