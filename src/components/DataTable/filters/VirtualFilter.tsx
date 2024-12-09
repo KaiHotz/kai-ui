@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useImperativeHandle } from 'react';
+import { FC, Ref, useCallback, useImperativeHandle } from 'react';
 import { IDoesFilterPassParams } from 'ag-grid-community';
 import { CustomFilterProps, useGridFilter } from 'ag-grid-react';
 
@@ -7,7 +7,11 @@ interface FilterModel {
   value: string | number | (string | null)[] | null;
 }
 
-export const VirtualFilter = forwardRef(({ getValue }: CustomFilterProps, ref) => {
+interface VirtualFilterProps extends CustomFilterProps {
+  ref?: Ref<unknown>;
+}
+
+export const VirtualFilter: FC<VirtualFilterProps> = ({ getValue, ref }) => {
   const doesFilterPass = useCallback(
     (params: IDoesFilterPassParams) => {
       const { node } = params;
@@ -36,4 +40,4 @@ export const VirtualFilter = forwardRef(({ getValue }: CustomFilterProps, ref) =
   });
 
   return null;
-});
+};
