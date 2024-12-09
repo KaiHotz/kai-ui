@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
 import { Button } from '../Button';
@@ -10,35 +10,40 @@ export interface IPasswordInputProps extends Omit<IInputProps, 'type'> {
   passwordToggleTooltip?: string;
 }
 
-export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInputProps>(
-  ({ endAdornment, passwordToggle, passwordToggleTooltip, small, ...rest }, ref) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const toggleShowPassword = useCallback(() => setShowPassword((prev) => !prev), []);
-    const iconSize = small ? 14 : 18;
+export const PasswordInput: FC<IPasswordInputProps> = ({
+  endAdornment,
+  passwordToggle,
+  passwordToggleTooltip,
+  small,
+  ref,
+  ...rest
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = useCallback(() => setShowPassword((prev) => !prev), []);
+  const iconSize = small ? 14 : 18;
 
-    return (
-      <Input
-        ref={ref}
-        {...rest}
-        type={showPassword ? 'text' : 'password'}
-        endAdornment={
-          passwordToggle ? (
-            <>
-              {endAdornment}
-              {passwordToggle && (
-                <Button
-                  variant="ghost"
-                  title={passwordToggleTooltip}
-                  icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
-                  onClick={toggleShowPassword}
-                />
-              )}
-            </>
-          ) : (
-            endAdornment
-          )
-        }
-      />
-    );
-  },
-);
+  return (
+    <Input
+      ref={ref}
+      {...rest}
+      type={showPassword ? 'text' : 'password'}
+      endAdornment={
+        passwordToggle ? (
+          <>
+            {endAdornment}
+            {passwordToggle && (
+              <Button
+                variant="ghost"
+                title={passwordToggleTooltip}
+                icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
+                onClick={toggleShowPassword}
+              />
+            )}
+          </>
+        ) : (
+          endAdornment
+        )
+      }
+    />
+  );
+};

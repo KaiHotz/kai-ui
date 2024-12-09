@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useMemo } from 'react';
+import { FC, Ref, useMemo } from 'react';
 import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -32,89 +32,96 @@ interface ISpiderWebChartProps {
  * HighchartsMore(Highcharts);
  * NoChartData(Highcharts);
  */
-export const SpiderWebChart = forwardRef<HighchartsReact.RefObject, ISpiderWebChartProps>(
-  ({ data, seriesType = 'area', options, containerProps, callback, className, colorByPoint }, ref) => {
-    const memoizedContainerProps = useMemo(
-      () => ({
-        className: cx('ui-spider-web-chart', className),
-        ...containerProps,
-      }),
-      [className, containerProps],
-    );
-    const highchartsOptions = useMemo<Highcharts.Options>(() => {
-      return merge(
-        {
-          chart: {
-            polar: true,
-            animation: false,
-          },
-          noData: {
-            style: {
-              fontWeight: 'bold',
-              fontSize: '14px',
-              color: '#303030',
-            },
-          },
-          xAxis: {
-            tickmarkPlacement: 'on',
-            lineWidth: 0,
-            tickInterval: 1,
-            startOnTick: true,
-            endOnTick: true,
-            maxPadding: 0,
-            minPadding: 0,
-          },
-          yAxis: {
-            lineWidth: 0,
-            min: 0,
-            tickWidth: 0,
-            tickAmount: 0,
-            allowDecimals: false,
-            gridLineWidth: 0.3,
-            startOnTick: true,
-            endOnTick: true,
-            maxPadding: 0,
-            minPadding: 0,
-          },
-          tooltip: {
-            enabled: true,
-            shadow: false,
-            backgroundColor: '#000000',
-            borderRadius: 10,
-            borderWidth: 0,
-            distance: 20,
-            pointFormat: '<span>{point.y}</span>',
-            style: {
-              fontWeight: 'bold',
-              color: '#ffffff',
-            },
-          },
-          series: data.map(({ label: name, values, id, type, dashStyle }) => {
-            return {
-              id,
-              name,
-              type: type || seriesType,
-              dashStyle: type === 'line' && dashStyle ? dashStyle : 'Solid',
-              data: values,
-              allowPointSelect: true,
-              pointPlacement: 'on',
-            };
-          }),
-          colorByPoint,
+export const SpiderWebChart: FC<ISpiderWebChartProps> = ({
+  data,
+  seriesType = 'area',
+  options,
+  containerProps,
+  callback,
+  className,
+  colorByPoint,
+  ref,
+}) => {
+  const memoizedContainerProps = useMemo(
+    () => ({
+      className: cx('ui-spider-web-chart', className),
+      ...containerProps,
+    }),
+    [className, containerProps],
+  );
+  const highchartsOptions = useMemo<Highcharts.Options>(() => {
+    return merge(
+      {
+        chart: {
+          polar: true,
+          animation: false,
         },
-        options,
-      );
-    }, [data, colorByPoint, options, seriesType]);
-
-    return (
-      <HighchartsReact
-        highcharts={Highcharts}
-        containerProps={memoizedContainerProps}
-        height="100%"
-        options={highchartsOptions}
-        callback={callback}
-        ref={ref}
-      />
+        noData: {
+          style: {
+            fontWeight: 'bold',
+            fontSize: '14px',
+            color: '#303030',
+          },
+        },
+        xAxis: {
+          tickmarkPlacement: 'on',
+          lineWidth: 0,
+          tickInterval: 1,
+          startOnTick: true,
+          endOnTick: true,
+          maxPadding: 0,
+          minPadding: 0,
+        },
+        yAxis: {
+          lineWidth: 0,
+          min: 0,
+          tickWidth: 0,
+          tickAmount: 0,
+          allowDecimals: false,
+          gridLineWidth: 0.3,
+          startOnTick: true,
+          endOnTick: true,
+          maxPadding: 0,
+          minPadding: 0,
+        },
+        tooltip: {
+          enabled: true,
+          shadow: false,
+          backgroundColor: '#000000',
+          borderRadius: 10,
+          borderWidth: 0,
+          distance: 20,
+          pointFormat: '<span>{point.y}</span>',
+          style: {
+            fontWeight: 'bold',
+            color: '#ffffff',
+          },
+        },
+        series: data.map(({ label: name, values, id, type, dashStyle }) => {
+          return {
+            id,
+            name,
+            type: type || seriesType,
+            dashStyle: type === 'line' && dashStyle ? dashStyle : 'Solid',
+            data: values,
+            allowPointSelect: true,
+            pointPlacement: 'on',
+          };
+        }),
+        colorByPoint,
+      },
+      options,
     );
-  },
-);
+  }, [data, colorByPoint, options, seriesType]);
+
+  return (
+    <HighchartsReact
+      highcharts={Highcharts}
+      containerProps={memoizedContainerProps}
+      height="100%"
+      options={highchartsOptions}
+      callback={callback}
+      ref={ref}
+    />
+  );
+};

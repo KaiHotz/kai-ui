@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useImperativeHandle } from 'react';
+import { Ref, useEffect, useImperativeHandle } from 'react';
 import { AsyncProps } from 'react-select/async';
 import { ActionMeta, GroupBase, Props as ReactSelectProps, SingleValue } from 'react-select';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
@@ -27,7 +27,7 @@ export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti exte
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
   options?: OptionType[];
-  selectRef?: RefObject<{
+  selectRef?: Ref<{
     setValue?: (option: ISelectOption) => void;
     onBlur?: () => void;
   }>;
