@@ -144,14 +144,19 @@ export const WithSelectorColumn: Story = {
   render: function useStory(args) {
     const [selected, setSelected] = useState<NonNullable<unknown>[]>([]);
 
-    console.log(selected);
+    console.log({ selected });
 
     return <DataTable {...args} onChangeSelection={setSelected} />;
   },
   args: {
     columnDefs: columnDefsWithSelector as ColumnDef<NonNullable<unknown>>[],
-    rowSelection: 'multiple',
-    rowMultiSelectWithClick: true,
+    rowSelection: {
+      mode: 'multiRow',
+      headerCheckbox: true,
+      checkboxes: true,
+      selectAll: 'filtered',
+      enableSelectionWithoutKeys: true,
+    },
   },
 };
 

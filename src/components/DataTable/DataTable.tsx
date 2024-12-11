@@ -34,7 +34,6 @@ interface DataTableProps<DataType extends NonNullable<unknown>>
   noRowsMessage?: ReactNode;
   initialSortField?: string;
   initialSortOperator?: SortOperator;
-  rowSelection?: 'single' | 'multiple';
   /** Disables the automatic resizing of the columns */
   disableFitSizeColumns?: boolean;
   /** properties and callbacks used to configure the grid */
