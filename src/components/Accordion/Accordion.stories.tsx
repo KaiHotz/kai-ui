@@ -1,5 +1,5 @@
 import { FaClock, FaDesktop, FaTimeline } from 'react-icons/fa6';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Accordion } from './Accordion';
 import { AccordionSection } from './AccordionSection';

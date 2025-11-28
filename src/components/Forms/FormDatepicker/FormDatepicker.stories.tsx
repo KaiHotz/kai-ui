@@ -1,9 +1,9 @@
 import * as yup from 'yup';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
-import { Form } from '../Form';
+import { Form, IOnsubmitProps } from '../Form';
 import { FormDatepicker } from './FormDatepicker';
 
 const iconOptions = {
@@ -44,18 +44,18 @@ type Story = StoryObj<typeof FormDatepicker>;
 export const Default: Story = {
   render: (args) => {
     const schema = yup.object().shape({
-      my_date: args.required ? yup.date().required('Required') : yup.date(),
+      my_date: args.required ? yup.date().required('Required') : yup.date().optional(),
     });
 
     type TFormData = yup.InferType<typeof schema>;
 
-    const onSubmit = (data: TFormData) => {
+    const onSubmit = ({ data }: IOnsubmitProps<TFormData>) => {
       alert(JSON.stringify(data));
     };
 
     return (
       <div style={{ padding: '10px 10px 250px 10px' }}>
-        <Form validationSchema={schema} defaultValues={{ my_date: new Date() }} onSubmit={onSubmit}>
+        <Form<TFormData> validationSchema={schema} defaultValues={{ my_date: new Date() }} onSubmit={onSubmit}>
           <FormDatepicker {...args} name="my_date" />
           <Button type="submit">Submit</Button>
         </Form>

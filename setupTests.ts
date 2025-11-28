@@ -1,7 +1,12 @@
-import { vi } from 'vitest';
+import { afterEach, expect, vi } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import * as matchers from '@testing-library/jest-dom/matchers';
 import '@testing-library/jest-dom';
 import 'regenerator-runtime/runtime';
 
+expect.extend(matchers);
+
+// Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query) => ({
@@ -14,4 +19,8 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
+});
+
+afterEach(() => {
+  cleanup();
 });

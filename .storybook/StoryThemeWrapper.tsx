@@ -1,6 +1,6 @@
-import { FC, ReactNode, useCallback, useEffect } from 'react';
-import { addons } from '@storybook/preview-api';
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
+import React, { FC, ReactNode, useCallback, useEffect } from 'react';
+import { addons } from 'storybook/preview-api';
+import { DARK_MODE_EVENT_NAME } from '@vueless/storybook-dark-mode';
 
 import { useTheme } from '../src/hooks';
 

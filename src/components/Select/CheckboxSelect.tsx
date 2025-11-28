@@ -10,8 +10,10 @@ import { useCommonProps } from './useCommonProps';
 
 import './Select.scss';
 
-export interface ICheckboxSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends ReactSelectProps<OptionType, IsMulti> {
+export interface ICheckboxSelectProps<
+  OptionType extends ISelectOption,
+  IsMulti extends boolean = false,
+> extends ReactSelectProps<OptionType, IsMulti> {
   small?: boolean;
   label?: string;
   labelPosition?: ILabelProps['position'];

@@ -2,9 +2,9 @@
 
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Form } from '../Form';
+import { Form, IOnsubmitProps } from '../Form';
 import { FormRadio } from './FormRadio';
 import { RadioOption } from '../../Radio';
 
@@ -31,7 +31,7 @@ export const Default: Story = {
       formRadioExample: yup.string(),
     });
     type TFormData = yup.InferType<typeof schema>;
-    const onSubmit = (data: TFormData) => {
+    const onSubmit = ({ data }: IOnsubmitProps<TFormData>) => {
       alert(JSON.stringify(data));
     };
     const onError = (errors: FieldErrors<TFormData>) => {

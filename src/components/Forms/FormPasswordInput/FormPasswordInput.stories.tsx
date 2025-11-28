@@ -2,10 +2,10 @@
 
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
-import { Form } from '../Form';
+import { Form, IOnsubmitProps } from '../Form';
 import { FormPasswordInput } from './FormPasswordInput';
 import { Button } from '../../Button';
 
@@ -88,7 +88,7 @@ export const Default: Story = {
 
     type TFormData = yup.InferType<typeof schema>;
 
-    const onSubmit = (data: TFormData) => {
+    const onSubmit = ({ data }: IOnsubmitProps<TFormData>) => {
       alert(JSON.stringify(data));
     };
 

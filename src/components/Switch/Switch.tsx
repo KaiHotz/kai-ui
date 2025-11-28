@@ -1,4 +1,4 @@
-import { FC, Ref } from 'react';
+import { ChangeEvent, FC, FocusEvent, Ref } from 'react';
 import cx from 'clsx';
 
 import './Switch.scss';
@@ -13,8 +13,8 @@ export interface ISwitchProps {
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];
   className?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   testId?: string;
   ref?: Ref<HTMLInputElement>;
 }

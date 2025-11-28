@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import noop from 'lodash/noop';
 
 import { DrawerPortal } from './DrawerPortal';
@@ -26,7 +26,7 @@ interface IDrawerProps {
   testId?: string;
 }
 
-export const Drawer: React.FC<IDrawerProps> = ({
+export const Drawer: FC<IDrawerProps> = ({
   children,
   title,
   icon,

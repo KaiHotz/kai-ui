@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
 import * as yup from 'yup';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
-import { Form } from '../Form';
+import { Form, IOnsubmitProps } from '../Form';
 import { Button } from '../../Button';
 import { ISelectOption } from '../../Select';
 import { FormSelect } from './FormSelect';
@@ -80,7 +80,7 @@ export const Default: Story = {
 
     type TFormData = yup.InferType<typeof schema>;
 
-    const onSubmit = (data: TFormData) => {
+    const onSubmit = ({ data }: IOnsubmitProps<TFormData>) => {
       console.log({ data });
 
       alert(JSON.stringify(data));

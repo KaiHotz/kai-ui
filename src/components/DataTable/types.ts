@@ -26,8 +26,10 @@ interface TooltipParams<T> extends ITooltipParams {
   data: T;
 }
 
-export interface ColumnDef<DataType extends NonNullable<unknown>>
-  extends Omit<ColDef, 'field' | 'valueFormatter' | 'tooltipField' | 'tooltipValueGetter' | 'cellRendererParams'> {
+export interface ColumnDef<DataType extends NonNullable<unknown>> extends Omit<
+  ColDef,
+  'field' | 'valueFormatter' | 'tooltipField' | 'tooltipValueGetter' | 'cellRendererParams'
+> {
   field?: TNestedKeyOf<DataType>;
   tooltipField?: TNestedKeyOf<DataType>;
   valueGetter?: ((params: ValueGetterParamsT<DataType>) => unknown) | string;

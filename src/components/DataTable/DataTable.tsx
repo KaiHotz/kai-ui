@@ -1,15 +1,20 @@
 import { ReactNode, useCallback, useEffect, useMemo, useRef } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 import cx from 'clsx';
+import { omit } from 'lodash';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import {
+  AllCommunityModule,
   ColDef,
+  colorSchemeDark,
+  colorSchemeLight,
   ColumnResizedEvent,
   GridApi,
   GridOptions,
   GridReadyEvent,
   SelectionChangedEvent,
   SortChangedEvent,
+  themeQuartz,
 } from 'ag-grid-community';
 
 import { useTheme } from '../../hooks';
@@ -18,10 +23,12 @@ import { LoadingOverlayRenderer } from './renderers/LoadingOverlayRenderer';
 import { NoRowsOverlayRenderer } from './renderers/NoRowsOverlayRenderer';
 import { hasConfiguredInitialSort } from './utils';
 import { ColumnDef, DataTableGridOptions, SortOperator } from './types';
-import './DataTable.scss';
+import './DataTable.css';
 
-interface DataTableProps<DataType extends NonNullable<unknown>>
-  extends Omit<AgGridReactProps, 'columnDefs' | 'rowData' | 'gridOptions' | 'showToolPanel' | 'sideBar'> {
+interface DataTableProps<DataType extends NonNullable<unknown>> extends Omit<
+  AgGridReactProps,
+  'columnDefs' | 'rowData' | 'gridOptions' | 'showToolPanel' | 'sideBar'
+> {
   /** Column definitions used for the Data to be shown */
   columnDefs: ColumnDef<DataType>[];
   /** Array of the data to shown in the grid  */
@@ -70,18 +77,18 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   disableFitSizeColumns,
   initialSortField,
   initialSortOperator,
-  sortingOrder,
   className,
   onCellClicked,
   rowHeight = ROW_HEIGHT,
   ...rest
 }: DataTableProps<DataType>) {
   const { theme } = useTheme();
-  const loadingRef = useRef(isLoading);
   const apiRef = useRef<GridApi | undefined>(undefined);
+  const loadingRef = useRef(isLoading);
   const overlayTimeoutRef = useRef<number>(0);
   const mutableRowData = useMemo(() => cloneDeep(rowData), [rowData]);
   const hasColumnAutoHeight = useMemo(() => columnDefs.some((colDef) => colDef.autoHeight), [columnDefs]);
+
   const hasFloatingFilters = useMemo(() => {
     return columnDefs.some((colDef) => Boolean(colDef.floatingFilter));
   }, [columnDefs]);
@@ -185,22 +192,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     [onChangeSelection],
   );
 
-  const handleGridReady = useCallback(
-    (event: GridReadyEvent) => {
-      setInitialSorting(event);
-      apiRef.current = event.api;
-      if (isLoading || loadingRef.current) {
-        showLoadingOverlay();
-      } else {
-        sizeColumnsToFitIsEnabled();
-      }
-      if (onGridReadyEvent) {
-        onGridReadyEvent(event);
-      }
-    },
-    [isLoading, onGridReadyEvent, setInitialSorting, showLoadingOverlay, sizeColumnsToFitIsEnabled],
-  );
-
   const headerHeightGetter = useCallback(() => {
     const columnHeaderTexts = [...document.querySelectorAll('.ag-header-cell-text')];
     const clientHeights = columnHeaderTexts.map((headerText) => headerText.clientHeight);
@@ -223,6 +214,22 @@ export function DataTable<DataType extends NonNullable<unknown>>({
       }
     }
   }, [hasColumnAutoHeight, headerHeightGetter, hasFloatingFilters]);
+
+  const handleGridReady = useCallback(
+    (event: GridReadyEvent) => {
+      setInitialSorting(event);
+      apiRef.current = event.api;
+      if (isLoading || loadingRef.current) {
+        showLoadingOverlay();
+      } else {
+        sizeColumnsToFitIsEnabled();
+      }
+      if (onGridReadyEvent) {
+        onGridReadyEvent(event);
+      }
+    },
+    [isLoading, onGridReadyEvent, setInitialSorting, showLoadingOverlay, sizeColumnsToFitIsEnabled],
+  );
 
   useEffect(() => {
     loadingRef.current = isLoading;
@@ -257,38 +264,32 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     };
   }, []);
 
-  const isClickableRow = gridOptions?.onRowClicked || onChangeSelection || Boolean(onCellClicked);
+  const themeOption = themeQuartz.withPart(theme === EThemeOptions.DARK ? colorSchemeDark : colorSchemeLight);
 
   return (
-    <div
-      className={cx(
-        'ui-data-table',
-        {
-          'ag-theme-quartz': theme === EThemeOptions.LIGHT,
-          'ag-theme-quartz-dark': theme === EThemeOptions.DARK,
-          'ui-data-table--fixed-height': !isAutoHeight,
-          'ui-data-table--row-clickable': isClickableRow,
-        },
-        className,
-      )}
-    >
+    <div className={cx('ag-theme-quartz', className)}>
       <AgGridReact
-        {...rest}
+        {...omit(rest, 'defaultColDef')}
         rowData={mutableRowData}
         columnDefs={columnDefs as ColDef[]}
+        modules={[AllCommunityModule]}
+        theme={themeOption}
         defaultColDef={{
           suppressColumnsToolPanel: true,
+          suppressHeaderFilterButton: true,
           suppressHeaderMenuButton: true,
           suppressFloatingFilterButton: true,
+          suppressHeaderContextMenu: true,
           sortable: false,
           resizable: false,
+          unSortIcon: true,
+          sortingOrder: ['asc', 'desc'],
           ...rest.defaultColDef,
         }}
         domLayout={isAutoHeight ? 'autoHeight' : 'normal'}
         gridOptions={{
           ...(gridOptions as GridOptions),
         }}
-        unSortIcon
         suppressCellFocus
         suppressMultiSort
         suppressMovableColumns
@@ -298,7 +299,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         onGridReady={handleGridReady}
         onCellClicked={onCellClicked}
         onSortChanged={handleSort}
-        sortingOrder={sortingOrder || ['asc', 'desc', null]}
         onGridColumnsChanged={sizeColumnsToFitIsEnabled}
         onSelectionChanged={handleSelectionChanged}
         rowSelection={rowSelection}

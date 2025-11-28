@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { FaCircleInfo, FaCreativeCommonsBy, FaRegLightbulb, FaRegUser, FaSistrix } from 'react-icons/fa6';
 
 import { SideNav, SideNavItem } from './SideNav';

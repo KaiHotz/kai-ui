@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from 'react';
+import { FC, Fragment, ReactNode } from 'react';
 import { addDays, subDays } from 'date-fns';
 import cx from 'clsx';
 import { Tooltip } from 'react-tooltip';
@@ -49,7 +49,7 @@ export interface IHeatMapCalendarProps {
   testId?: string;
 }
 
-export const HeatMapCalendar: React.FC<IHeatMapCalendarProps> = ({
+export const HeatMapCalendar: FC<IHeatMapCalendarProps> = ({
   data,
   numDays,
   startDate = dateNDaysAgo(data.length),

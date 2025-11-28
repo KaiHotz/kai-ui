@@ -9,12 +9,19 @@ import {
   SubmitErrorHandler,
   useForm,
   UseFormReset,
+  UseFormResetField,
   UseFormReturn,
   ValidationMode,
 } from 'react-hook-form';
 
+export interface IOnsubmitProps<T extends FieldValues> {
+  data: T;
+  reset: UseFormReset<T>;
+  resetField: UseFormResetField<T>;
+}
+
 export interface IFormProps<T extends FieldValues> {
-  onSubmit: (data: T, reset: UseFormReset<T>) => void;
+  onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
   children?: ((props: UseFormReturn<T>) => ReactNode) | ReactNode;
   validationSchema?: yup.ObjectSchema<T>;
   defaultValues?: DefaultValues<T>;
@@ -42,9 +49,12 @@ export function Form<T extends FieldValues>({
     disabled,
     mode: validationMode,
   });
-  const { handleSubmit, reset, watch } = methods;
+  const { handleSubmit, reset, resetField, watch } = methods;
 
-  const handleFormSubmit = useCallback((data: T) => onSubmit(data, reset), [onSubmit, reset]);
+  const handleFormSubmit = useCallback(
+    (data: T) => onSubmit({ data, reset, resetField }),
+    [onSubmit, reset, resetField],
+  );
 
   const handleFormReset = useCallback(() => reset(), [reset]);
 

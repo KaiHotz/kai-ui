@@ -10,8 +10,10 @@ import { useCommonProps } from './useCommonProps';
 import { ISelectOption } from './types';
 import './Select.scss';
 
-export interface IAsyncSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
+export interface IAsyncSelectProps<
+  OptionType extends ISelectOption,
+  IsMulti extends boolean = false,
+> extends AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
   labelPosition?: ILabelProps['position'];

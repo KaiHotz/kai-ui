@@ -10,8 +10,7 @@ import { ISelectOption } from './types';
 import './Select.scss';
 
 export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends ReactSelectProps<OptionType, IsMulti>,
-    CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
+  extends ReactSelectProps<OptionType, IsMulti>, CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
   small?: boolean;
   label?: string;
   labelPosition?: ILabelProps['position'];

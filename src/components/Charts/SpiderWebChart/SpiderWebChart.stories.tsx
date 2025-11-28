@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Highcharts, { AxisLabelsFormatterContextObject } from 'highcharts';
 
 import { useTheme } from '../../../hooks';
@@ -67,7 +67,7 @@ export const WithIntercativeLabels: Story = {
     const { theme } = useTheme();
     const [selected, setSelected] = useState<string | number>('Label 1');
 
-    const click = useCallback(function click(this: AxisLabelsFormatterContextObject) {
+    const click = useCallback(function (this: AxisLabelsFormatterContextObject) {
       setSelected(this.value);
     }, []);
 

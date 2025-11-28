@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as yup from 'yup';
-import { FieldErrors, UseFormReset } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form';
 import { FaEnvelope } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
-import { Form } from './Form';
+import { Form, IOnsubmitProps } from './Form';
 import { FormInput } from '../FormInput';
 import { FormPasswordInput } from '../FormPasswordInput';
 import { FormDatepicker } from '../FormDatepicker';
@@ -68,7 +68,7 @@ export const Default: Story = {
       })
       .required();
     type TFormData = yup.InferType<typeof schema>;
-    const onSubmit = (data: TFormData, reset: UseFormReset<TFormData>) => {
+    const onSubmit = ({ data, reset }: IOnsubmitProps<TFormData>) => {
       console.log(data);
       reset();
     };

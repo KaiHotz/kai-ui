@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from 'react';
 import { addDays, format } from 'date-fns';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Datepicker } from './Datepicker';

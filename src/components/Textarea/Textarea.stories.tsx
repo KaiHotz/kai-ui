@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FaCircleInfo, FaSistrix } from 'react-icons/fa6';
 
 import { Textarea } from './Textarea';

@@ -13,8 +13,7 @@ export interface IFormSelectFieldError extends FieldError {
 }
 
 export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends ReactSelectProps<OptionType, IsMulti>,
-    AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
+  extends ReactSelectProps<OptionType, IsMulti>, AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   name: string;
   small?: boolean;
   label?: string;

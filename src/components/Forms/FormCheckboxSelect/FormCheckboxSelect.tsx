@@ -7,8 +7,10 @@ import { ILabelProps } from '../../Label';
 import { IFormSelectFieldError } from '../FormSelect';
 import { CheckboxSelect, ISelectOption } from '../../Select';
 
-export interface IFormCheckboxSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
-  extends ReactSelectProps<OptionType, IsMulti> {
+export interface IFormCheckboxSelectProps<
+  OptionType extends ISelectOption,
+  IsMulti extends boolean = false,
+> extends ReactSelectProps<OptionType, IsMulti> {
   name: string;
   small?: boolean;
   label?: string;
