@@ -51,6 +51,7 @@ const columnDefs: ColumnDef<TableData>[] = [
 const meta: Meta<typeof DataTable> = {
   title: 'Components/DataTable/floatingFilters',
   component: DataTable,
+  tags: ['autodocs'],
   argTypes: {
     gridOptions: {
       control: false,
