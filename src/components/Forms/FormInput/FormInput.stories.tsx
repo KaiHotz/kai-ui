@@ -28,6 +28,7 @@ const iconMap = {
 const meta: Meta<typeof FormInput> = {
   title: 'Components/Forms/FormInput',
   component: FormInput,
+  tags: ['autodocs'],
   args: {
     type: 'text',
     label: '',

@@ -21,6 +21,7 @@ const iconMap = {
 export default {
   title: 'Components/Inputs/Input',
   component: Input,
+  tags: ['autodocs'],
   argTypes: {
     type: {
       options: [

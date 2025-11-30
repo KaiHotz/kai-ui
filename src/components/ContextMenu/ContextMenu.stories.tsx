@@ -7,6 +7,7 @@ import { MenuItemProps } from './ContextMenuItem';
 const meta: Meta<typeof ContextMenu> = {
   title: 'Components/ContextMenu',
   component: ContextMenu,
+  tags: ['autodocs'],
 };
 
 const menuItems: MenuItemProps[] = [

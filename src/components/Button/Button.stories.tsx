@@ -16,6 +16,7 @@ const iconMap = {
 
 export default {
   title: 'Components/Button',
+  tags: ['autodocs'],
   component: Button,
   args: {
     iconPosition: 'left',

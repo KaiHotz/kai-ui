@@ -11,6 +11,7 @@ type Story = StoryObj<typeof Tabs>;
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
   component: Tabs,
+  tags: ['autodocs'],
 };
 
 export const Default: Story = {

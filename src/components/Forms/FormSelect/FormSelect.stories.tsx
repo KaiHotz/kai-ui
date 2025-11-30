@@ -31,6 +31,7 @@ const optionsDefault: ISelectOption[] = [
 const meta: Meta<typeof FormSelect> = {
   title: 'Components/Forms/FormSelect',
   component: FormSelect,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

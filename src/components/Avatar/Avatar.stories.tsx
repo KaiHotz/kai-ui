@@ -15,6 +15,7 @@ const clickHandlerOptions = {
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
+  tags: ['autodocs'],
   argTypes: {
     src: {
       options: Object.keys(imageOptions),

@@ -28,6 +28,7 @@ const optionsDefault: ISelectOption[] = [
 const meta: Meta<typeof AsyncSelect> = {
   title: 'Components/Select/AsyncSelect',
   component: AsyncSelect,
+  tags: ['autodocs'],
   argTypes: {
     labelEndAdornment: {
       options: Object.keys(iconOptions),

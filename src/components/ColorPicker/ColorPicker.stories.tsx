@@ -20,6 +20,7 @@ const iconMap = {
 const meta: Meta<typeof ColorPicker> = {
   title: 'Components/ColorPicker',
   component: ColorPicker,
+  tags: ['autodocs'],
   argTypes: {
     onChange: {
       control: false,

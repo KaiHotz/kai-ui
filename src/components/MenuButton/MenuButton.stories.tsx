@@ -14,6 +14,7 @@ const iconOptions = {
 const meta: Meta<typeof MenuButton> = {
   title: 'Components/MenuButton',
   component: MenuButton,
+  tags: ['autodocs'],
   argTypes: {
     testId: {
       control: false,

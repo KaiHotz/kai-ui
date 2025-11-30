@@ -19,6 +19,7 @@ const iconMap = {
 const meta: Meta<typeof Textarea> = {
   title: 'Components/Textarea',
   component: Textarea,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

@@ -21,6 +21,7 @@ const iconMap = {
 const meta: Meta<typeof FormDatepicker> = {
   title: 'Components/Forms/FormDatepicker',
   component: FormDatepicker,
+  tags: ['autodocs'],
   argTypes: {
     isValid: {
       control: false,

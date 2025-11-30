@@ -23,6 +23,7 @@ const data: ISpiderWebChartDataAxis[] = [
 const meta: Meta<typeof SpiderWebChart> = {
   title: 'Components/Charts/SpiderWebChart',
   component: SpiderWebChart,
+  tags: ['autodocs'],
   argTypes: {
     className: {
       control: false,

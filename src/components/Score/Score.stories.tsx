@@ -5,6 +5,7 @@ import { Score } from './Score';
 const meta: Meta<typeof Score> = {
   title: 'Components/Score',
   component: Score,
+  tags: ['autodocs'],
   argTypes: {
     testId: {
       control: false,

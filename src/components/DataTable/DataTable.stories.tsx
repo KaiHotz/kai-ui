@@ -111,6 +111,7 @@ const columnDefsWithActions: ColumnDef<TableData>[] = [
 const meta: Meta<typeof DataTable> = {
   title: 'Components/DataTable',
   component: DataTable,
+  tags: ['autodocs'],
   argTypes: {
     gridOptions: {
       control: false,

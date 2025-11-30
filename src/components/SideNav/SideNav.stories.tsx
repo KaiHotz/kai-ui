@@ -6,6 +6,7 @@ import { SideNav, SideNavItem } from './SideNav';
 const meta: Meta<typeof SideNav> = {
   title: 'Components/SideNav',
   component: SideNav,
+  tags: ['autodocs'],
 };
 
 const menuItems: SideNavItem[] = [

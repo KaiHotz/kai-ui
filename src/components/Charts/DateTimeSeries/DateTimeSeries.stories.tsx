@@ -47,6 +47,7 @@ const options: Highcharts.Options = {
 const meta: Meta<typeof DateTimeSeries> = {
   title: 'Components/Charts/DateTimeSeries',
   component: DateTimeSeries,
+  tags: ['autodocs'],
   argTypes: {
     className: {
       control: false,

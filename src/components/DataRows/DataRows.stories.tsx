@@ -128,6 +128,7 @@ const rowDefsMap = {
 const meta: Meta<typeof DataRows> = {
   title: 'Components/DataRows',
   component: DataRows,
+  tags: ['autodocs'],
   argTypes: {
     rowDef: {
       options: Object.keys(rowDefs),

@@ -8,6 +8,7 @@ import { RadioOption } from './RadioOption';
 const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',
   component: Radio,
+  tags: ['autodocs'],
   argTypes: {
     selected: {
       control: false,

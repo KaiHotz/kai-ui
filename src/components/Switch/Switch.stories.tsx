@@ -19,6 +19,7 @@ const iconMap = {
 const meta: Meta<typeof Switch> = {
   title: 'Components/Switch',
   component: Switch,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

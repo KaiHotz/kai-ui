@@ -31,6 +31,7 @@ const optionsDefault: ISelectOption[] = [
 const meta: Meta<typeof FormCheckboxSelect> = {
   title: 'Components/Forms/FormCheckboxSelect',
   component: FormCheckboxSelect,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

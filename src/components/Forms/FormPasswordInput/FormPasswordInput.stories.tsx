@@ -26,6 +26,7 @@ const iconMap = {
 const meta: Meta<typeof FormPasswordInput> = {
   title: 'Components/Forms/FormPasswordInput',
   component: FormPasswordInput,
+  tags: ['autodocs'],
   args: {
     label: '',
     labelPosition: 'top',

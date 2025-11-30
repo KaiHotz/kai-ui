@@ -24,6 +24,7 @@ const stepOptionsMap = {
 const meta: Meta<typeof Stepper> = {
   title: 'Components/Stepper',
   component: Stepper,
+  tags: ['autodocs'],
   argTypes: {
     activeStep: {
       control: false,

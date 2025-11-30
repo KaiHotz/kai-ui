@@ -17,6 +17,7 @@ const iconMap = {
 export default {
   title: 'Components/Inputs/PasswordInput',
   component: PasswordInput,
+  tags: ['autodocs'],
   argTypes: {
     startAdornment: {
       options: Object.keys(iconOptions),

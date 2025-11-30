@@ -7,6 +7,7 @@ import { AccordionSection } from './AccordionSection';
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
+  tags: ['autodocs'],
   argTypes: {
     children: {
       control: false,

@@ -24,6 +24,7 @@ const iconMap = {
 const meta: Meta<typeof FormCheckbox> = {
   title: 'Components/Forms/FormCheckbox',
   component: FormCheckbox,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

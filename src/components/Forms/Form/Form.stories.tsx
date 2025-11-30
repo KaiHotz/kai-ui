@@ -20,6 +20,7 @@ const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] a
 const meta: Meta<typeof Form> = {
   title: 'Components/Forms/Form',
   component: Form,
+  tags: ['autodocs'],
   args: {
     submitOnChange: false,
     validationMode: 'onChange',

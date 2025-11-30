@@ -18,6 +18,7 @@ const iconMap = {
 const meta: Meta<typeof Label> = {
   title: 'Components/Label',
   component: Label,
+  tags: ['autodocs'],
   argTypes: {
     className: {
       control: false,

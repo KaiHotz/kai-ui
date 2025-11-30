@@ -20,6 +20,7 @@ const iconMap = {
 const meta: Meta<typeof Drawer> = {
   title: 'Components/Drawer',
   component: Drawer,
+  tags: ['autodocs'],
   argTypes: {
     className: {
       control: false,

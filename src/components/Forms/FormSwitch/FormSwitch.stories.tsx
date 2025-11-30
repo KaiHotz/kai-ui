@@ -24,6 +24,7 @@ const iconMap = {
 const meta: Meta<typeof FormSwitch> = {
   title: 'Components/Forms/FormSwitch',
   component: FormSwitch,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

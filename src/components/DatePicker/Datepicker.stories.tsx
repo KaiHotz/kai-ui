@@ -21,6 +21,7 @@ const iconMap = {
 const meta: Meta<typeof Datepicker> = {
   title: 'Components/Datepicker',
   component: Datepicker,
+  tags: ['autodocs'],
   argTypes: {
     dropdownMode: {
       description: 'type for year and month dropdown',

@@ -6,6 +6,7 @@ import { PseudoLink } from './PseudoLink';
 const meta: Meta<typeof PseudoLink> = {
   title: 'Components/PseudoLink',
   component: PseudoLink,
+  tags: ['autodocs'],
   argTypes: {},
 };
 

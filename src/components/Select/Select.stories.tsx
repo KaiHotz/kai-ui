@@ -26,6 +26,7 @@ const optionsDefault: ISelectOption[] = [
 const meta: Meta<typeof Select> = {
   title: 'Components/Select/Select',
   component: Select,
+  tags: ['autodocs'],
   argTypes: {
     labelEndAdornment: {
       options: Object.keys(iconOptions),

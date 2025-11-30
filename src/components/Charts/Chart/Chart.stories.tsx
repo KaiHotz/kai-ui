@@ -25,6 +25,7 @@ const options: Highcharts.Options = {
 const meta: Meta<typeof Chart> = {
   title: 'Components/Charts/Chart',
   component: Chart,
+  tags: ['autodocs'],
   argTypes: {
     className: {
       control: false,

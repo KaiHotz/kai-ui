@@ -14,6 +14,7 @@ const data = times(3, () => ({
 const meta: Meta<typeof PieChart> = {
   title: 'Components/Charts/PieChart',
   component: PieChart,
+  tags: ['autodocs'],
   argTypes: {
     containerProps: {
       control: false,

@@ -9,7 +9,8 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-designs',
     '@vueless/storybook-dark-mode',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
+    "@storybook/addon-vitest",
   ],
   "framework": {
     "name": "@storybook/react-vite",

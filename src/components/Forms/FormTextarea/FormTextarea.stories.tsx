@@ -24,6 +24,7 @@ const iconMap = {
 const meta: Meta<typeof FormTextarea> = {
   title: 'Components/Forms/FormTextarea',
   component: FormTextarea,
+  tags: ['autodocs'],
   argTypes: {
     name: {
       control: false,

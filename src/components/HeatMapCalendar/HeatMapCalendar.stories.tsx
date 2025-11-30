@@ -7,6 +7,7 @@ import { HeatMapCalendar } from './HeatMapCalendar';
 const meta: Meta<typeof HeatMapCalendar> = {
   title: 'Components/HeatMapCalendar',
   component: HeatMapCalendar,
+  tags: ['autodocs'],
   argTypes: {
     testId: {
       control: false,

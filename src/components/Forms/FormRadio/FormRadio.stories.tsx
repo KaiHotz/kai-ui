@@ -11,6 +11,7 @@ import { RadioOption } from '../../Radio';
 const meta: Meta<typeof FormRadio> = {
   title: 'Components/Forms/FormRadio',
   component: FormRadio,
+  tags: ['autodocs'],
   argTypes: {
     labelPosition: {
       options: ['left', 'right'],

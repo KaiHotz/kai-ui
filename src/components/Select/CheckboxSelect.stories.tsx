@@ -26,6 +26,7 @@ const optionsDefault: ISelectOption[] = [
 const meta: Meta<typeof CheckboxSelect> = {
   title: 'Components/Select/CheckboxSelect',
   component: CheckboxSelect,
+  tags: ['autodocs'],
   argTypes: {
     labelEndAdornment: {
       options: Object.keys(iconOptions),

@@ -5,6 +5,7 @@ import { Hint } from './Hint';
 const meta: Meta<typeof Hint> = {
   title: 'Components/Hint',
   component: Hint,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       options: [undefined, 'info', 'error'],
