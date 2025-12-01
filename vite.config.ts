@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import deletePlugin from 'rollup-plugin-delete';
 import terser from '@rollup/plugin-terser';
 import { readFileSync } from 'fs';
@@ -50,16 +49,6 @@ export default defineConfig({
       },
     }),
 
-    // // Copy theme CSS
-    // viteStaticCopy({
-    //   targets: [
-    //     {
-    //       src: 'src/theme/styles.css',
-    //       dest: 'theme',
-    //     },
-    //   ],
-    // }),
-
     // Clean up unwanted files after build
     deletePlugin({
       targets: ['dist/temp'],
@@ -84,7 +73,6 @@ export default defineConfig({
     lib: {
       entry: {
         main: resolve(__dirname, 'src/index.ts'),
-        // tailwindPreset: resolve(__dirname, 'src/theme/tailwindPreset.js'),
       },
       name: 'kai-ui',
       formats: ['es'],
