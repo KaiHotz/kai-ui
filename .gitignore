@@ -9,12 +9,14 @@ lerna-debug.log*
 
 # dependencies
 node_modules
-.yarn/cache
 
 # registry
 .npmrc
 .yarnrc
 .yarnrc.yml
+.yarn/cache
+install-state.gz
+
 
 # builds
 build
