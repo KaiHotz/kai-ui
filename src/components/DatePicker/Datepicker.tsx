@@ -1,12 +1,15 @@
-import { FC } from 'react';
-import ReactDatepicker, { ReactDatePickerProps } from 'react-datepicker';
+import { FC, KeyboardEvent, MouseEvent } from 'react';
+import ReactDatepicker from 'react-datepicker';
+import type { DatePickerProps } from 'react-datepicker';
 import { FaCalendarDays } from 'react-icons/fa6';
 
 import { ILabelProps } from '../Label';
 import { Input } from '../Input';
 import './Datepicker.scss';
 
-export interface IDatepickerProps extends ReactDatePickerProps {
+type BaseDatePickerProps = Omit<DatePickerProps, 'onChange' | 'selectsRange' | 'selectsMultiple'>;
+
+export type TDatepickerProps = {
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];
@@ -18,9 +21,10 @@ export interface IDatepickerProps extends ReactDatePickerProps {
   autoComplete?: 'on' | 'off';
   inputSmall?: boolean;
   isValid?: boolean;
-}
+  onChange?: (date: Date | null, event?: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>) => void;
+} & BaseDatePickerProps;
 
-export const Datepicker: FC<IDatepickerProps> = ({
+export const Datepicker: FC<TDatepickerProps> = ({
   name,
   label,
   labelPosition,
@@ -44,48 +48,50 @@ export const Datepicker: FC<IDatepickerProps> = ({
 }) => {
   const shouldModifyPopperOffeset = reserveSpaceForError || Boolean(hintText) || Boolean(errorMsg);
 
+  const datePickerProps: DatePickerProps = {
+    ...rest,
+    selectsRange: undefined,
+    selectsMultiple: undefined,
+    name,
+    showPopperArrow,
+    onChange,
+    dateFormat,
+    selected,
+    placeholderText: placeholder,
+    disabled,
+    required,
+    dropdownMode,
+    autoComplete,
+    popperModifiers: shouldModifyPopperOffeset
+      ? [
+          {
+            name: 'offset',
+            fn(state: { y: number }) {
+              state.y = state.y - 30;
+
+              return state;
+            },
+          },
+        ]
+      : popperModifiers,
+    customInput: (
+      <Input
+        label={label}
+        labelPosition={labelPosition}
+        labelEndAdornment={labelEndAdornment}
+        errorMsg={errorMsg}
+        hintText={hintText}
+        reserveSpaceForError={reserveSpaceForError}
+        small={inputSmall}
+        endAdornment={<FaCalendarDays size={inputSmall ? 14 : 18} />}
+        isValid={isValid}
+      />
+    ),
+  } as DatePickerProps;
+
   return (
     <div className="ui-datepicker">
-      <ReactDatepicker
-        {...rest}
-        name={name}
-        showPopperArrow={showPopperArrow}
-        onChange={onChange}
-        dateFormat={dateFormat}
-        selected={selected}
-        placeholderText={placeholder}
-        disabled={disabled}
-        required={required}
-        dropdownMode={dropdownMode}
-        autoComplete={autoComplete}
-        popperModifiers={
-          shouldModifyPopperOffeset
-            ? [
-                {
-                  name: 'offset',
-                  fn(state) {
-                    state.y = state.y - 30;
-
-                    return state;
-                  },
-                },
-              ]
-            : popperModifiers
-        }
-        customInput={
-          <Input
-            label={label}
-            labelPosition={labelPosition}
-            labelEndAdornment={labelEndAdornment}
-            errorMsg={errorMsg}
-            hintText={hintText}
-            reserveSpaceForError={reserveSpaceForError}
-            small={inputSmall}
-            endAdornment={<FaCalendarDays size={inputSmall ? 14 : 18} />}
-            isValid={isValid}
-          />
-        }
-      />
+      <ReactDatepicker {...datePickerProps} />
     </div>
   );
 };
