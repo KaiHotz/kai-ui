@@ -18,6 +18,7 @@ export * from './Label';
 export * from './MenuButton';
 export * from './Modal';
 export * from './Pagination';
+export * from './ProgressBar';
 export * from './PseudoLink';
 export * from './Radio';
 export * from './Score';
