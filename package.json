@@ -116,7 +116,7 @@
     "eslint-plugin-storybook": "^10.1.2",
     "globals": "^16.5.0",
     "highcharts": "^12.4.0",
-    "highcharts-custom-events": "^3.0.10",
+    "highcharts-custom-events": "^4.0.2",
     "highcharts-react-official": "^3.2.3",
     "jsdom": "^27.2.0",
     "lodash": "^4.17.21",

@@ -5574,12 +5574,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"highcharts-custom-events@npm:^3.0.10":
-  version: 3.0.10
-  resolution: "highcharts-custom-events@npm:3.0.10"
-  dependencies:
-    highcharts: "npm:>=5.0.9"
-  checksum: 10c0/a0d3e72a51cc2e25cb01f8d34f12feadacd00feca16c937c74f0715b43f5cad6300a0fff2cda7397be608cb9b69d1d0aa67a10f41c1ffbada5f96cab91c1283e
+"highcharts-custom-events@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "highcharts-custom-events@npm:4.0.2"
+  peerDependencies:
+    highcharts: ">=9.0.0"
+  checksum: 10c0/8b8e80760b1818a0f852b09508f5a2faaad1dd1a6fa091ad40bb1936df940bf02a03b6b1690d02fa2dc7229202eab0f983b42f3fc7c8a52a1284a75bbd707eb0
   languageName: node
   linkType: hard
 
@@ -5593,7 +5593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"highcharts@npm:>=5.0.9, highcharts@npm:^12.4.0":
+"highcharts@npm:^12.4.0":
   version: 12.4.0
   resolution: "highcharts@npm:12.4.0"
   checksum: 10c0/c91ad97f41f6af16001c72edc55c632034403a18e5648142d765e60f5832e52c261937b6c5d488d660f508bcc647a7a3a5f5d718e6b71a9ac2a9c8ecf24271c2
@@ -6323,7 +6323,7 @@ __metadata:
     eslint-plugin-storybook: "npm:^10.1.2"
     globals: "npm:^16.5.0"
     highcharts: "npm:^12.4.0"
-    highcharts-custom-events: "npm:^3.0.10"
+    highcharts-custom-events: "npm:^4.0.2"
     highcharts-react-official: "npm:^3.2.3"
     jsdom: "npm:^27.2.0"
     lodash: "npm:^4.17.21"
