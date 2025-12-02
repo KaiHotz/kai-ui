@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode, useCallback, useEffect, useRef } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -11,6 +11,7 @@ import {
   UseFormReset,
   UseFormResetField,
   UseFormReturn,
+  useWatch,
   ValidationMode,
 } from 'react-hook-form';
 
@@ -42,6 +43,7 @@ export function Form<T extends FieldValues>({
   submitOnChange,
   ...rest
 }: IFormProps<T>) {
+  const hasMounted = useRef(false);
   const methods = useForm<T>({
     //due to a type error in react-hook-form/resolvers, we need to cast the yupResolver to Resolver<T>
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
@@ -49,7 +51,9 @@ export function Form<T extends FieldValues>({
     disabled,
     mode: validationMode,
   });
-  const { handleSubmit, reset, resetField, watch } = methods;
+  const { handleSubmit, reset, resetField } = methods;
+
+  const watchedValues = useWatch<T>({ control: methods.control });
 
   const handleFormSubmit = useCallback(
     (data: T) => onSubmit({ data, reset, resetField }),
@@ -59,14 +63,18 @@ export function Form<T extends FieldValues>({
   const handleFormReset = useCallback(() => reset(), [reset]);
 
   useEffect(() => {
-    if (submitOnChange) {
-      const subscription = watch(() => handleSubmit(handleFormSubmit)());
-
-      return () => subscription.unsubscribe();
-    } else {
+    if (!submitOnChange) {
       return;
     }
-  }, [handleFormSubmit, handleSubmit, submitOnChange, watch]);
+
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+
+      return;
+    }
+
+    void handleSubmit(handleFormSubmit)();
+  }, [watchedValues, handleFormSubmit, handleSubmit, submitOnChange]);
 
   return (
     <FormProvider {...methods}>

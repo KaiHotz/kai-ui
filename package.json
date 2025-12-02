@@ -1,7 +1,7 @@
 {
   "name": "kai-ui",
   "private": true,
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Design system bundled with Vite to ES6 Modules and Storybook",
   "author": "Kai Hotz",
   "license": "MIT",
@@ -68,7 +68,7 @@
     "yup": "^1.x"
   },
   "dependencies": {
-    "@hookform/resolvers": "^4.1.3",
+    "@hookform/resolvers": "^5.2.2",
     "@types/lodash": "^4.17.21",
     "react-collapsed": "^4.2.0",
     "react-color": "^2.19.3",
