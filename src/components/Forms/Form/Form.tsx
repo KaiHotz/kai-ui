@@ -47,7 +47,6 @@ export function Form<T extends FieldValues>({
 }: IFormProps<T>) {
   const hasMounted = useRef(false);
   const methods = useForm<T>({
-    //due to a type error in react-hook-form/resolvers, we need to cast the yupResolver to Resolver<T>
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
     defaultValues,
     disabled,
