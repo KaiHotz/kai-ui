@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef } from 'react';
+import { ForwardedRef, ReactNode, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -23,13 +23,14 @@ export interface IOnsubmitProps<T extends FieldValues> {
 
 export interface IFormProps<T extends FieldValues> {
   onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
-  children?: ((props: UseFormReturn<T>) => ReactNode) | ReactNode;
+  children?: ((props: UseFormReturn<T, unknown, T>) => ReactNode) | ReactNode;
   validationSchema?: yup.ObjectSchema<T>;
   defaultValues?: DefaultValues<T>;
   onError?: SubmitErrorHandler<T>;
   disabled?: boolean;
   validationMode?: keyof ValidationMode;
   submitOnChange?: boolean;
+  ref?: ForwardedRef<UseFormReturn<T, unknown, T>>;
 }
 
 export function Form<T extends FieldValues>({
@@ -41,6 +42,7 @@ export function Form<T extends FieldValues>({
   disabled,
   validationMode = 'onSubmit',
   submitOnChange,
+  ref,
   ...rest
 }: IFormProps<T>) {
   const hasMounted = useRef(false);
@@ -51,6 +53,11 @@ export function Form<T extends FieldValues>({
     disabled,
     mode: validationMode,
   });
+
+  useImperativeHandle(ref, () => {
+    return methods;
+  }, [methods]);
+
   const { handleSubmit, reset, resetField } = methods;
 
   const watchedValues = useWatch<T>({ control: methods.control });

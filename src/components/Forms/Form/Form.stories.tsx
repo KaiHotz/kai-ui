@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 
+import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as yup from 'yup';
-import { FieldErrors } from 'react-hook-form';
+import { FieldErrors, UseFormReturn } from 'react-hook-form';
 import { FaEnvelope } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
@@ -78,6 +79,12 @@ export const Default: Story = {
       //Handle form error here
     };
 
+    const formRef = useRef<UseFormReturn<TFormData, unknown, TFormData>>(null);
+
+    useEffect(() => {
+      console.log({ formMethods: formRef.current });
+    }, []);
+
     return (
       <Form<TFormData>
         {...args}
@@ -94,6 +101,7 @@ export const Default: Story = {
         }}
         onSubmit={onSubmit}
         onError={onError}
+        ref={formRef}
       >
         {({ setValue }) => {
           return (
