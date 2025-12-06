@@ -53,9 +53,7 @@ export function Form<T extends FieldValues>({
     mode: validationMode,
   });
 
-  useImperativeHandle(ref, () => {
-    return methods;
-  }, [methods]);
+  useImperativeHandle(ref, () => methods, [methods]);
 
   const { handleSubmit, reset, resetField } = methods;
 

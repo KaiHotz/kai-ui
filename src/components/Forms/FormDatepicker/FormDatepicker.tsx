@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 
-import { Datepicker, IDatepickerProps } from '../../DatePicker';
+import { Datepicker, TDatepickerProps } from '../../DatePicker';
 
-export interface IFormDatepickerProps extends Omit<IDatepickerProps, 'onChange' | 'errorMsg'> {
+export interface IFormDatepickerProps extends Omit<TDatepickerProps, 'onChange' | 'errorMsg'> {
   name: string;
-  onChange?: (date: Date | [Date | null, Date | null] | null) => void;
+  onChange?: (date: Date | Array<Date | null> | Date[] | null) => void;
   errorMsg?: FieldError;
 }
 

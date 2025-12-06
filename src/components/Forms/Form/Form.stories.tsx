@@ -42,6 +42,9 @@ const meta: Meta<typeof Form> = {
     onError: {
       control: false,
     },
+    ref: {
+      control: false,
+    },
     validationMode: {
       options: validationModes,
       control: {
@@ -53,7 +56,7 @@ const meta: Meta<typeof Form> = {
 };
 type Story = StoryObj<typeof Form>;
 export const Default: Story = {
-  render: (args) => {
+  render: ({ ref: _, ...args }) => {
     const schema = yup
       .object({
         firstName: yup.string().required('this field is required'),
