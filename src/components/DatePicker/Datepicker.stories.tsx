@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState } from 'react';
 import { addDays, format } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -67,7 +66,7 @@ export const Default: Story = {
 
     return (
       <div style={{ padding: '10px 10px 250px 10px' }}>
-        <Datepicker {...args} selected={date} onChange={(date) => setDate(date)} />
+        <Datepicker {...args} selected={date} onChange={(date) => setDate(date as Date | null)} />
       </div>
     );
   },
@@ -89,13 +88,11 @@ export const RangeDatepicker: Story = {
           {...args}
           selected={endDate || startDate}
           onChange={(dates) => {
-            //@ts-ignore
-            const [start, end] = dates;
+            const [start, end] = dates as Array<Date | null>;
             setStartDate(start);
             setEndDate(end);
           }}
           placeholder="Select dates"
-          //@ts-ignore
           selectsRange
           startDate={startDate}
           excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
@@ -124,8 +121,8 @@ export const AsRangePicker: Story = {
           selected={startDate}
           startDate={startDate}
           endDate={endDate}
-          onChange={(date: Date) => {
-            setStartDate(date);
+          onChange={(date) => {
+            setStartDate(date as Date | null);
           }}
         />
         <Datepicker
@@ -136,8 +133,8 @@ export const AsRangePicker: Story = {
           selected={endDate}
           startDate={startDate}
           endDate={endDate}
-          minDate={startDate}
-          onChange={(date: Date) => setEndDate(date)}
+          minDate={startDate ?? undefined}
+          onChange={(date) => setEndDate(date as Date | null)}
         />
       </div>
     );

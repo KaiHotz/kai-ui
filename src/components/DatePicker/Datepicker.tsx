@@ -7,7 +7,7 @@ import { ILabelProps } from '../Label';
 import { Input } from '../Input';
 import './Datepicker.scss';
 
-type BaseDatePickerProps = Omit<DatePickerProps, 'onChange' | 'selectsRange' | 'selectsMultiple'>;
+type BaseDatePickerProps = Omit<DatePickerProps, 'onChange'>;
 
 export type TDatepickerProps = {
   label?: string;
@@ -21,7 +21,10 @@ export type TDatepickerProps = {
   autoComplete?: 'on' | 'off';
   inputSmall?: boolean;
   isValid?: boolean;
-  onChange?: (date: Date | null, event?: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>) => void;
+  onChange?: (
+    date: Date | Array<Date | null> | Date[] | null,
+    event?: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
+  ) => void;
 } & BaseDatePickerProps;
 
 export const Datepicker: FC<TDatepickerProps> = ({
@@ -50,8 +53,8 @@ export const Datepicker: FC<TDatepickerProps> = ({
 
   const datePickerProps: DatePickerProps = {
     ...rest,
-    selectsRange: undefined,
-    selectsMultiple: undefined,
+    selectsRange: rest.selectsRange,
+    selectsMultiple: rest.selectsMultiple,
     name,
     showPopperArrow,
     onChange,
