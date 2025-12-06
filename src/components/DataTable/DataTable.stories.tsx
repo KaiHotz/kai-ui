@@ -80,6 +80,7 @@ const columnDefsWithActions: ColumnDef<TableData>[] = [
     suppressSizeToFit: true,
     cellRenderer: ActionsCellRenderer,
     cellRendererParams: {
+      showOnHover: true,
       actions: [
         {
           Icon: FaPencil,

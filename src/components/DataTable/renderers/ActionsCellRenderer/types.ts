@@ -11,4 +11,5 @@ export interface IActionsCellRendererAction {
 export interface IActionsRendererProps extends ICellRendererParams {
   value: string;
   actions: IActionsCellRendererAction[];
+  showOnHover?: boolean;
 }
