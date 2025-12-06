@@ -155,21 +155,4 @@ export default defineConfig(
       'storybook/default-exports': 'off',
     },
   },
-  {
-    files: ['**/*.{js,jsx}'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      globals: globals.browser,
-    },
-    plugins: {
-      react: pluginReact,
-      'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y,
-      prettier: eslintPluginPrettier,
-    },
-    rules: {
-      'prettier/prettier': 'error',
-      'no-console': 'warn',
-    },
-  },
 );
