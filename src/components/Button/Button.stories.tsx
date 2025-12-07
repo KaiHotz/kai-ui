@@ -23,7 +23,7 @@ export default {
     variant: 'primary',
     type: 'button',
     small: false,
-    number: false,
+    square: false,
     disabled: false,
   },
   argTypes: {
