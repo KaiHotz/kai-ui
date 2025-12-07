@@ -38,7 +38,7 @@ const randomValues = getRange(365).map((index) => {
 });
 
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const { theme } = useTheme();
 
     return (

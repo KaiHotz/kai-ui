@@ -22,7 +22,7 @@ const meta: Meta<typeof Radio> = {
 
 type Story = StoryObj<typeof Radio>;
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const [checkedValue, setCheckedValue] = useState('option_1');
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;

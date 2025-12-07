@@ -41,7 +41,7 @@ const meta: Meta<typeof ColorPicker> = {
 
 type Story = StoryObj<typeof ColorPicker>;
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const [colorValue, setColorValue] = useState('#e0ee20');
 
     const handleChange = (color: ColorResult) => {

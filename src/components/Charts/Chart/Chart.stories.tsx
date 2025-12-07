@@ -50,7 +50,7 @@ const meta: Meta<typeof Chart> = {
 type Story = StoryObj<typeof Chart>;
 
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const { theme } = useTheme();
 
     return <Chart {...args} className={`highcharts-${theme}`} />;

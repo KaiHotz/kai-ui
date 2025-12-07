@@ -46,7 +46,7 @@ const meta: Meta<typeof Stepper> = {
 type Story = StoryObj<typeof Stepper>;
 
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const [activeStep, setActiveStep] = useState(1);
 
     return (

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Highcharts, { AxisLabelsFormatterContextObject } from 'highcharts';
+import Highcharts from 'highcharts';
 
 import { useTheme } from '../../../hooks';
 import { ISpiderWebChartDataAxis, SpiderWebChart } from './SpiderWebChart';
@@ -49,7 +49,7 @@ const meta: Meta<typeof SpiderWebChart> = {
 type Story = StoryObj<typeof SpiderWebChart>;
 
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const { theme } = useTheme();
 
     return <SpiderWebChart {...args} className={`highcharts-${theme}`} />;
@@ -64,17 +64,16 @@ export const Default: Story = {
 };
 
 export const WithIntercativeLabels: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const { theme } = useTheme();
     const labels = useMemo(() => ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'], []);
     const [selected, setSelected] = useState<string | number>('Label 1');
 
-    const click = useCallback(
-      function (this: AxisLabelsFormatterContextObject) {
-        setSelected(labels[this.pos]);
-      },
-      [labels],
-    );
+    const click = useCallback(function (this: Highcharts.SVGElement, e: Event) {
+      const target = e.target as HTMLElement;
+      const labelText = target.textContent?.replace(/[\n\r]/g, '').trim() || '';
+      setSelected(labelText);
+    }, []);
 
     const chartOptions = useMemo<Highcharts.Options>(() => {
       return {

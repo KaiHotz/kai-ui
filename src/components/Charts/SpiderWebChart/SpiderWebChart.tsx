@@ -27,10 +27,8 @@ interface ISpiderWebChartProps {
  * before usage required this initialization:
  * @code
  * import Highcharts  from 'highcharts';
- * import HighchartsMore from 'highcharts/highcharts-more';
- * import NoChartData from 'highcharts/modules/no-data-to-display';
- * HighchartsMore(Highcharts);
- * NoChartData(Highcharts);
+ * import 'highcharts/highcharts-more';
+ * import 'highcharts/modules/no-data-to-display';
  */
 export const SpiderWebChart: FC<ISpiderWebChartProps> = ({
   data,

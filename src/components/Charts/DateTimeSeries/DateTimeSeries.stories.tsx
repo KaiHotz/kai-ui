@@ -72,7 +72,7 @@ const meta: Meta<typeof DateTimeSeries> = {
 type Story = StoryObj<typeof DateTimeSeries>;
 
 export const Default: Story = {
-  render: function useStory(args) {
+  render: (args) => {
     const { theme } = useTheme();
 
     return <DateTimeSeries {...args} className={`highcharts-${theme}`} />;
