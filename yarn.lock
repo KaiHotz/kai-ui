@@ -6267,6 +6267,7 @@ __metadata:
     react-transition-group: "npm:^4.4.5"
     regenerator-runtime: "npm:^0.14.1"
     rimraf: "npm:^6.1.2"
+    rollup: "npm:^4.53.3"
     rollup-plugin-delete: "npm:^3.0.1"
     sass: "npm:^1.94.2"
     storybook: "npm:^10.1.4"
@@ -7804,7 +7805,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.43.0":
+"rollup@npm:^4.43.0, rollup@npm:^4.53.3":
   version: 4.53.3
   resolution: "rollup@npm:4.53.3"
   dependencies:
