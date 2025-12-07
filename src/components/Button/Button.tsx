@@ -4,7 +4,7 @@ import './Button.scss';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
-  number?: boolean;
+  square?: boolean;
   iconPosition?: 'left' | 'right';
   small?: boolean;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger';
@@ -13,7 +13,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: FC<IButtonProps> = ({
   icon,
-  number,
+  square,
   iconPosition = 'left',
   small,
   type = 'button',
@@ -30,7 +30,7 @@ export const Button: FC<IButtonProps> = ({
       className={cx('ui-btn', {
         [`ui-btn--${variant}`]: variant,
         'ui-btn--small': small,
-        'ui-btn--number': !icon && number,
+        'ui-btn--square': square,
         'ui-btn--icon': !!icon && !children,
         'ui-btn--icon-text-left': !!icon && children,
         'ui-btn--icon-text-right': !!icon && children && iconPosition === 'right',

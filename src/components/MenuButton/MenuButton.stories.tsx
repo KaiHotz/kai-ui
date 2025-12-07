@@ -62,7 +62,7 @@ export const Default = {
     children: 'Button',
     disabled: false,
     items: menuItems,
-    number: false,
+    square: false,
   },
 };
 

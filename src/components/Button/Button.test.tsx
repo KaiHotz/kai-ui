@@ -42,10 +42,10 @@ describe('<Button />', () => {
     expect(btn).toHaveClass('ui-btn--disabled');
   });
 
-  it('should render as number btn', () => {
-    render(<Button number />);
+  it('should render as square btn', () => {
+    render(<Button square />);
     const btn = screen.getByRole('button');
 
-    expect(btn).toHaveClass('ui-btn--number');
+    expect(btn).toHaveClass('ui-btn--square');
   });
 });
