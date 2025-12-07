@@ -30,7 +30,7 @@ yarn add kai-ui
 This library requires the following peer dependencies:
 
 ```bash
-npm install react react-dom @popperjs/core ag-grid-community ag-grid-react clsx date-fns highcharts highcharts-react-official
+npm install react react-dom @floating-ui/react react-hook-form react-icons react-tooltip react-transition-group ag-grid-community ag-grid-react clsx date-fns highcharts highcharts-react-official highcharts-custom-events lodash yup
 ```
 
 ## 🏗️ Architecture
@@ -82,11 +82,7 @@ import { ThemeProvider } from 'kai-ui';
 import 'kai-ui/styles.css';
 
 function App() {
-  return (
-    <ThemeProvider name="my-app">
-      {/* Your app content */}
-    </ThemeProvider>
-  );
+  return <ThemeProvider name="my-app">{/* Your app content */}</ThemeProvider>;
 }
 ```
 
@@ -102,11 +98,7 @@ function MyComponent() {
         Click Me
       </Button>
 
-      <Input
-        label="Email"
-        type="email"
-        placeholder="Enter your email"
-      />
+      <Input label="Email" type="email" placeholder="Enter your email" />
     </div>
   );
 }
@@ -122,15 +114,12 @@ import { useTheme } from 'kai-ui';
 function ThemeToggle() {
   const { theme, isDark, setTheme } = useTheme();
 
-  return (
-    <button onClick={() => setTheme(isDark ? 'light' : 'dark')}>
-      Current: {theme}
-    </button>
-  );
+  return <button onClick={() => setTheme(isDark ? 'light' : 'dark')}>Current: {theme}</button>;
 }
 ```
 
 Theme preferences are automatically:
+
 - Persisted to localStorage
 - Synchronized with system preferences
 - Applied via CSS custom properties
@@ -140,13 +129,7 @@ Theme preferences are automatically:
 The library provides several custom hooks:
 
 ```tsx
-import {
-  useClickOutside,
-  useCloseByEscape,
-  useCountdown,
-  useEventListener,
-  useTheme
-} from 'kai-ui';
+import { useClickOutside, useCloseByEscape, useCountdown, useEventListener, useTheme } from 'kai-ui';
 
 function MyComponent() {
   const ref = useClickOutside(() => console.log('Clicked outside'));
@@ -159,6 +142,7 @@ function MyComponent() {
 ## 📚 Component Categories
 
 ### Layout & Navigation
+
 - **Accordion** - Collapsible content sections
 - **Drawer** - Side panel with slide-in animation
 - **Modal** - Dialog overlays
@@ -167,6 +151,7 @@ function MyComponent() {
 - **Stepper** - Multi-step workflows
 
 ### Forms & Inputs
+
 - **Button** - Multiple variants (primary, secondary, tertiary, ghost, danger)
 - **Checkbox** - Single and grouped checkboxes
 - **ColorPicker** - Color selection with presets
@@ -179,6 +164,7 @@ function MyComponent() {
 - **Forms** - Complete form components with validation
 
 ### Data Display
+
 - **Avatar** - User avatars with initials fallback
 - **DataRows** - Key-value data display
 - **DataTable** - Advanced data grid (powered by AG Grid)
@@ -187,12 +173,14 @@ function MyComponent() {
 - **Label** - Status badges and labels
 
 ### Charts & Visualization
+
 - **Chart** - Base chart component
 - **DateTimeSeries** - Time-based line charts
 - **PieChart** - Circular data visualization
 - **SpiderWebChart** - Radar/spider charts
 
 ### Feedback & Overlays
+
 - **Backdrop** - Modal backdrops
 - **Hint** - Tooltips and hints
 - **Spinner** - Loading indicators
@@ -200,6 +188,7 @@ function MyComponent() {
 - **MenuButton** - Dropdown action menus
 
 ### Navigation
+
 - **Pagination** - Page navigation controls
 - **PseudoLink** - Link-styled buttons
 
@@ -250,6 +239,7 @@ The library is built using Vite with the following optimizations:
 - **Peer dependencies** externalized to reduce bundle size
 
 Build output structure:
+
 ```
 dist/
 ├── index.js           # Main entry point
@@ -261,11 +251,13 @@ dist/
 ## 🧪 Testing
 
 Tests are written using:
+
 - **Vitest** - Fast unit test runner
 - **React Testing Library** - Component testing utilities
 - **@testing-library/jest-dom** - Custom matchers
 
 Run tests:
+
 ```bash
 yarn test          # Watch mode
 yarn ci           # Single run (CI)
@@ -282,6 +274,7 @@ yarn storybook
 Access at http://localhost:6006
 
 Build static Storybook:
+
 ```bash
 yarn storybook:build
 ```
@@ -298,9 +291,15 @@ The library uses SCSS with a BEM-inspired methodology:
 
 // Component-specific
 .ui-btn {
-  &--primary { /* ... */ }
-  &--secondary { /* ... */ }
-  &--small { /* ... */ }
+  &--primary {
+    /* ... */
+  }
+  &--secondary {
+    /* ... */
+  }
+  &--small {
+    /* ... */
+  }
 }
 ```
 
@@ -375,6 +374,7 @@ The library provides utility functions for common tasks:
 ## 🌟 Acknowledgments
 
 Built with:
+
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
