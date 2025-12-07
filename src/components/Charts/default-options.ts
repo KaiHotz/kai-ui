@@ -4,7 +4,7 @@ import { getCSSVariable } from '../../utils';
 const primaryFont = getCSSVariable('--font-primary');
 const primaryFontColor = getCSSVariable('--emphasis-primary');
 
-export const defaultHighchartsTheme: Options = {
+export const defaultHighchartsOptions: Options = {
   chart: {
     style: {
       fontFamily: primaryFont,

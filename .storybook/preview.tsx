@@ -9,12 +9,12 @@ import 'highcharts/modules/variable-pie';
 import 'highcharts/modules/sankey';
 
 import { ThemeProvider } from '../src/providers';
-import { defaultHighchartsTheme } from '../src/components/Charts';
+import { defaultHighchartsOptions } from '../src/components/Charts';
 import { StoryThemeWrapper } from './StoryThemeWrapper';
 
 import './preview.scss';
 
-setOptions(defaultHighchartsTheme);
+setOptions(defaultHighchartsOptions);
 HighchartsCustomEvents(Highcharts);
 
 const preview: Preview = {
