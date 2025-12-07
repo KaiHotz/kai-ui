@@ -55,9 +55,9 @@ export function Form<T extends FieldValues>({
 
   useImperativeHandle(ref, () => methods, [methods]);
 
-  const { handleSubmit, reset, resetField } = methods;
+  const { handleSubmit, reset, resetField, control } = methods;
 
-  const watchedValues = useWatch<T>({ control: methods.control });
+  const watchedValues = useWatch<T>({ control });
 
   const handleFormSubmit = useCallback(
     (data: T) => onSubmit({ data, reset, resetField }),

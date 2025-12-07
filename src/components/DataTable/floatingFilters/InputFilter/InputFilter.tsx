@@ -1,8 +1,8 @@
-import { type FC, useEffect, useRef, useState } from 'react';
+import { type FC, useState } from 'react';
 import cx from 'clsx';
 import { createPortal } from 'react-dom';
 import { CustomFloatingFilterProps } from 'ag-grid-react';
-import { createPopper } from '@popperjs/core';
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/react';
 import * as yup from 'yup';
 import { FaXmark } from 'react-icons/fa6';
 
@@ -21,7 +21,6 @@ const normalizeEmptyValue = (value: string | number | null): string | null => {
 export interface InputFilterProps extends Omit<IFormInputProps, 'onChange'>, CustomFloatingFilterProps {
   validationSchema?: yup.ObjectSchema<{ filter: string }>;
   hint?: string;
-  submitOnChange?: boolean;
 }
 type TFilterFormData = IOnsubmitProps<{ filter: string }>;
 
@@ -32,13 +31,8 @@ export const InputFilter: FC<InputFilterProps> = ({
   type,
   validationSchema,
   hint,
-  submitOnChange,
 }) => {
   const [showHint, setShowHint] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(undefined as unknown as HTMLInputElement);
-  const popupRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const hintAndErrorPopper = useRef<any>(undefined);
 
   const modelWithValues = model as unknown as { filter?: string; values?: unknown[] };
   const intialValue = model
@@ -48,24 +42,12 @@ export const InputFilter: FC<InputFilterProps> = ({
         : '')
     : '';
 
-  useEffect(() => {
-    if (popupRef.current && inputRef.current) {
-      hintAndErrorPopper.current = createPopper(inputRef.current, popupRef.current, {
-        placement: 'bottom-start',
-        strategy: 'fixed',
-        modifiers: [
-          {
-            name: 'offset',
-            options: {
-              offset: [-10, 8],
-            },
-          },
-        ],
-      });
-    }
-
-    return () => hintAndErrorPopper.current.destroy();
-  }, []);
+  const { refs, floatingStyles } = useFloating({
+    placement: 'bottom-start',
+    strategy: 'fixed',
+    middleware: [offset({ mainAxis: 8, crossAxis: -10 }), flip(), shift()],
+    whileElementsMounted: autoUpdate,
+  });
 
   const onSubmit = ({ data }: TFilterFormData) => {
     onModelChange(
@@ -87,15 +69,9 @@ export const InputFilter: FC<InputFilterProps> = ({
         onSubmit={onSubmit}
         validationSchema={validationSchema}
         validationMode={validationSchema ? 'onChange' : 'onSubmit'}
-        submitOnChange={submitOnChange}
       >
         {({ watch, trigger, resetField, formState: { errors } }) => {
-          const values = watch();
-
-          if ((errors.filter || values.filter.length === 0) && hintAndErrorPopper.current) {
-            //Force update popper position when error
-            hintAndErrorPopper.current.update();
-          }
+          const currentValue = watch('filter');
 
           return (
             <div>
@@ -106,7 +82,7 @@ export const InputFilter: FC<InputFilterProps> = ({
                 hideError
                 placeholder={placeholder}
                 type={type}
-                onFocus={() => setShowHint(values.filter.length === 0)}
+                onFocus={() => setShowHint(currentValue.length === 0)}
                 onBlur={async (e) => {
                   setShowHint(false);
                   const validationResult = await trigger();
@@ -125,17 +101,16 @@ export const InputFilter: FC<InputFilterProps> = ({
                     }}
                   />
                 }
-                ref={inputRef}
+                ref={refs.setReference}
               />
               {createPortal(
                 <div
                   className={cx('ui-input-filter__tooltip', {
-                    'ui-input-filter__tooltip--show':
-                      errors?.filter || (hint && showHint && values.filter.length === 0),
+                    'ui-input-filter__tooltip--show': errors?.filter || (hint && showHint && currentValue.length === 0),
                     'ui-input-filter__tooltip--error': !!errors?.filter,
                   })}
-                  ref={popupRef}
-                  style={{ maxWidth: inputRef.current?.clientWidth }}
+                  ref={refs.setFloating}
+                  style={floatingStyles}
                 >
                   {(errors.filter?.message as string) || (hint as string)}
                 </div>,

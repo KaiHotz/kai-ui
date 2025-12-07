@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useCallback, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
+import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import { FaChevronDown } from 'react-icons/fa6';
 
 import { Button, IButtonProps } from '../Button';
@@ -13,25 +13,23 @@ interface MenuButtonProps extends IButtonProps {
 
 export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', items, ...rest }) => {
   const menuRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
-  const [menuElement, setMenuElement] = useState<HTMLElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
-  const { styles, attributes } = usePopper(menuElement, popperElement, {
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [5, 5],
-        },
-      },
-    ],
+  const [isOpen, setIsOpen] = useState(false);
+  const { refs, floatingStyles } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [offset({ mainAxis: 5, crossAxis: 5 }), flip(), shift()],
   });
 
-  const openMenu = useCallback((event: MouseEvent<HTMLElement>) => {
-    setMenuElement(event.currentTarget as HTMLElement);
-  }, []);
+  const openMenu = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      refs.setReference(event.currentTarget as HTMLElement);
+      setIsOpen(true);
+    },
+    [refs],
+  );
 
   const closeMenu = useCallback(() => {
-    setMenuElement(null);
+    setIsOpen(false);
   }, []);
 
   useClickOutside(menuRef, closeMenu);
@@ -49,9 +47,9 @@ export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', i
       >
         {children}
       </Button>
-      {menuElement &&
+      {isOpen &&
         ReactDOM.createPortal(
-          <div ref={setPopperElement} style={styles.popper} {...attributes.popper} className="ui-menu-button__menu">
+          <div ref={(node) => refs.setFloating(node)} style={floatingStyles} className="ui-menu-button__menu">
             <ContextMenu ref={menuRef} menuItems={items} onClose={closeMenu} />
           </div>,
           document.body,

@@ -44,6 +44,7 @@ const columnDefs: ColumnDef<TableData>[] = [
     floatingFilterComponentParams: {
       placeholder: 'Filter by last name...',
       submitOnChange: true,
+      hint: 'Type to filter last names',
     },
   },
 ];

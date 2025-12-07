@@ -1,6 +1,6 @@
 import { FC, MouseEvent, PropsWithChildren, ReactNode, useCallback, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { usePopper } from 'react-popper';
+import { createPortal } from 'react-dom';
+import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import cx from 'clsx';
 import { ColorResult, GithubPicker as Palette, SketchPicker } from 'react-color';
 
@@ -47,39 +47,34 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
   const isPalette = variant === 'palette';
   const coverRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
-  const [colorPickerElement, setColorPickerElement] = useState<HTMLElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
-  const { styles, attributes } = usePopper(colorPickerElement, popperElement, {
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [3, 5],
-        },
-      },
-    ],
+  const [isOpen, setIsOpen] = useState(false);
+  const { refs, floatingStyles } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [offset({ mainAxis: 5, crossAxis: 3 }), flip(), shift()],
   });
 
   const handleShowPicker = useCallback(
     (event: MouseEvent<HTMLElement>) => {
-      if (!colorPickerElement && !disabled) {
-        setColorPickerElement(event?.currentTarget as HTMLElement);
+      if (!isOpen && !disabled) {
+        refs.setReference(event?.currentTarget as HTMLElement);
+        setIsOpen(true);
       }
     },
-    [colorPickerElement, disabled],
+    [isOpen, disabled, refs],
   );
 
   const handleClosePicker = useCallback(() => {
-    if (colorPickerElement) {
-      setColorPickerElement(null);
+    if (isOpen) {
+      setIsOpen(false);
     }
-  }, [colorPickerElement]);
+  }, [isOpen]);
 
   const handleChangeColor = useCallback(
     (colorResult: ColorResult) => {
       onChange(colorResult);
       if (isPalette) {
-        setColorPickerElement(null);
+        setIsOpen(false);
       }
     },
     [isPalette, onChange],
@@ -108,9 +103,9 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
           {children}
         </Button>
       </Label>
-      {colorPickerElement &&
-        ReactDOM.createPortal(
-          <div className="ui-color-picker__popover" ref={setPopperElement} {...attributes.popper} style={styles.popper}>
+      {isOpen &&
+        createPortal(
+          <div className="ui-color-picker__popover" ref={(node) => refs.setFloating(node)} style={floatingStyles}>
             <div className="ui-color-picker__cover" role="presentation" ref={coverRef}>
               {isPalette ? (
                 <Palette color={color} onChange={handleChangeColor} colors={colors} triangle="hide" />
