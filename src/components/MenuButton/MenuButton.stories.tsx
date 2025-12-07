@@ -57,7 +57,7 @@ const menuItems = [
 
 export const Default = {
   args: {
-    variant: 'transparent',
+    variant: 'primary',
     small: false,
     children: 'Button',
     disabled: false,
