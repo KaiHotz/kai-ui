@@ -66,16 +66,20 @@ export const Default: Story = {
 export const WithIntercativeLabels: Story = {
   render: function useStory(args) {
     const { theme } = useTheme();
+    const labels = useMemo(() => ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'], []);
     const [selected, setSelected] = useState<string | number>('Label 1');
 
-    const click = useCallback(function (this: AxisLabelsFormatterContextObject) {
-      setSelected(this.value);
-    }, []);
+    const click = useCallback(
+      function (this: AxisLabelsFormatterContextObject) {
+        setSelected(labels[this.pos]);
+      },
+      [labels],
+    );
 
     const chartOptions = useMemo<Highcharts.Options>(() => {
       return {
         xAxis: {
-          categories: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+          categories: labels,
           labels: {
             useHTML: true,
             formatter() {
@@ -90,7 +94,7 @@ export const WithIntercativeLabels: Story = {
           },
         },
       };
-    }, [click, selected]);
+    }, [click, labels, selected]);
 
     return (
       <div style={{ padding: '10px 20px' }}>
