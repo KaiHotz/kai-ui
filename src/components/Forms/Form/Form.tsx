@@ -1,37 +1,8 @@
-import { ForwardedRef, ReactNode, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
-import * as yup from 'yup';
+import { useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  DefaultValues,
-  FieldValues,
-  FormProvider,
-  Resolver,
-  SubmitErrorHandler,
-  useForm,
-  UseFormReset,
-  UseFormResetField,
-  UseFormReturn,
-  useWatch,
-  ValidationMode,
-} from 'react-hook-form';
+import { FieldValues, FormProvider, Resolver, useForm } from 'react-hook-form';
 
-export interface IOnsubmitProps<T extends FieldValues> {
-  data: T;
-  reset: UseFormReset<T>;
-  resetField: UseFormResetField<T>;
-}
-
-export interface IFormProps<T extends FieldValues> {
-  onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
-  children?: ((props: UseFormReturn<T, unknown, T>) => ReactNode) | ReactNode;
-  validationSchema?: yup.ObjectSchema<T>;
-  defaultValues?: DefaultValues<T>;
-  onError?: SubmitErrorHandler<T>;
-  disabled?: boolean;
-  validationMode?: keyof ValidationMode;
-  submitOnChange?: boolean;
-  ref?: ForwardedRef<UseFormReturn<T, unknown, T>>;
-}
+import { IFormProps } from './types';
 
 export function Form<T extends FieldValues>({
   children,
@@ -41,23 +12,25 @@ export function Form<T extends FieldValues>({
   defaultValues,
   disabled,
   validationMode = 'onSubmit',
+  reValidateMode,
   submitOnChange,
+  shouldUnregister,
   ref,
   ...rest
 }: IFormProps<T>) {
-  const hasMounted = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const methods = useForm<T>({
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
     defaultValues,
     disabled,
     mode: validationMode,
+    reValidateMode,
+    shouldUnregister,
   });
 
-  useImperativeHandle(ref, () => methods, [methods]);
+  useImperativeHandle(ref, () => ({ methods, form: formRef.current }), [methods]);
 
-  const { handleSubmit, reset, resetField, control } = methods;
-
-  const watchedValues = useWatch<T>({ control });
+  const { handleSubmit, reset, watch, resetField } = methods;
 
   const handleFormSubmit = useCallback(
     (data: T) => onSubmit({ data, reset, resetField }),
@@ -70,19 +43,15 @@ export function Form<T extends FieldValues>({
     if (!submitOnChange) {
       return;
     }
+    // eslint-disable-next-line react-hooks/incompatible-library -- react-hook-form provides a stable watch function for subscription usage
+    const subscription = watch(() => handleSubmit(handleFormSubmit)());
 
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-
-      return;
-    }
-
-    void handleSubmit(handleFormSubmit)();
-  }, [watchedValues, handleFormSubmit, handleSubmit, submitOnChange]);
+    return () => subscription.unsubscribe();
+  }, [handleFormSubmit, handleSubmit, submitOnChange, watch]);
 
   return (
     <FormProvider {...methods}>
-      <form {...rest} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset}>
+      <form {...rest} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset} ref={formRef}>
         {typeof children === 'function' ? children({ ...methods }) : children}
       </form>
     </FormProvider>

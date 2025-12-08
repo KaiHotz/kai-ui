@@ -82,10 +82,15 @@ export const Default: Story = {
       //Handle form error here
     };
 
-    const formRef = useRef<UseFormReturn<TFormData, unknown, TFormData>>(null);
+    const formRef = useRef<{ methods: UseFormReturn<TFormData, unknown, TFormData>; form: HTMLFormElement | null }>(
+      null,
+    );
 
     useEffect(() => {
+      const values = formRef.current?.methods.watch();
+
       console.log({ formMethods: formRef.current });
+      console.log({ values });
     }, []);
 
     return (

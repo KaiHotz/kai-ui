@@ -12,7 +12,7 @@ export interface ISpiderWebChartDataAxis {
   type?: 'line' | 'spline' | 'area' | 'areaspline';
   dashStyle?: 'Solid' | 'ShortDash';
 }
-interface ISpiderWebChartProps {
+export interface ISpiderWebChartProps {
   data: ISpiderWebChartDataAxis[];
   containerProps?: { [key: string]: unknown };
   seriesType?: 'line' | 'area';
