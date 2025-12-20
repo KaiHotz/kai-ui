@@ -26,7 +26,7 @@ interface IPieChartProps {
   className?: string;
   onLabelClick?: (item: IPieChartData) => void;
   callback?: (chart: Highcharts.Chart) => void;
-  ref?: Ref<HighchartsReact.RefObject>;
+  ref?: Ref<HighchartsReact.RefObject | null>;
 }
 // Highcharts format string, doc: https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#format-strings
 // eslint-disable-next-line react-refresh/only-export-components

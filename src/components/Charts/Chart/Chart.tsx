@@ -21,7 +21,7 @@ export interface IChartProps {
   callback?: (chart: Highcharts.Chart) => void;
   colorByPoint?: boolean;
   className?: string;
-  ref?: Ref<HighchartsReact.RefObject>;
+  ref?: Ref<HighchartsReact.RefObject | null>;
 }
 
 export const Chart: FC<IChartProps> = ({
