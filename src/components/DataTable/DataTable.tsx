@@ -317,6 +317,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         suppressMovableColumns
         enableCellTextSelection
         enableBrowserTooltips
+        enableFilterHandlers
         tooltipShowDelay={200}
         onGridReady={handleGridReady}
         onGridPreDestroyed={handleGridPreDestroy}
