@@ -2,22 +2,23 @@ import { useCallback, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, FormProvider, Resolver, useForm } from 'react-hook-form';
 
-import { IFormProps } from './types';
+import { TFormProps } from './types';
 
 export function Form<T extends FieldValues>({
   children,
   onSubmit,
-  onError,
   validationSchema,
+  onError,
   defaultValues,
   disabled,
   validationMode = 'onSubmit',
-  reValidateMode,
+  reValidateMode = 'onChange',
   submitOnChange,
   shouldFocusError = true,
   shouldUnregister = false,
+  formProps,
   ...rest
-}: IFormProps<T>) {
+}: TFormProps<T>) {
   const methods = useForm<T>({
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
     defaultValues,
@@ -26,6 +27,7 @@ export function Form<T extends FieldValues>({
     reValidateMode,
     shouldFocusError,
     shouldUnregister,
+    ...rest,
   });
 
   const { handleSubmit, reset, watch, resetField } = methods;
@@ -49,7 +51,7 @@ export function Form<T extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form {...rest} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset}>
+      <form {...formProps} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset}>
         {typeof children === 'function' ? children({ ...methods }) : children}
       </form>
     </FormProvider>

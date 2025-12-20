@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { FormHTMLAttributes, ReactNode } from 'react';
 import * as yup from 'yup';
-import { DefaultValues, FieldValues, Mode, SubmitErrorHandler, UseFormReset, UseFormResetField, UseFormReturn } from 'react-hook-form';
+import { FieldValues, Mode, SubmitErrorHandler, UseFormProps, UseFormReset, UseFormResetField, UseFormReturn } from 'react-hook-form';
 
 export interface IOnsubmitProps<T extends FieldValues> {
   data: T;
@@ -8,16 +8,12 @@ export interface IOnsubmitProps<T extends FieldValues> {
   resetField: UseFormResetField<T>;
 }
 
-export interface IFormProps<T extends FieldValues> {
+export type TFormProps<T extends FieldValues> = Omit<UseFormProps<T>, 'mode' | 'resolver'> & {
   children?: ((props: UseFormReturn<T, unknown, T>) => ReactNode) | ReactNode;
   onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
   validationSchema?: yup.ObjectSchema<T>;
-  reValidateMode?: Exclude<Mode, 'onTouched' | 'all'>;
-  disabled?: boolean;
-  defaultValues?: DefaultValues<T>;
-  onError?: SubmitErrorHandler<T>;
   validationMode?: Mode;
+  onError?: SubmitErrorHandler<T>;
   submitOnChange?: boolean;
-  shouldFocusError?: boolean;
-  shouldUnregister?: boolean;
-}
+  formProps?: FormHTMLAttributes<HTMLFormElement>;
+};

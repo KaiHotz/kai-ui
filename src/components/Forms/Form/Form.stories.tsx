@@ -17,6 +17,7 @@ import { Form } from './Form';
 import { IOnsubmitProps } from './types';
 
 const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] as const;
+const reValidateModes = ['onBlur', 'onChange', 'onSubmit'] as const;
 
 const meta: Meta<typeof Form> = {
   title: 'Components/Forms/Form',
@@ -32,18 +33,47 @@ const meta: Meta<typeof Form> = {
     defaultValues: {
       control: false,
     },
+    values: {
+      control: false,
+    },
     onSubmit: {
       control: false,
     },
     onError: {
       control: false,
     },
+    formControl: {
+      control: false,
+    },
     validationMode: {
+      description: 'The validation strategy before submitting behaviour',
       options: validationModes,
       control: {
         type: 'select',
-        labels: validationModes,
       },
+    },
+    reValidateMode: {
+      description: 'The validation strategy after submitting behaviour',
+      options: reValidateModes,
+      control: {
+        type: 'select',
+      },
+    },
+    disabled: {
+      description: 'Disable all form fields',
+      control: 'boolean',
+    },
+    submitOnChange: {
+      description: 'Automatically submit form when values change',
+      control: 'boolean',
+    },
+    shouldFocusError: {
+      description: 'Focus on the first field with an error when submitting',
+      control: 'boolean',
+    },
+    shouldUnregister: {
+      description: 'Unregister fields when they unmount',
+      control: 'boolean',
     },
   },
   args: {
@@ -52,11 +82,24 @@ const meta: Meta<typeof Form> = {
     shouldFocusError: true,
     shouldUnregister: false,
     validationMode: 'onChange',
+    reValidateMode: 'onChange',
+    shouldUseNativeValidation: false,
+    formProps: undefined,
+    delayError: 0,
   },
 };
 type Story = StoryObj<typeof Form>;
 export const Default: Story = {
-  render: (args) => {
+  render: ({
+    disabled,
+    submitOnChange,
+    shouldFocusError,
+    shouldUnregister,
+    validationMode,
+    reValidateMode,
+    shouldUseNativeValidation,
+    formProps,
+  }) => {
     const schema = yup
       .object({
         firstName: yup.string().required('this field is required'),
@@ -84,8 +127,14 @@ export const Default: Story = {
 
     return (
       <Form<TFormData>
-        {...args}
+        disabled={disabled}
+        submitOnChange={submitOnChange}
+        shouldFocusError={shouldFocusError}
+        shouldUnregister={shouldUnregister}
+        validationMode={validationMode}
+        reValidateMode={reValidateMode}
         validationSchema={schema}
+        shouldUseNativeValidation={shouldUseNativeValidation}
         defaultValues={{
           firstName: '',
           lastName: '',
@@ -98,6 +147,7 @@ export const Default: Story = {
         }}
         onSubmit={onSubmit}
         onError={onError}
+        formProps={formProps}
       >
         {({ setValue }) => {
           return (
