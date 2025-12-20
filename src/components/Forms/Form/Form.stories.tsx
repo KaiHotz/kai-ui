@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as yup from 'yup';
 import { FieldErrors } from 'react-hook-form';
