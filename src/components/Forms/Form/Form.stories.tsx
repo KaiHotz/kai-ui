@@ -1,13 +1,11 @@
 /* eslint-disable no-console */
 
-import { useEffect, useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as yup from 'yup';
-import { FieldErrors, UseFormReturn } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form';
 import { FaEnvelope } from 'react-icons/fa6';
 
 import { Button } from '../../Button';
-import { Form, IOnsubmitProps } from './Form';
 import { FormInput } from '../FormInput';
 import { FormPasswordInput } from '../FormPasswordInput';
 import { FormDatepicker } from '../FormDatepicker';
@@ -15,17 +13,16 @@ import { FormRadio, RadioOption } from '../FormRadio';
 import { FormCheckbox } from '../FormCheckbox';
 import { FormSelect } from '../FormSelect';
 import { capitalizeWords } from '../../../utils';
+import { Form } from './Form';
+import { IOnsubmitProps } from './types';
 
 const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] as const;
+const criteriaModes = ['firstError', 'all'] as const;
 
 const meta: Meta<typeof Form> = {
   title: 'Components/Forms/Form',
   component: Form,
   tags: ['autodocs'],
-  args: {
-    submitOnChange: false,
-    validationMode: 'onChange',
-  },
   argTypes: {
     children: {
       control: false,
@@ -42,9 +39,6 @@ const meta: Meta<typeof Form> = {
     onError: {
       control: false,
     },
-    ref: {
-      control: false,
-    },
     validationMode: {
       options: validationModes,
       control: {
@@ -52,11 +46,25 @@ const meta: Meta<typeof Form> = {
         labels: validationModes,
       },
     },
+    criteriaMode: {
+      options: criteriaModes,
+      control: {
+        type: 'select',
+        labels: criteriaModes,
+      },
+    },
+  },
+  args: {
+    submitOnChange: false,
+    shouldFocusError: true,
+    shouldUnregister: false,
+    validationMode: 'onChange',
+    criteriaMode: 'firstError',
   },
 };
 type Story = StoryObj<typeof Form>;
 export const Default: Story = {
-  render: ({ ref: _, ...args }) => {
+  render: (args) => {
     const schema = yup
       .object({
         firstName: yup.string().required('this field is required'),
@@ -82,17 +90,6 @@ export const Default: Story = {
       //Handle form error here
     };
 
-    const formRef = useRef<{ methods: UseFormReturn<TFormData, unknown, TFormData>; form: HTMLFormElement | null }>(
-      null,
-    );
-
-    useEffect(() => {
-      const values = formRef.current?.methods.watch();
-
-      console.log({ formMethods: formRef.current });
-      console.log({ values });
-    }, []);
-
     return (
       <Form<TFormData>
         {...args}
@@ -109,7 +106,6 @@ export const Default: Story = {
         }}
         onSubmit={onSubmit}
         onError={onError}
-        ref={formRef}
       >
         {({ setValue }) => {
           return (

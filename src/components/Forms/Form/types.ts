@@ -1,11 +1,11 @@
-import { ForwardedRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import * as yup from 'yup';
 import {
+  CriteriaMode,
   DefaultValues,
   FieldValues,
   Mode,
   SubmitErrorHandler,
-  UseFormProps,
   UseFormReset,
   UseFormResetField,
   UseFormReturn,
@@ -17,20 +17,17 @@ export interface IOnsubmitProps<T extends FieldValues> {
   resetField: UseFormResetField<T>;
 }
 
-export interface IFormRef<T extends FieldValues> {
-  methods: UseFormReturn<T, unknown, T>;
-  form: HTMLFormElement | null;
-}
-
-export interface IFormProps<T extends FieldValues> extends Omit<UseFormProps<T>, 'mode'> {
-  onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
+export interface IFormProps<T extends FieldValues> {
   children?: ((props: UseFormReturn<T, unknown, T>) => ReactNode) | ReactNode;
+  onSubmit: ({ data, reset, resetField }: IOnsubmitProps<T>) => void;
   validationSchema?: yup.ObjectSchema<T>;
+  reValidateMode?: Exclude<Mode, 'onTouched' | 'all'>;
+  disabled?: boolean;
   defaultValues?: DefaultValues<T>;
   onError?: SubmitErrorHandler<T>;
-  disabled?: boolean;
   validationMode?: Mode;
-  reValidateMode?: Exclude<Mode, 'onTouched' | 'all'>;
   submitOnChange?: boolean;
-  ref?: ForwardedRef<IFormRef<T>>;
+  shouldFocusError?: boolean;
+  shouldUnregister?: boolean;
+  criteriaMode?: CriteriaMode;
 }

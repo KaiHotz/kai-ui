@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, FormProvider, Resolver, useForm } from 'react-hook-form';
 
@@ -14,21 +14,21 @@ export function Form<T extends FieldValues>({
   validationMode = 'onSubmit',
   reValidateMode,
   submitOnChange,
-  shouldUnregister,
-  ref,
+  shouldFocusError = true,
+  shouldUnregister = false,
+  criteriaMode = 'all',
   ...rest
 }: IFormProps<T>) {
-  const formRef = useRef<HTMLFormElement>(null);
   const methods = useForm<T>({
     resolver: validationSchema ? (yupResolver(validationSchema) as unknown as Resolver<T>) : undefined,
     defaultValues,
     disabled,
     mode: validationMode,
     reValidateMode,
+    shouldFocusError,
     shouldUnregister,
+    criteriaMode,
   });
-
-  useImperativeHandle(ref, () => ({ methods, form: formRef.current }), [methods]);
 
   const { handleSubmit, reset, watch, resetField } = methods;
 
@@ -51,7 +51,7 @@ export function Form<T extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form {...rest} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset} ref={formRef}>
+      <form {...rest} onSubmit={handleSubmit(handleFormSubmit, onError)} onReset={handleFormReset}>
         {typeof children === 'function' ? children({ ...methods }) : children}
       </form>
     </FormProvider>
