@@ -16,7 +16,6 @@ export function Form<T extends FieldValues>({
   submitOnChange,
   shouldFocusError = true,
   shouldUnregister = false,
-  criteriaMode = 'all',
   ...rest
 }: IFormProps<T>) {
   const methods = useForm<T>({
@@ -27,7 +26,6 @@ export function Form<T extends FieldValues>({
     reValidateMode,
     shouldFocusError,
     shouldUnregister,
-    criteriaMode,
   });
 
   const { handleSubmit, reset, watch, resetField } = methods;

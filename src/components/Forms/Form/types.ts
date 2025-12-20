@@ -1,15 +1,6 @@
 import { ReactNode } from 'react';
 import * as yup from 'yup';
-import {
-  CriteriaMode,
-  DefaultValues,
-  FieldValues,
-  Mode,
-  SubmitErrorHandler,
-  UseFormReset,
-  UseFormResetField,
-  UseFormReturn,
-} from 'react-hook-form';
+import { DefaultValues, FieldValues, Mode, SubmitErrorHandler, UseFormReset, UseFormResetField, UseFormReturn } from 'react-hook-form';
 
 export interface IOnsubmitProps<T extends FieldValues> {
   data: T;
@@ -29,5 +20,4 @@ export interface IFormProps<T extends FieldValues> {
   submitOnChange?: boolean;
   shouldFocusError?: boolean;
   shouldUnregister?: boolean;
-  criteriaMode?: CriteriaMode;
 }

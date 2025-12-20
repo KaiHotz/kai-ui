@@ -17,7 +17,6 @@ import { Form } from './Form';
 import { IOnsubmitProps } from './types';
 
 const validationModes = ['onBlur', 'onChange', 'onSubmit', 'onTouched', 'all'] as const;
-const criteriaModes = ['firstError', 'all'] as const;
 
 const meta: Meta<typeof Form> = {
   title: 'Components/Forms/Form',
@@ -46,20 +45,13 @@ const meta: Meta<typeof Form> = {
         labels: validationModes,
       },
     },
-    criteriaMode: {
-      options: criteriaModes,
-      control: {
-        type: 'select',
-        labels: criteriaModes,
-      },
-    },
   },
   args: {
+    disabled: false,
     submitOnChange: false,
     shouldFocusError: true,
     shouldUnregister: false,
     validationMode: 'onChange',
-    criteriaMode: 'firstError',
   },
 };
 type Story = StoryObj<typeof Form>;
