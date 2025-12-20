@@ -5,12 +5,11 @@ import { TabListContext, TabPanelContext } from './context';
 export interface ITabsProps {
   children: ReactNode;
   id?: string;
-  testId?: string;
   selected: number;
   setSelected: (idx: number) => void;
 }
 
-export const Tabs: FC<ITabsProps> = ({ id = 'tabs', children, testId, selected, setSelected }) => {
+export const Tabs: FC<ITabsProps> = ({ id = 'tabs', children, selected, setSelected }) => {
   const childrenArray = Children.toArray(children);
   // with this API we expect the first child to be a list of tabs
   // followed by a list of tab panels that correspond to those tabs
@@ -26,7 +25,7 @@ export const Tabs: FC<ITabsProps> = ({ id = 'tabs', children, testId, selected, 
   );
 
   return (
-    <div id={id} data-testId={testId}>
+    <div id={id}>
       <TabListContext value={{ selected, onTabChange, tabsId: id }}>{tabList}</TabListContext>
       <TabPanelContext
         value={{

@@ -37,8 +37,11 @@ export const ActionsCellRenderer: FC<IActionsRendererProps> = ({
       api.addEventListener('cellMouseOut', handleCellMouseOut);
 
       return () => {
-        api.removeEventListener('cellMouseOver', handleCellMouseOver);
-        api.removeEventListener('cellMouseOut', handleCellMouseOut);
+        // Check if the grid is still alive before removing event listeners
+        if (!api.isDestroyed()) {
+          api.removeEventListener('cellMouseOver', handleCellMouseOver);
+          api.removeEventListener('cellMouseOut', handleCellMouseOut);
+        }
       };
     }
   }, [api, node, showOnHover]);

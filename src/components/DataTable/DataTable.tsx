@@ -11,6 +11,7 @@ import {
   ColumnResizedEvent,
   GridApi,
   GridOptions,
+  GridPreDestroyedEvent,
   GridReadyEvent,
   SelectionChangedEvent,
   SortChangedEvent,
@@ -83,11 +84,23 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   ...rest
 }: DataTableProps<DataType>) {
   const { theme } = useTheme();
-  const apiRef = useRef<GridApi | undefined>(undefined);
-  const loadingRef = useRef(isLoading);
+  const gridRef = useRef<AgGridReact>(null);
   const overlayTimeoutRef = useRef<number>(0);
+  const isDestroyedRef = useRef(false);
   const mutableRowData = useMemo(() => cloneDeep(rowData), [rowData]);
   const hasColumnAutoHeight = useMemo(() => columnDefs.some((colDef) => colDef.autoHeight), [columnDefs]);
+  // Helper to safely get the grid API only if the grid is alive
+  const getGridApi = useCallback((): GridApi | undefined => {
+    if (isDestroyedRef.current) {
+      return undefined;
+    }
+    const api = gridRef.current?.api;
+    if (api && !api.isDestroyed()) {
+      return api;
+    }
+
+    return undefined;
+  }, []);
 
   const hasFloatingFilters = useMemo(() => {
     return columnDefs.some((colDef) => Boolean(colDef.floatingFilter));
@@ -116,38 +129,42 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   const showLoadingOverlay = useCallback(() => {
     window.clearInterval(overlayTimeoutRef.current);
     overlayTimeoutRef.current = window.setTimeout(() => {
-      if (apiRef.current && (isLoading || loadingRef.current)) {
-        apiRef.current.setGridOption('loading', true);
+      const api = getGridApi();
+      if (api && isLoading) {
+        api.setGridOption('loading', true);
       }
     }, 100);
-  }, [isLoading]);
+  }, [getGridApi, isLoading]);
 
   const showNoRowsOverlay = useCallback(() => {
     window.clearInterval(overlayTimeoutRef.current);
     overlayTimeoutRef.current = window.setTimeout(() => {
-      if (apiRef.current) {
-        apiRef.current.showNoRowsOverlay();
+      const api = getGridApi();
+      if (api) {
+        api.showNoRowsOverlay();
       }
     }, 50);
-  }, []);
+  }, [getGridApi]);
 
   const hideOverlay = useCallback(() => {
     window.clearTimeout(overlayTimeoutRef.current);
-    if (apiRef.current) {
-      apiRef.current.hideOverlay();
+    const api = getGridApi();
+    if (api) {
+      api.hideOverlay();
     }
-  }, []);
+  }, [getGridApi]);
 
   const sizeColumnsToFitIsEnabled = useCallback(() => {
-    if (apiRef.current) {
+    const api = getGridApi();
+    if (api) {
       if (!hasColumnAutoHeight) {
-        apiRef.current.resetRowHeights();
+        api.resetRowHeights();
       }
       if (!disableFitSizeColumns) {
-        apiRef.current.sizeColumnsToFit();
+        api.sizeColumnsToFit();
       }
     }
-  }, [disableFitSizeColumns, hasColumnAutoHeight]);
+  }, [disableFitSizeColumns, getGridApi, hasColumnAutoHeight]);
 
   const setInitialSorting = useCallback(
     (event: GridReadyEvent) => {
@@ -170,7 +187,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     (event: SortChangedEvent) => {
       // Initial sorting trigger unnecessary onSortChanged event.
       // To avoid this we trigger sorting even to only after the table init
-      const isGridInitialized = Boolean(apiRef.current);
+      const isGridInitialized = Boolean(getGridApi());
       if (onSortChange && isGridInitialized) {
         // we use suppressMultiSort to enforce sorting by 1 column only, which is at 0 index
         const oneColumnSortModel = event.api.getColumnState().find((colState) => colState.sort);
@@ -179,7 +196,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         }
       }
     },
-    [onSortChange],
+    [getGridApi, onSortChange],
   );
 
   const handleSelectionChanged = useCallback(
@@ -203,23 +220,23 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   const headerHeightSetter = useCallback(() => {
     const defaultHeight = 20;
     const height = headerHeightGetter() + defaultHeight;
-    if (apiRef.current) {
-      apiRef.current.setGridOption('headerHeight', height);
+    const api = getGridApi();
+    if (api) {
+      api.setGridOption('headerHeight', height);
 
       if (hasFloatingFilters) {
-        apiRef.current.setGridOption('floatingFiltersHeight', ROW_HEIGHT);
+        api.setGridOption('floatingFiltersHeight', ROW_HEIGHT);
       }
       if (!hasColumnAutoHeight) {
-        apiRef.current.resetRowHeights();
+        api.resetRowHeights();
       }
     }
-  }, [hasColumnAutoHeight, headerHeightGetter, hasFloatingFilters]);
+  }, [getGridApi, hasColumnAutoHeight, headerHeightGetter, hasFloatingFilters]);
 
   const handleGridReady = useCallback(
     (event: GridReadyEvent) => {
       setInitialSorting(event);
-      apiRef.current = event.api;
-      if (isLoading || loadingRef.current) {
+      if (isLoading) {
         showLoadingOverlay();
       } else {
         sizeColumnsToFitIsEnabled();
@@ -231,15 +248,16 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     [isLoading, onGridReadyEvent, setInitialSorting, showLoadingOverlay, sizeColumnsToFitIsEnabled],
   );
 
-  useEffect(() => {
-    loadingRef.current = isLoading;
-  }, [isLoading]);
+  const handleGridPreDestroy = useCallback((_event: GridPreDestroyedEvent) => {
+    window.clearTimeout(overlayTimeoutRef.current);
+    isDestroyedRef.current = true;
+  }, []);
 
   useEffect(() => {
-    if (!apiRef.current) {
+    if (!getGridApi()) {
       return;
     }
-    if (isLoading || loadingRef.current) {
+    if (isLoading) {
       return showLoadingOverlay();
     }
     hideOverlay(); //hideOverlay must be called before the following functions
@@ -249,6 +267,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     headerHeightSetter();
     sizeColumnsToFitIsEnabled();
   }, [
+    getGridApi,
     isLoading,
     mutableRowData,
     hideOverlay,
@@ -261,6 +280,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   useEffect(() => {
     return () => {
       window.clearTimeout(overlayTimeoutRef.current);
+      isDestroyedRef.current = true;
     };
   }, []);
 
@@ -269,11 +289,13 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   return (
     <div className={cx('ag-theme-quartz', className)}>
       <AgGridReact
+        ref={gridRef}
         {...omit(rest, 'defaultColDef')}
         rowData={mutableRowData}
         columnDefs={columnDefs as ColDef[]}
         modules={[AllCommunityModule]}
         theme={themeOption}
+        loading={isLoading}
         defaultColDef={{
           suppressColumnsToolPanel: true,
           suppressHeaderFilterButton: true,
@@ -297,6 +319,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         enableBrowserTooltips
         tooltipShowDelay={200}
         onGridReady={handleGridReady}
+        onGridPreDestroyed={handleGridPreDestroy}
         onCellClicked={onCellClicked}
         onSortChanged={handleSort}
         onGridColumnsChanged={sizeColumnsToFitIsEnabled}
@@ -308,11 +331,14 @@ export function DataTable<DataType extends NonNullable<unknown>>({
         noRowsOverlayComponentParams={noRowsOverlayComponentParams}
         rowHeight={rowHeight}
         onColumnResized={(event: ColumnResizedEvent) => {
+          if (isDestroyedRef.current) {
+            return;
+          }
           const isColumnResized = event.type === 'columnResized' && event.finished;
           if (isColumnResized) {
             headerHeightSetter();
           }
-          if (isColumnResized && !hasColumnAutoHeight) {
+          if (isColumnResized && !hasColumnAutoHeight && !event.api.isDestroyed()) {
             event.api.resetRowHeights();
           }
         }}

@@ -58,7 +58,6 @@ export const Checkbox: FC<ICheckboxProps> = ({
               ref={ref}
               {...rest}
               type="checkbox"
-              aria-hidden="true"
             />
             <div className="ui-checkbox__icon" />
           </div>

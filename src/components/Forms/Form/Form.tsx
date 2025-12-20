@@ -11,7 +11,7 @@ export function Form<T extends FieldValues>({
   onError,
   defaultValues,
   disabled,
-  validationMode = 'onSubmit',
+  validationMode = 'onChange',
   reValidateMode = 'onChange',
   submitOnChange,
   shouldFocusError = true,

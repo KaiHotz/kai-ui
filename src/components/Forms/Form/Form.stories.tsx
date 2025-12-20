@@ -115,9 +115,8 @@ export const Default: Story = {
       })
       .required();
     type TFormData = yup.InferType<typeof schema>;
-    const onSubmit = ({ data, reset }: IOnsubmitProps<TFormData>) => {
-      console.log(data);
-      reset();
+    const onSubmit = ({ data }: IOnsubmitProps<TFormData>) => {
+      alert(JSON.stringify(data));
     };
     const onError = (errors: FieldErrors<TFormData>) => {
       console.log(errors);
