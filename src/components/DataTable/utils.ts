@@ -1,5 +1,3 @@
-import { GridApi } from 'ag-grid-community';
-
 import { ColumnDef, SortOperator } from './types';
 
 export const hasConfiguredInitialSort = (colDefs: ColumnDef<never>[], initialField?: string, initialOperator?: SortOperator) => {
@@ -8,8 +6,4 @@ export const hasConfiguredInitialSort = (colDefs: ColumnDef<never>[], initialFie
   }
 
   return false;
-};
-
-export const isGridAlive = (api: GridApi | undefined): api is GridApi => {
-  return Boolean(api && !api.isDestroyed());
 };
