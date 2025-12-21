@@ -1,5 +1,5 @@
 .ag-theme-quartz {
-  --min-height: var(--ui-data-table--min-height, 386px);
+  --min-height: var(--ui-data-table--min-height, 186px);
   --ag-font-size: 14px;
   --ag-data-color: var(--emphasis-primary);
   --ag-font-family: var(--font-primary);
@@ -25,6 +25,7 @@
   .ag-layout-auto-height {
     min-height: var(--min-height);
   }
+
   .ag-cell-wrap-text {
     line-height: 24px;
     word-break: break-word;
