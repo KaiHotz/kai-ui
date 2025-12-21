@@ -89,6 +89,7 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   const isDestroyedRef = useRef(false);
   const mutableRowData = useMemo(() => cloneDeep(rowData), [rowData]);
   const hasColumnAutoHeight = useMemo(() => columnDefs.some((colDef) => colDef.autoHeight), [columnDefs]);
+
   // Helper to safely get the grid API only if the grid is alive
   const getGridApi = useCallback((): GridApi | undefined => {
     if (isDestroyedRef.current) {
@@ -125,16 +126,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
       noRowsMessage: noRowsMessage || DEFAULT_NO_ROWS_TEXT,
     };
   }, [noRowsMessage]);
-
-  const showLoadingOverlay = useCallback(() => {
-    window.clearInterval(overlayTimeoutRef.current);
-    overlayTimeoutRef.current = window.setTimeout(() => {
-      const api = getGridApi();
-      if (api && isLoading) {
-        api.setGridOption('loading', true);
-      }
-    }, 100);
-  }, [getGridApi, isLoading]);
 
   const showNoRowsOverlay = useCallback(() => {
     window.clearInterval(overlayTimeoutRef.current);
@@ -236,16 +227,14 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   const handleGridReady = useCallback(
     (event: GridReadyEvent) => {
       setInitialSorting(event);
-      if (isLoading) {
-        showLoadingOverlay();
-      } else {
+      if (!isLoading) {
         sizeColumnsToFitIsEnabled();
       }
       if (onGridReadyEvent) {
         onGridReadyEvent(event);
       }
     },
-    [isLoading, onGridReadyEvent, setInitialSorting, showLoadingOverlay, sizeColumnsToFitIsEnabled],
+    [isLoading, onGridReadyEvent, setInitialSorting, sizeColumnsToFitIsEnabled],
   );
 
   const handleGridPreDestroy = useCallback((_event: GridPreDestroyedEvent) => {
@@ -256,9 +245,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
   useEffect(() => {
     if (!getGridApi()) {
       return;
-    }
-    if (isLoading) {
-      return showLoadingOverlay();
     }
     hideOverlay(); //hideOverlay must be called before the following functions
     if (mutableRowData?.length === 0) {
@@ -272,7 +258,6 @@ export function DataTable<DataType extends NonNullable<unknown>>({
     mutableRowData,
     hideOverlay,
     sizeColumnsToFitIsEnabled,
-    showLoadingOverlay,
     showNoRowsOverlay,
     headerHeightSetter,
   ]);
