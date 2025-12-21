@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { GridReadyEvent } from 'ag-grid-community';
+import { GridApi, GridReadyEvent } from 'ag-grid-community';
 
 import { DataTable } from './DataTable';
 import { ColumnDef } from './types';
@@ -48,19 +48,35 @@ const renderWithTheme = (ui: ReactElement) => {
   return render(<ThemeProvider name="test">{ui}</ThemeProvider>);
 };
 
+// Helper to wait for AG Grid to stabilize
+const waitForGridReady = async () => {
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+};
+
+// Default props for tests - disableFitSizeColumns prevents AG Grid warning #29
+// since the test container has no dimensions
+const defaultTestProps = {
+  disableFitSizeColumns: true,
+};
+
 describe('<DataTable />', () => {
   beforeEach(() => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
   });
 
-  afterEach(() => {
-    vi.runOnlyPendingTimers();
+  afterEach(async () => {
+    await act(async () => {
+      vi.runOnlyPendingTimers();
+    });
     vi.useRealTimers();
   });
 
   describe('Rendering', () => {
     it('should render the DataTable component', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByRole('grid')).toBeInTheDocument();
@@ -69,8 +85,9 @@ describe('<DataTable />', () => {
 
     it('should render with custom className', async () => {
       const { container } = renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} className="custom-class" />,
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} className="custom-class" />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const wrapper = container.querySelector('.ag-theme-quartz');
@@ -80,8 +97,9 @@ describe('<DataTable />', () => {
 
     it('should render with autoHeight when isAutoHeight is true', async () => {
       const { container } = renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} isAutoHeight />,
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} isAutoHeight />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const root = container.querySelector('.ag-root-wrapper');
@@ -91,8 +109,9 @@ describe('<DataTable />', () => {
 
     it('should render with normal layout when isAutoHeight is false', async () => {
       const { container } = renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} isAutoHeight={false} />,
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} isAutoHeight={false} />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const root = container.querySelector('.ag-root-wrapper');
@@ -101,7 +120,8 @@ describe('<DataTable />', () => {
     });
 
     it('should render row data correctly', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Item 1')).toBeInTheDocument();
@@ -111,7 +131,8 @@ describe('<DataTable />', () => {
     });
 
     it('should render column headers', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('ID')).toBeInTheDocument();
@@ -123,8 +144,14 @@ describe('<DataTable />', () => {
     it('should apply custom row height', async () => {
       const customRowHeight = 50;
       const { container } = renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} rowHeight={customRowHeight} />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          rowHeight={customRowHeight}
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const row = container.querySelector('.ag-row');
@@ -136,8 +163,15 @@ describe('<DataTable />', () => {
   describe('Loading State', () => {
     it('should show loading overlay when isLoading is true', async () => {
       renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={[]} isLoading loadingMessage="Loading data..." />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={[]}
+          isLoading
+          loadingMessage="Loading data..."
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Loading data...')).toBeInTheDocument();
@@ -145,7 +179,8 @@ describe('<DataTable />', () => {
     });
 
     it('should show default loading message when loadingMessage is not provided', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} isLoading />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} isLoading />);
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Loading...')).toBeInTheDocument();
@@ -155,7 +190,10 @@ describe('<DataTable />', () => {
 
   describe('No Rows State', () => {
     it('should show no rows overlay when rowData is empty', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="No data available" />);
+      renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="No data available" />,
+      );
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -167,7 +205,8 @@ describe('<DataTable />', () => {
     });
 
     it('should show default no rows message when noRowsMessage is not provided', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} />);
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -184,8 +223,14 @@ describe('<DataTable />', () => {
       const onGridReadyEvent = vi.fn();
 
       renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} onGridReadyEvent={onGridReadyEvent} />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          onGridReadyEvent={onGridReadyEvent}
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(onGridReadyEvent).toHaveBeenCalledTimes(1);
@@ -194,14 +239,20 @@ describe('<DataTable />', () => {
     });
 
     it('should provide grid API through onGridReadyEvent', async () => {
-      let gridApi: GridReadyEvent['api'] | null = null;
+      let gridApi: GridApi | null = null;
       const onGridReadyEvent = vi.fn((event: GridReadyEvent) => {
         gridApi = event.api;
       });
 
       renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} onGridReadyEvent={onGridReadyEvent} />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          onGridReadyEvent={onGridReadyEvent}
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(gridApi).not.toBeNull();
@@ -216,6 +267,7 @@ describe('<DataTable />', () => {
 
       renderWithTheme(
         <DataTable
+          {...defaultTestProps}
           columnDefs={sortableColumnDefs}
           rowData={mockRowData}
           initialSortField="name"
@@ -223,6 +275,7 @@ describe('<DataTable />', () => {
           onSortChange={onSortChange}
         />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const sortedHeader = screen.getByText('Name').closest('.ag-header-cell');
@@ -233,12 +286,14 @@ describe('<DataTable />', () => {
     it('should apply descending sort when initialSortOperator is desc', async () => {
       renderWithTheme(
         <DataTable
+          {...defaultTestProps}
           columnDefs={sortableColumnDefs}
           rowData={mockRowData}
           initialSortField="name"
           initialSortOperator="desc"
         />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const sortedHeader = screen.getByText('Name').closest('.ag-header-cell');
@@ -249,12 +304,14 @@ describe('<DataTable />', () => {
     it('should not apply initial sorting if field is not sortable', async () => {
       renderWithTheme(
         <DataTable
+          {...defaultTestProps}
           columnDefs={mockColumnDefs}
           rowData={mockRowData}
           initialSortField="name"
           initialSortOperator="asc"
         />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         const header = screen.getByText('Name').closest('.ag-header-cell');
@@ -268,14 +325,24 @@ describe('<DataTable />', () => {
       const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
       const onSortChange = vi.fn();
 
-      renderWithTheme(<DataTable columnDefs={sortableColumnDefs} rowData={mockRowData} onSortChange={onSortChange} />);
+      renderWithTheme(
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={sortableColumnDefs}
+          rowData={mockRowData}
+          onSortChange={onSortChange}
+        />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Name')).toBeInTheDocument();
       });
 
       const nameHeader = screen.getByText('Name');
-      await user.click(nameHeader);
+      await act(async () => {
+        await user.click(nameHeader);
+      });
 
       await waitFor(() => {
         expect(onSortChange).toHaveBeenCalledWith('name', 'asc');
@@ -286,15 +353,25 @@ describe('<DataTable />', () => {
       const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
       const onSortChange = vi.fn();
 
-      renderWithTheme(<DataTable columnDefs={sortableColumnDefs} rowData={mockRowData} onSortChange={onSortChange} />);
+      renderWithTheme(
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={sortableColumnDefs}
+          rowData={mockRowData}
+          onSortChange={onSortChange}
+        />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Name')).toBeInTheDocument();
       });
 
       const nameHeader = screen.getByText('Name');
-      await user.click(nameHeader);
-      await user.click(nameHeader);
+      await act(async () => {
+        await user.click(nameHeader);
+        await user.click(nameHeader);
+      });
 
       await waitFor(() => {
         expect(onSortChange).toHaveBeenLastCalledWith('name', 'desc');
@@ -309,6 +386,7 @@ describe('<DataTable />', () => {
 
       renderWithTheme(
         <DataTable
+          {...defaultTestProps}
           columnDefs={mockColumnDefs}
           rowData={mockRowData}
           onChangeSelection={onChangeSelection}
@@ -318,6 +396,7 @@ describe('<DataTable />', () => {
           }}
         />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Item 1')).toBeInTheDocument();
@@ -325,7 +404,9 @@ describe('<DataTable />', () => {
 
       const firstRow = screen.getByText('Item 1').closest('.ag-row');
       if (firstRow) {
-        await user.click(firstRow);
+        await act(async () => {
+          await user.click(firstRow);
+        });
       }
 
       await waitFor(() => {
@@ -336,7 +417,7 @@ describe('<DataTable />', () => {
 
   describe('sizeColumnsToFitIsEnabled', () => {
     it('should not resize columns when disableFitSizeColumns is true', async () => {
-      let gridApi: GridReadyEvent['api'] | null = null;
+      let gridApi: GridApi | null = null;
       const onGridReadyEvent = vi.fn((event: GridReadyEvent) => {
         gridApi = event.api;
       });
@@ -349,26 +430,7 @@ describe('<DataTable />', () => {
           disableFitSizeColumns
         />,
       );
-
-      await waitFor(() => {
-        expect(gridApi).not.toBeNull();
-      });
-    });
-
-    it('should resize columns to fit when disableFitSizeColumns is false', async () => {
-      let gridApi: GridReadyEvent['api'] | null = null;
-      const onGridReadyEvent = vi.fn((event: GridReadyEvent) => {
-        gridApi = event.api;
-      });
-
-      renderWithTheme(
-        <DataTable
-          columnDefs={mockColumnDefs}
-          rowData={mockRowData}
-          onGridReadyEvent={onGridReadyEvent}
-          disableFitSizeColumns={false}
-        />,
-      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(gridApi).not.toBeNull();
@@ -378,7 +440,10 @@ describe('<DataTable />', () => {
 
   describe('headerHeightSetter', () => {
     it('should handle columns with floating filters', async () => {
-      const { container } = renderWithTheme(<DataTable columnDefs={floatingFilterColumnDefs} rowData={mockRowData} />);
+      const { container } = renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={floatingFilterColumnDefs} rowData={mockRowData} />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         const floatingFilter = container.querySelector('.ag-floating-filter');
@@ -389,7 +454,8 @@ describe('<DataTable />', () => {
 
   describe('hasColumnAutoHeight', () => {
     it('should handle columns with autoHeight', async () => {
-      renderWithTheme(<DataTable columnDefs={autoHeightColumnDefs} rowData={mockRowData} />);
+      renderWithTheme(<DataTable {...defaultTestProps} columnDefs={autoHeightColumnDefs} rowData={mockRowData} />);
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Item 1')).toBeInTheDocument();
@@ -399,13 +465,18 @@ describe('<DataTable />', () => {
 
   describe('getGridApi helper', () => {
     it('should return undefined after grid is destroyed', async () => {
-      const { unmount } = renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      const { unmount } = renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByRole('grid')).toBeInTheDocument();
       });
 
-      unmount();
+      await act(async () => {
+        unmount();
+      });
 
       // Grid should be destroyed and no errors should occur
       expect(true).toBe(true);
@@ -414,14 +485,17 @@ describe('<DataTable />', () => {
 
   describe('handleGridPreDestroy', () => {
     it('should handle grid pre-destroy event and clear timeouts', async () => {
-      const { unmount } = renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} />);
+      const { unmount } = renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} />);
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
       });
 
       // Should not throw when unmounting
-      unmount();
+      await act(async () => {
+        unmount();
+      });
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -431,7 +505,10 @@ describe('<DataTable />', () => {
 
   describe('showNoRowsOverlay', () => {
     it('should show no rows overlay after timeout when data is empty', async () => {
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="Empty table" />);
+      renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="Empty table" />,
+      );
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -447,9 +524,10 @@ describe('<DataTable />', () => {
     it('should hide overlay when data changes from empty to populated', async () => {
       const { rerender } = renderWithTheme(
         <ThemeProvider name="test">
-          <DataTable columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="Empty table" />
+          <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} noRowsMessage="Empty table" />
         </ThemeProvider>,
       );
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
@@ -459,11 +537,19 @@ describe('<DataTable />', () => {
         expect(screen.getByText('Empty table')).toBeInTheDocument();
       });
 
-      rerender(
-        <ThemeProvider name="test">
-          <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} noRowsMessage="Empty table" />
-        </ThemeProvider>,
-      );
+      await act(async () => {
+        rerender(
+          <ThemeProvider name="test">
+            <DataTable
+              {...defaultTestProps}
+              columnDefs={mockColumnDefs}
+              rowData={mockRowData}
+              noRowsMessage="Empty table"
+            />
+          </ThemeProvider>,
+        );
+      });
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.queryByText('Empty table')).not.toBeInTheDocument();
@@ -476,13 +562,23 @@ describe('<DataTable />', () => {
       const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
       const onCellClicked = vi.fn();
 
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} onCellClicked={onCellClicked} />);
+      renderWithTheme(
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          onCellClicked={onCellClicked}
+        />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByText('Item 1')).toBeInTheDocument();
       });
 
-      await user.click(screen.getByText('Item 1'));
+      await act(async () => {
+        await user.click(screen.getByText('Item 1'));
+      });
 
       await waitFor(() => {
         expect(onCellClicked).toHaveBeenCalled();
@@ -492,21 +588,29 @@ describe('<DataTable />', () => {
 
   describe('onColumnResized', () => {
     it('should handle column resize events', async () => {
-      let gridApi: GridReadyEvent['api'] | null = null;
+      let gridApi: GridApi | null = null;
       const onGridReadyEvent = vi.fn((event: GridReadyEvent) => {
         gridApi = event.api;
       });
 
       renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={mockRowData} onGridReadyEvent={onGridReadyEvent} />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          onGridReadyEvent={onGridReadyEvent}
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(gridApi).not.toBeNull();
       });
 
       // Simulate column resize by setting column width
-      gridApi!.setColumnWidths([{ key: 'id', newWidth: 200 }]);
+      await act(async () => {
+        gridApi!.setColumnWidths([{ key: 'id', newWidth: 200 }]);
+      });
 
       await waitFor(() => {
         expect(true).toBe(true);
@@ -521,7 +625,10 @@ describe('<DataTable />', () => {
         animateRows: false,
       };
 
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} gridOptions={gridOptions} />);
+      renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} gridOptions={gridOptions} />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByRole('grid')).toBeInTheDocument();
@@ -536,7 +643,15 @@ describe('<DataTable />', () => {
         resizable: true,
       };
 
-      renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} defaultColDef={defaultColDef} />);
+      renderWithTheme(
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={mockRowData}
+          defaultColDef={defaultColDef}
+        />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(screen.getByRole('grid')).toBeInTheDocument();
@@ -546,7 +661,10 @@ describe('<DataTable />', () => {
 
   describe('Theme handling', () => {
     it('should render with light theme by default', async () => {
-      const { container } = renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={mockRowData} />);
+      const { container } = renderWithTheme(
+        <DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={mockRowData} />,
+      );
+      await waitForGridReady();
 
       await waitFor(() => {
         const wrapper = container.querySelector('.ag-theme-quartz');
@@ -559,14 +677,20 @@ describe('<DataTable />', () => {
     it('should clone row data to prevent mutation', async () => {
       const originalData = [{ id: '1', name: 'Test', value: 100 }];
 
-      let gridApi: GridReadyEvent['api'] | null = null;
+      let gridApi: GridApi | null = null;
       const onGridReadyEvent = vi.fn((event: GridReadyEvent) => {
         gridApi = event.api;
       });
 
       renderWithTheme(
-        <DataTable columnDefs={mockColumnDefs} rowData={originalData} onGridReadyEvent={onGridReadyEvent} />,
+        <DataTable
+          {...defaultTestProps}
+          columnDefs={mockColumnDefs}
+          rowData={originalData}
+          onGridReadyEvent={onGridReadyEvent}
+        />,
       );
+      await waitForGridReady();
 
       await waitFor(() => {
         expect(gridApi).not.toBeNull();
@@ -585,13 +709,16 @@ describe('<DataTable />', () => {
     it('should clean up timeouts on unmount', async () => {
       const clearTimeoutSpy = vi.spyOn(window, 'clearTimeout');
 
-      const { unmount } = renderWithTheme(<DataTable columnDefs={mockColumnDefs} rowData={[]} />);
+      const { unmount } = renderWithTheme(<DataTable {...defaultTestProps} columnDefs={mockColumnDefs} rowData={[]} />);
+      await waitForGridReady();
 
       await act(async () => {
         vi.advanceTimersByTime(100);
       });
 
-      unmount();
+      await act(async () => {
+        unmount();
+      });
 
       expect(clearTimeoutSpy).toHaveBeenCalled();
       clearTimeoutSpy.mockRestore();
