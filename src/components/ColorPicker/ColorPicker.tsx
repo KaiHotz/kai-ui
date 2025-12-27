@@ -4,12 +4,12 @@ import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import cx from 'clsx';
 import { ColorResult, GithubPicker as Palette, SketchPicker } from 'react-color';
 
+import { useClickOutside } from '../../hooks';
+import { TBasicSizes } from '../../types';
 import { Button } from '../Button';
 import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { colors } from './colors';
-import { useClickOutside } from '../../hooks';
-
 import './ColorPicker.scss';
 
 export interface IColorPickerProps {
@@ -24,7 +24,7 @@ export interface IColorPickerProps {
   disabled?: boolean;
   required?: boolean;
   reserveSpaceForError?: boolean;
-  small?: boolean;
+  size?: TBasicSizes;
   onChange: (color: ColorResult) => void;
 }
 
@@ -42,7 +42,7 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
   required,
   reserveSpaceForError,
   onChange,
-  small,
+  size = 'medium',
 }) => {
   const isPalette = variant === 'palette';
   const coverRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
@@ -84,17 +84,16 @@ export const ColorPicker: FC<PropsWithChildren<IColorPickerProps>> = ({
 
   return (
     <div
-      className={cx('ui-color-picker', {
-        'ui-color-picker--small': small,
+      className={cx('ui-color-picker', `ui-color-picker--${size}`, {
         'ui-color-picker--error': errorMsg,
         'ui-color-picker--disabled': disabled,
       })}
     >
-      <Label text={label} required={required} small={small} position={labelPosition} endAdornment={labelEndAdornment}>
+      <Label text={label} required={required} size={size} position={labelPosition} endAdornment={labelEndAdornment}>
         <Button
           type="button"
           variant="tertiary"
-          small={small}
+          size={size}
           onClick={handleShowPicker}
           disabled={disabled}
           icon={icon}

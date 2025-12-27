@@ -1,7 +1,7 @@
 {
   "name": "kai-ui",
   "private": true,
-  "version": "5.2.2",
+  "version": "6.0.0",
   "description": "Design system bundled with Vite to ES6 Modules and Storybook",
   "author": "Kai Hotz",
   "license": "MIT",

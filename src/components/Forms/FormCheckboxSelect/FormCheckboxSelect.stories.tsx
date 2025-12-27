@@ -51,7 +51,7 @@ const meta: Meta<typeof FormCheckboxSelect> = {
     labelEndAdornment: 'none',
     placeholder: '',
     hintText: '',
-    small: false,
+    size: 'medium',
     required: false,
     disabled: false,
     isCreatable: false,

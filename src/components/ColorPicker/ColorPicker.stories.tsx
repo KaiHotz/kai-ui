@@ -61,7 +61,7 @@ export const Default: Story = {
     disabled: false,
     required: false,
     reserveSpaceForError: false,
-    small: false,
+    size: 'medium',
     children: 'click to change color',
   },
 };

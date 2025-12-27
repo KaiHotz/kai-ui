@@ -2,6 +2,7 @@ import { FC, useCallback } from 'react';
 import cx from 'clsx';
 import { FaAngleLeft, FaAngleRight, FaAnglesLeft, FaAnglesRight } from 'react-icons/fa6';
 
+import { TBasicSizes } from '../../types';
 import { PaginationBtn } from './PaginationBtn';
 import './Pagination.scss';
 
@@ -10,19 +11,19 @@ export interface IPaginationProps {
   pages: number;
   onChange: (page: number) => void;
   fullPagination?: boolean;
-  small?: boolean;
   testId?: string;
+  size?: TBasicSizes;
 }
 
 export const Pagination: FC<IPaginationProps> = ({
   current = 1,
   pages,
   onChange,
-  small,
   fullPagination = false,
+  size = 'medium',
   testId = 'ui-pagination',
 }) => {
-  const iconSIze = small ? 14 : 16;
+  const iconSize = size === 'small' ? 14 : size === 'medium' ? 16 : 18;
 
   const setCurrentPage = useCallback(
     (page: number) => {
@@ -55,12 +56,12 @@ export const Pagination: FC<IPaginationProps> = ({
   const isDisabledRightIcons = current + 1 === Math.max(1, pages);
 
   return (
-    <div className={cx('ui-pagination', { 'ui-pagination--small': small })} data-testid={testId}>
+    <div className={cx('ui-pagination', `ui-pagination--${size}`)} data-testid={testId}>
       {fullPagination && (
         <PaginationBtn
           icon={
             <FaAnglesLeft
-              size={iconSIze}
+              size={iconSize}
               className={cx('ui-pagination__icon', { 'ui-pagination__icon--disabled': isDisabledLeftIcons })}
             />
           }
@@ -73,7 +74,7 @@ export const Pagination: FC<IPaginationProps> = ({
       <PaginationBtn
         icon={
           <FaAngleLeft
-            size={iconSIze}
+            size={iconSize}
             className={cx('ui-pagination__icon', { 'ui-pagination__icon--disabled': isDisabledLeftIcons })}
           />
         }
@@ -93,7 +94,7 @@ export const Pagination: FC<IPaginationProps> = ({
       <PaginationBtn
         icon={
           <FaAngleRight
-            size={iconSIze}
+            size={iconSize}
             className={cx('ui-pagination__icon', { 'ui-pagination__icon--disabled': isDisabledRightIcons })}
           />
         }
@@ -106,7 +107,7 @@ export const Pagination: FC<IPaginationProps> = ({
         <PaginationBtn
           icon={
             <FaAnglesRight
-              size={iconSIze}
+              size={iconSize}
               className={cx('ui-pagination__icon', { 'ui-pagination__icon--disabled': isDisabledRightIcons })}
             />
           }

@@ -4,6 +4,7 @@ import { ActionMeta, GroupBase, Props as ReactSelectProps, SingleValue } from 'r
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import noop from 'lodash/noop';
 
+import { TBasicSizes } from '../../../types';
 import { ILabelProps } from '../../Label';
 import { AsyncSelect, ISelectOption, Select } from '../../Select';
 
@@ -15,7 +16,7 @@ export interface IFormSelectFieldError extends FieldError {
 export interface IFormSelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
   extends ReactSelectProps<OptionType, IsMulti>, AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
   name: string;
-  small?: boolean;
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];
@@ -43,7 +44,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
   onChange = noop,
   placeholder,
   selectRef,
-  small,
+  size = 'medium',
   ...rest
 }: IFormSelectProps<OptionType>) => {
   const { control, setError, resetField, getFieldState } = useFormContext();
@@ -91,7 +92,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}
       required={required}
-      small={small}
+      size={size}
     />
   ) : (
     <Select
@@ -104,7 +105,7 @@ export const FormSelect = <OptionType extends ISelectOption>({
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}
       required={required}
-      small={small}
+      size={size}
     />
   );
 };

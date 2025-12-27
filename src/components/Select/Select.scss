@@ -44,6 +44,18 @@
       padding: 4px 8px;
       border-radius: 4px;
     }
+    &--medium {
+      height: 34px;
+      font-size: 15px;
+      padding: 4px 10px;
+      border-radius: 5px;
+    }
+    &--large {
+      height: 42px;
+      font-size: 16px;
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
     &--disabled {
       background-color: var(--green-6);
     }

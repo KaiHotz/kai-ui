@@ -38,6 +38,7 @@ export const Default = {
   args: {
     text: 'Label text',
     position: 'top',
+    size: 'medium',
     children: <div>Children</div>,
     disabled: false,
     required: false,

@@ -36,17 +36,13 @@
   }
 
   &__wrapper {
-    height: 42px;
     display: flex;
     align-items: center;
-    column-gap: 8px;
     box-sizing: border-box;
     background-color: transparent;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     color: var(--emphasis-primary);
-    font-size: 16px;
-    padding: 5px 8px;
     &:focus-within {
       background-color: var(--positive);
     }
@@ -82,7 +78,20 @@
     &--small {
       height: 26px;
       font-size: 14px;
-      padding: 4px 6px 4px 8px;
+      padding: 3px 6px 4px 8px;
+      column-gap: 4px;
+    }
+    &--medium {
+      height: 34px;
+      font-size: 15px;
+      padding: 2px 7px 4px 8px;
+      column-gap: 6px;
+    }
+    &--large {
+      height: 42px;
+      font-size: 16px;
+      padding: 3px 8px 5px 10px;
+      column-gap: 8px;
     }
   }
 

@@ -60,6 +60,7 @@ export const Default: Story = {
   args: {
     variant: undefined,
     labelPosition: 'left',
+    size: 'medium',
     hintText: '',
     disabled: false,
     isInline: false,

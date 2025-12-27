@@ -3,6 +3,7 @@ import { ActionMeta, Props as ReactSelectProps, SingleValue } from 'react-select
 import { FieldError, useController, useFormContext } from 'react-hook-form';
 import noop from 'lodash/noop';
 
+import { TBasicSizes } from '../../../types';
 import { ILabelProps } from '../../Label';
 import { IFormSelectFieldError } from '../FormSelect';
 import { CheckboxSelect, ISelectOption } from '../../Select';
@@ -12,7 +13,7 @@ export interface IFormCheckboxSelectProps<
   IsMulti extends boolean = false,
 > extends ReactSelectProps<OptionType, IsMulti> {
   name: string;
-  small?: boolean;
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];
@@ -38,7 +39,7 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
   onChange = noop,
   placeholder,
   selectRef,
-  small,
+  size = 'medium',
   ...rest
 }: IFormCheckboxSelectProps<OptionType>) => {
   const { control, setError, resetField, getFieldState } = useFormContext();
@@ -84,7 +85,7 @@ export const FormCheckboxSelect = <OptionType extends ISelectOption>({
       reserveSpaceForError={reserveSpaceForError}
       placeholder={placeholder}
       required={required}
-      small={small}
+      size={size}
     />
   );
 };

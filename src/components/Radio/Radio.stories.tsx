@@ -47,7 +47,7 @@ export const Default: Story = {
     errorMsg: '',
     disabled: false,
     isInline: false,
-    small: false,
+    size: 'medium',
     reserveSpaceForError: false,
   },
 };

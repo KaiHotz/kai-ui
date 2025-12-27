@@ -3,18 +3,18 @@ import Select, { components, Props as ReactSelectProps } from 'react-select';
 import cx from 'clsx';
 import omit from 'lodash/omit';
 
+import { TBasicSizes } from '../../types';
 import { ISelectOption } from './types';
 import { Hint } from '../Hint';
 import { ILabelProps, Label } from '../Label';
 import { useCommonProps } from './useCommonProps';
-
 import './Select.scss';
 
 export interface ICheckboxSelectProps<
   OptionType extends ISelectOption,
   IsMulti extends boolean = false,
 > extends ReactSelectProps<OptionType, IsMulti> {
-  small?: boolean;
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ReactNode;
@@ -49,7 +49,7 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
   isValid,
   disabled,
   required,
-  small,
+  size = 'medium',
   ...rest
 }: ICheckboxSelectProps<OptionType>) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
@@ -61,7 +61,7 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
     placeholder: placeholderText,
     onChange,
     options,
-    small,
+    size,
     ...rest,
   });
 
@@ -74,12 +74,11 @@ export const CheckboxSelect = <OptionType extends ISelectOption>({
         disabled={disabled}
         position={labelPosition}
         endAdornment={labelEndAdornment}
-        small={small}
+        size={size}
         className="ui-select__label"
       >
         <div
-          className={cx(`ui-select__container `, {
-            'ui-select__container--small': small,
+          className={cx(`ui-select__container `, `ui-select__container--${size}`, {
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
             'ui-select__container--success': isValid && !errorMsg,

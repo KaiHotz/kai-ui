@@ -1,11 +1,12 @@
 import { Children, FC, InputHTMLAttributes, PropsWithChildren, ReactNode } from 'react';
 import cx from 'clsx';
 
+import { TBasicSizes } from '../../types';
 import { Hint } from '../Hint';
 import { RadioOptionContext } from './context';
 import './Radio.scss';
 
-export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface IRadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   selected?: string | number;
   errorMsg?: ReactNode;
   hintText?: string;
@@ -13,7 +14,7 @@ export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   labelPosition?: 'left' | 'right';
   variant?: 'text';
   isInline?: boolean;
-  small?: boolean;
+  size?: TBasicSizes;
 }
 
 export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
@@ -27,7 +28,7 @@ export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
   selected,
   isInline,
   variant,
-  small,
+  size = 'medium',
   ...rest
 }) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
@@ -35,15 +36,14 @@ export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
   return (
     <>
       <div
-        className={cx('ui-radio', {
+        className={cx('ui-radio', `ui-radio--${size}`, {
           'ui-radio--inline': isInline,
-          'ui-radio--small': small,
         })}
       >
         {Children.map(children, (child) => {
           return (
             <RadioOptionContext
-              value={{ onChange, disabled, selected, labelPosition, variant, isInline, small, ...rest }}
+              value={{ onChange, disabled, selected, labelPosition, variant, isInline, size, ...rest }}
             >
               {child}
             </RadioOptionContext>

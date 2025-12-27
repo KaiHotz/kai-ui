@@ -5,13 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 56px;
-  height: 56px;
   border-radius: 50%;
   overflow: hidden;
   color: var(--white);
   font-family: var(--font-primary);
-  font-size: 20px;
   font-weight: 700;
 
   &__img {
@@ -51,15 +48,21 @@
     }
   }
 
+  &--small {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
   &--medium {
     width: 32px;
     height: 32px;
     font-size: 12px;
   }
 
-  &--small {
-    width: 26px;
-    height: 26px;
-    font-size: 12px;
+  &--large {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
   }
 }

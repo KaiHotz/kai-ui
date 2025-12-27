@@ -82,7 +82,7 @@ export default {
     startAdornment: 'none',
     endAdornment: 'none',
     required: false,
-    small: false,
+    size: 'medium',
     reserveSpaceForError: false,
     hintText: '',
     errorMsg: '',

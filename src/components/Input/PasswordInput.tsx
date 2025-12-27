@@ -14,18 +14,19 @@ export const PasswordInput: FC<IPasswordInputProps> = ({
   endAdornment,
   passwordToggle,
   passwordToggleTooltip,
-  small,
+  size,
   ref,
   ...rest
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = useCallback(() => setShowPassword((prev) => !prev), []);
-  const iconSize = small ? 14 : 18;
+  const iconSize = size === 'small' ? 14 : size === 'medium' ? 16 : 18;
 
   return (
     <Input
       ref={ref}
       {...rest}
+      size={size}
       type={showPassword ? 'text' : 'password'}
       endAdornment={
         passwordToggle ? (
@@ -34,6 +35,7 @@ export const PasswordInput: FC<IPasswordInputProps> = ({
             {passwordToggle && (
               <Button
                 variant="ghost"
+                size={size}
                 title={passwordToggleTooltip}
                 icon={showPassword ? <FaEye size={iconSize} /> : <FaEyeSlash size={iconSize} />}
                 onClick={toggleShowPassword}

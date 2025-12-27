@@ -33,7 +33,7 @@ const meta: Meta<typeof FormPasswordInput> = {
     labelEndAdornment: 'none',
     startAdornment: 'none',
     endAdornment: 'none',
-    small: false,
+    size: 'medium',
     disabled: false,
     required: false,
     placeholder: 'value',

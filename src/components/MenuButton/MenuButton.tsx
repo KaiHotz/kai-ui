@@ -11,7 +11,7 @@ interface MenuButtonProps extends IButtonProps {
   items: MenuItemProps[];
 }
 
-export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', items, ...rest }) => {
+export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', items, size = 'medium', ...rest }) => {
   const menuRef = useRef<HTMLDivElement>(undefined as unknown as HTMLDivElement);
   const [isOpen, setIsOpen] = useState(false);
   const { refs, floatingStyles } = useFloating({
@@ -38,7 +38,7 @@ export const MenuButton: FC<MenuButtonProps> = ({ children, variant = 'ghost', i
     <>
       <Button
         variant={variant}
-        small
+        size={size}
         icon={<FaChevronDown />}
         iconPosition="right"
         {...rest}

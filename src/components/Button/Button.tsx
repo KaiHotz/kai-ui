@@ -1,12 +1,14 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 import cx from 'clsx';
+
+import { TBasicSizes } from '../../types';
 import './Button.scss';
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   square?: boolean;
   iconPosition?: 'left' | 'right';
-  small?: boolean;
+  size?: TBasicSizes;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger';
   testId?: string;
 }
@@ -15,7 +17,7 @@ export const Button: FC<IButtonProps> = ({
   icon,
   square,
   iconPosition = 'left',
-  small,
+  size = 'medium',
   type = 'button',
   disabled,
   children,
@@ -27,9 +29,7 @@ export const Button: FC<IButtonProps> = ({
   return (
     <button
       {...rest}
-      className={cx('ui-btn', {
-        [`ui-btn--${variant}`]: variant,
-        'ui-btn--small': small,
+      className={cx('ui-btn', `ui-btn--${size}`, `ui-btn--${variant}`, {
         'ui-btn--square': square,
         'ui-btn--icon': !!icon && !children,
         'ui-btn--icon-text-left': !!icon && children,

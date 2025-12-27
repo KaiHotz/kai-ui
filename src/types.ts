@@ -3,3 +3,5 @@ export type TNestedKeyOf<ObjectType extends object> = {
     ? `${Key}` | `${Key}.${TNestedKeyOf<ObjectType[Key]>}`
     : `${Key}`;
 }[keyof ObjectType & (string | number)];
+
+export type TBasicSizes = 'small' | 'medium' | 'large';

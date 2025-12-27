@@ -64,6 +64,7 @@ export const Default: Story = {
     );
   },
   args: {
+    inputSize: 'medium',
     label: '',
     labelEndAdornment: 'none',
     labelPosition: 'top',

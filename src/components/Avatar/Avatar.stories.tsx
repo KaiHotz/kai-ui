@@ -28,17 +28,6 @@ const meta: Meta<typeof Avatar> = {
         },
       },
     },
-    size: {
-      options: [undefined, 'medium', 'small'],
-      control: {
-        type: 'radio',
-        labels: {
-          undefined: 'Undefined',
-          medium: 'Medium',
-          small: 'Small',
-        },
-      },
-    },
     onClick: {
       options: Object.keys(clickHandlerOptions),
       mapping: clickHandlerOptions,
@@ -61,6 +50,7 @@ export const Default: Story = {
   },
   args: {
     userName: 'Max Musterman',
+    size: 'medium',
     onClick: undefined,
     isEditable: false,
     disabled: false,

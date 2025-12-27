@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import omit from 'lodash/omit';
+import { omit } from 'lodash';
 import cx from 'clsx';
 
 import { useRadioOption } from './context';
@@ -24,7 +24,7 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', lab
       key={value}
       className={cx('ui-radio-option', {
         'ui-radio-option--disabled': isOptionDisabled,
-        'ui-radio-option--small': optionsAttr?.small,
+        [`ui-radio-option--${optionsAttr?.size}`]: optionsAttr?.size,
         'ui-radio-option--checked': isChecked,
         'ui-radio-option--inline': optionsAttr?.isInline,
         'ui-radio-option--text': optionsAttr?.variant === 'text',
@@ -32,10 +32,10 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', lab
     >
       <Label
         className={cx('ui-radio-option__label', {
-          'ui-radio-option__label--small': optionsAttr?.small,
+          [`ui-radio-option__label--${optionsAttr?.size}`]: optionsAttr?.size,
         })}
         position={optionsAttr?.labelPosition}
-        small={optionsAttr?.small}
+        size={optionsAttr?.size}
         text={label}
         disabled={isOptionDisabled}
         endAdornment={labelEndAdornment}
@@ -47,10 +47,14 @@ export const RadioOption: FC<IRadioOptionProps> = ({ value, label = 'right', lab
             checked={isChecked}
             value={value}
             disabled={isOptionDisabled}
-            {...rest}
+            {...omit(rest, 'size')}
             type="radio"
           />
-          <span className={cx('ui-radio-option__icon', { 'ui-radio-option__icon--small': optionsAttr?.small })} />
+          <span
+            className={cx('ui-radio-option__icon', {
+              [`ui-radio-option__icon--${optionsAttr?.size}`]: optionsAttr?.size,
+            })}
+          />
         </div>
       </Label>
     </div>
