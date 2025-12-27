@@ -16,6 +16,7 @@ export default mergeConfig(
         {
           extends: true,
           test: {
+            name: 'unit',
             globals: true,
             exclude: ['node_modules'],
             environment: 'jsdom',
