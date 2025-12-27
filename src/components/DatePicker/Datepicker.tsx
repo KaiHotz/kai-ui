@@ -53,7 +53,7 @@ export const Datepicker: FC<TDatepickerProps> = ({
   const shouldModifyPopperOffeset = reserveSpaceForError || Boolean(hintText) || Boolean(errorMsg);
   const iconSize = inputSize === 'small' ? 14 : inputSize === 'medium' ? 16 : 18;
 
-  const datePickerProps: DatePickerProps = {
+  const datePickerProps = {
     ...rest,
     selectsRange: rest.selectsRange,
     selectsMultiple: rest.selectsMultiple,
@@ -67,7 +67,6 @@ export const Datepicker: FC<TDatepickerProps> = ({
     required,
     dropdownMode,
     autoComplete,
-    isOpen: true,
     popperModifiers: shouldModifyPopperOffeset
       ? [
           {
