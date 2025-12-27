@@ -22,7 +22,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
-  centerOptinons?: boolean;
+  centerOptions?: boolean;
   isValid?: boolean;
   options: OptionType[];
 }
@@ -46,7 +46,7 @@ export const Select = <OptionType extends ISelectOption>({
   placeholder,
   options,
   size = 'medium',
-  centerOptinons,
+  centerOptions,
   ...rest
 }: ISelectProps<OptionType>) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
@@ -61,7 +61,7 @@ export const Select = <OptionType extends ISelectOption>({
     formatOptionLabel,
     options,
     size,
-    centerOptinons,
+    centerOptions,
     ...rest,
   });
 

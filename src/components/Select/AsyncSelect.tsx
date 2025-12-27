@@ -25,7 +25,7 @@ export interface IAsyncSelectProps<
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
-  centerOptinons?: boolean;
+  centerOptions?: boolean;
   labelEndAdornment?: ReactNode;
   options?: OptionType[];
 }
@@ -49,7 +49,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
   options = [],
   onChange,
   size = 'medium',
-  centerOptinons,
+  centerOptions,
   labelEndAdornment,
   ...rest
 }: IAsyncSelectProps<OptionType>) => {
@@ -64,7 +64,7 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
     placeholder: placeholderText,
     onChange,
     formatOptionLabel,
-    centerOptinons,
+    centerOptions,
     options,
     size,
     ...rest,

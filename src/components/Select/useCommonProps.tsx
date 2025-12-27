@@ -16,7 +16,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
   options,
   size,
   placeholder,
-  centerOptinons,
+  centerOptions,
   ...rest
 }: ISelectProps<OptionType>): Partial<ISelectProps<OptionType> | IAsyncSelectProps<OptionType>> => {
   const { theme } = useTheme();
@@ -106,7 +106,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         menuList: (style) => ({
           ...style,
           fontFamily: mainFont,
-          textAlign: centerOptinons ? 'center' : style.textAlign,
+          textAlign: centerOptions ? 'center' : style.textAlign,
           backgroundColor: colors.appBackGroundColor,
           border: `1px solid ${colors.borderColor}`,
           boxShadow: colors.boxShadow,
@@ -121,7 +121,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         }),
         menuPortal: (style) => ({ ...style, zIndex: 99, minWidth: '50px' }),
       },
-      ...omit(rest, ['components', 'centerOptinons']),
+      ...omit(rest, ['components', 'centerOptions']),
     };
   }, [
     disabled,
@@ -141,6 +141,6 @@ export const useCommonProps = <OptionType extends ISelectOption>({
     fontColor,
     size,
     mainFont,
-    centerOptinons,
+    centerOptions,
   ]);
 };

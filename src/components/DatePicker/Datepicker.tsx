@@ -3,6 +3,7 @@ import ReactDatepicker from 'react-datepicker';
 import type { DatePickerProps } from 'react-datepicker';
 import { FaCalendarDays } from 'react-icons/fa6';
 
+import { TBasicSizes } from '../../types';
 import { ILabelProps } from '../Label';
 import { Input } from '../Input';
 import './Datepicker.scss';
@@ -19,7 +20,7 @@ export type TDatepickerProps = {
   reserveSpaceForError?: boolean;
   dropdownMode?: 'scroll' | 'select';
   autoComplete?: 'on' | 'off';
-  inputSize?: 'small' | 'medium' | 'large';
+  inputSize?: TBasicSizes;
   isValid?: boolean;
   onChange?: (
     date: Date | Array<Date | null> | Date[] | null,
