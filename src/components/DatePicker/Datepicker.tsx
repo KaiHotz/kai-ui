@@ -67,6 +67,7 @@ export const Datepicker: FC<TDatepickerProps> = ({
     required,
     dropdownMode,
     autoComplete,
+    isOpen: true,
     popperModifiers: shouldModifyPopperOffeset
       ? [
           {
