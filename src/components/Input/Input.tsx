@@ -1,19 +1,19 @@
 import { FC, InputHTMLAttributes, ReactElement, Ref } from 'react';
 import cx from 'clsx';
 
+import { TBasicSizes } from '../../types';
 import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
-
 import './Input.scss';
 
-export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface IInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];
   hintText?: string;
   errorMsg?: string;
   hideError?: boolean;
-  small?: boolean;
+  size?: TBasicSizes;
   isValid?: boolean;
   reserveSpaceForError?: boolean;
   startAdornment?: string | ReactElement;
@@ -26,7 +26,7 @@ export const Input: FC<IInputProps> = ({
   type,
   label,
   labelPosition = 'top',
-  small,
+  size = 'medium',
   disabled,
   hintText,
   errorMsg,
@@ -53,11 +53,10 @@ export const Input: FC<IInputProps> = ({
         disabled={disabled}
         position={labelPosition}
         endAdornment={labelEndAdornment}
-        small={small}
+        size={size}
       >
         <div
-          className={cx('ui-input__wrapper', {
-            'ui-input__wrapper--small': small,
+          className={cx('ui-input__wrapper', `ui-input__wrapper--${size}`, {
             'ui-input__wrapper--error': errorMsg,
             'ui-input__wrapper--success': isValid && !errorMsg,
             'ui-input__wrapper--disabled': disabled,

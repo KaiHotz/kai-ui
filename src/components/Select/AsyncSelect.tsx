@@ -4,6 +4,7 @@ import AsyncCreatable from 'react-select/async-creatable';
 import { GroupBase } from 'react-select';
 import Async, { AsyncProps } from 'react-select/async';
 
+import { TBasicSizes } from '../../types';
 import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { useCommonProps } from './useCommonProps';
@@ -14,7 +15,7 @@ export interface IAsyncSelectProps<
   OptionType extends ISelectOption,
   IsMulti extends boolean = false,
 > extends AsyncProps<OptionType, IsMulti, GroupBase<OptionType>> {
-  small?: boolean;
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   required?: boolean;
@@ -24,7 +25,7 @@ export interface IAsyncSelectProps<
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
-  centerOptinons?: boolean;
+  centerOptions?: boolean;
   labelEndAdornment?: ReactNode;
   options?: OptionType[];
 }
@@ -47,8 +48,8 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
   formatOptionLabel,
   options = [],
   onChange,
-  small,
-  centerOptinons,
+  size = 'medium',
+  centerOptions,
   labelEndAdornment,
   ...rest
 }: IAsyncSelectProps<OptionType>) => {
@@ -63,8 +64,9 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
     placeholder: placeholderText,
     onChange,
     formatOptionLabel,
-    centerOptinons,
+    centerOptions,
     options,
+    size,
     ...rest,
   });
 
@@ -78,11 +80,10 @@ export const AsyncSelect = <OptionType extends ISelectOption>({
         position={labelPosition}
         endAdornment={labelEndAdornment}
         className="ui-select__label"
-        small={small}
+        size={size}
       >
         <div
-          className={cx(`ui-select__container `, {
-            'ui-select__container--small': small,
+          className={cx(`ui-select__container `, `ui-select__container--${size}`, {
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
             'ui-select__container--success': isValid && !errorMsg,

@@ -1,5 +1,7 @@
 import { FC, LabelHTMLAttributes, ReactNode } from 'react';
 import cx from 'clsx';
+
+import { TBasicSizes } from '../../types';
 import './Label.scss';
 
 export interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
@@ -9,7 +11,7 @@ export interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   position?: 'top' | 'bottom' | 'right' | 'left';
   endAdornment?: ReactNode;
   className?: string;
-  small?: boolean;
+  size?: TBasicSizes;
 }
 
 export const Label: FC<ILabelProps> = ({
@@ -21,7 +23,7 @@ export const Label: FC<ILabelProps> = ({
   position = 'top',
   endAdornment,
   className,
-  small,
+  size = 'medium',
   ...rest
 }) => {
   const labelText = required ? `${text}${required ? ' *' : ''}` : text;
@@ -36,8 +38,8 @@ export const Label: FC<ILabelProps> = ({
       htmlFor={htmlFor}
       className={cx(
         'ui-label',
+        `ui-label--${size}`,
         {
-          'ui-label--small': small,
           'ui-label--top': isTopPosition,
           'ui-label--right': isRightPosition,
           'ui-label--bottom': isBottomPosition,

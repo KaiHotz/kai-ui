@@ -61,10 +61,10 @@ export const Default: Story = {
     return <Switch {...args} value={inputValue} onChange={handleChange} />;
   },
   args: {
-    size: 'medium',
     label: '',
     labelPosition: 'right',
     labelEndAdornment: 'none',
+    size: 'medium',
     disabled: false,
   },
 };

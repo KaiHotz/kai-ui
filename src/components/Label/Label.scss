@@ -3,7 +3,6 @@
   width: 100%;
   position: relative;
   font-family: var(--font-primary);
-  font-size: var(--ui-label--text-font-size, 16px);
   color: var(--emphasis-primary);
 
   &__text {
@@ -34,7 +33,15 @@
     opacity: 0.4;
   }
 
-  &--small {
+  &--large {
+    font-size: var(--ui-label--text-font-size, 16px);
+  }
+
+  &--medium {
     font-size: var(--ui-label--text-font-size, 14px);
+  }
+
+  &--small {
+    font-size: var(--ui-label--text-font-size, 12px);
   }
 }

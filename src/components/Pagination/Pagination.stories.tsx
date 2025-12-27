@@ -34,8 +34,8 @@ export const Default: Story = {
     );
   },
   args: {
-    small: false,
     pages: 1000,
+    size: 'medium',
     fullPagination: false,
   },
 };

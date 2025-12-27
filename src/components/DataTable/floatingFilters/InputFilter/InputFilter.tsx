@@ -76,7 +76,7 @@ export const InputFilter: FC<InputFilterProps> = ({
           return (
             <div>
               <FormInput
-                small
+                size="small"
                 name="filter"
                 reserveSpaceForError={false}
                 hideError

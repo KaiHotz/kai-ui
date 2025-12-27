@@ -2,23 +2,23 @@ import { FC } from 'react';
 import cx from 'clsx';
 import { FaCameraRotate } from 'react-icons/fa6';
 
+import { TBasicSizes } from '../../types';
 import { getInitials } from '../../utils';
 import './Avatar.scss';
 
 interface IAvatarProps {
   userName: string | undefined;
   src?: string;
-  size?: 'medium' | 'small';
+  size?: TBasicSizes;
   onClick?: () => void;
   isEditable?: boolean;
   disabled?: boolean;
 }
 
-export const Avatar: FC<IAvatarProps> = ({ userName, src, size, onClick, isEditable, disabled }) => {
+export const Avatar: FC<IAvatarProps> = ({ userName, src, size = 'medium', onClick, isEditable, disabled }) => {
   return (
     <div
-      className={cx('ui-avatar', {
-        [`ui-avatar--${size}`]: size,
+      className={cx('ui-avatar', `ui-avatar--${size}`, {
         'ui-avatar--clickable': onClick && !disabled,
         'ui-avatar--disabled': disabled,
       })}

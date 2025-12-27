@@ -14,9 +14,9 @@ export const useCommonProps = <OptionType extends ISelectOption>({
   menuPosition,
   onChange,
   options,
-  small,
+  size,
   placeholder,
-  centerOptinons,
+  centerOptions,
   ...rest
 }: ISelectProps<OptionType>): Partial<ISelectProps<OptionType> | IAsyncSelectProps<OptionType>> => {
   const { theme } = useTheme();
@@ -37,6 +37,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
   );
 
   const fontColor = disabled ? colors.emphasisQuaternary : colors.emphasisPrimary;
+  const iconSize = size === 'small' ? 14 : size === 'medium' ? 16 : 18;
 
   return useMemo(() => {
     return {
@@ -50,12 +51,12 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         IndicatorSeparator: () => null,
         DropdownIndicator: ({ innerProps }) => (
           <div {...innerProps} className="ui-select__dropdown-indicator">
-            <FaChevronDown size={small ? 14 : 18} color={colors.emphasisTertiary} />
+            <FaChevronDown size={iconSize} color={colors.emphasisTertiary} />
           </div>
         ),
         ClearIndicator: ({ innerProps }) => (
           <div {...innerProps} className="ui-select__clear-indicator">
-            <FaXmark size={small ? 14 : 18} color={colors.emphasisTertiary} />
+            <FaXmark size={iconSize} color={colors.emphasisTertiary} />
           </div>
         ),
         ...rest?.components,
@@ -81,7 +82,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         indicatorsContainer: (style) => ({
           ...style,
           alignItems: 'center',
-          gap: small ? '6px' : '8px',
+          gap: size === 'small' ? '4px' : size === 'medium' ? '6px' : '8px',
           marginTop: 0,
           cursor: 'pointer',
         }),
@@ -105,7 +106,7 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         menuList: (style) => ({
           ...style,
           fontFamily: mainFont,
-          textAlign: centerOptinons ? 'center' : style.textAlign,
+          textAlign: centerOptions ? 'center' : style.textAlign,
           backgroundColor: colors.appBackGroundColor,
           border: `1px solid ${colors.borderColor}`,
           boxShadow: colors.boxShadow,
@@ -113,27 +114,33 @@ export const useCommonProps = <OptionType extends ISelectOption>({
         option: (style, { isFocused, isSelected }) => ({
           ...style,
           fontFamily: mainFont,
-          fontSize: small ? '14px' : style.fontSize,
-          padding: small ? '6px 8px' : style.padding,
+          fontSize: size === 'small' ? '14px' : size === 'medium' ? style.fontSize : '16px',
+          padding: size === 'small' ? '6px 8px' : size === 'medium' ? style.padding : '8px 12px',
           color: colors.emphasisPrimary,
           backgroundColor: isFocused || isSelected ? colors.emphasisQuaternary : colors.appBackGroundColor,
         }),
         menuPortal: (style) => ({ ...style, zIndex: 99, minWidth: '50px' }),
       },
-      ...omit(rest, ['components', 'centerOptinons']),
+      ...omit(rest, ['components', 'centerOptions']),
     };
   }, [
-    colors,
-    centerOptinons,
     disabled,
-    fontColor,
-    small,
-    mainFont,
     menuPlacement,
     menuPosition,
     onChange,
-    options,
     placeholder,
     rest,
+    options,
+    iconSize,
+    colors.emphasisTertiary,
+    colors.emphasisQuaternary,
+    colors.appBackGroundColor,
+    colors.borderColor,
+    colors.boxShadow,
+    colors.emphasisPrimary,
+    fontColor,
+    size,
+    mainFont,
+    centerOptions,
   ]);
 };

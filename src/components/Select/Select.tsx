@@ -3,6 +3,7 @@ import cx from 'clsx';
 import Creatable, { CreatableProps } from 'react-select/creatable';
 import SelectComp, { GroupBase, Props as ReactSelectProps } from 'react-select';
 
+import { TBasicSizes } from '../../types';
 import { ILabelProps, Label } from '../Label';
 import { Hint } from '../Hint';
 import { useCommonProps } from './useCommonProps';
@@ -11,7 +12,7 @@ import './Select.scss';
 
 export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends boolean = false>
   extends ReactSelectProps<OptionType, IsMulti>, CreatableProps<OptionType, IsMulti, GroupBase<OptionType>> {
-  small?: boolean;
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ReactNode;
@@ -21,7 +22,7 @@ export interface ISelectProps<OptionType extends ISelectOption, IsMulti extends 
   disabled?: boolean;
   reserveSpaceForError?: boolean;
   isCreatable?: boolean;
-  centerOptinons?: boolean;
+  centerOptions?: boolean;
   isValid?: boolean;
   options: OptionType[];
 }
@@ -44,8 +45,8 @@ export const Select = <OptionType extends ISelectOption>({
   formatOptionLabel,
   placeholder,
   options,
-  small,
-  centerOptinons,
+  size = 'medium',
+  centerOptions,
   ...rest
 }: ISelectProps<OptionType>) => {
   const shouldShowValidationWrapper = Boolean(reserveSpaceForError || errorMsg || hintText);
@@ -59,8 +60,8 @@ export const Select = <OptionType extends ISelectOption>({
     onChange,
     formatOptionLabel,
     options,
-    small,
-    centerOptinons,
+    size,
+    centerOptions,
     ...rest,
   });
 
@@ -73,12 +74,11 @@ export const Select = <OptionType extends ISelectOption>({
         disabled={disabled}
         position={labelPosition}
         endAdornment={labelEndAdornment}
-        small={small}
+        size={size}
         className="ui-select__label"
       >
         <div
-          className={cx(`ui-select__container `, {
-            'ui-select__container--small': small,
+          className={cx(`ui-select__container `, `ui-select__container--${size}`, {
             'ui-select__container--disabled': disabled,
             'ui-select__container--error': !!errorMsg,
             'ui-select__container--success': isValid && !errorMsg,

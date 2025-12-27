@@ -1,14 +1,15 @@
 import { ChangeEvent, FC, FocusEvent, Ref } from 'react';
 import cx from 'clsx';
 
-import './Switch.scss';
+import { TBasicSizes } from '../../types';
 import { ILabelProps, Label } from '../Label';
+import './Switch.scss';
 
 export interface ISwitchProps {
   name?: string;
   value?: boolean;
   disabled?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: TBasicSizes;
   label?: string;
   labelPosition?: ILabelProps['position'];
   labelEndAdornment?: ILabelProps['endAdornment'];

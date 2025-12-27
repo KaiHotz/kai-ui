@@ -3,6 +3,7 @@ import ReactDatepicker from 'react-datepicker';
 import type { DatePickerProps } from 'react-datepicker';
 import { FaCalendarDays } from 'react-icons/fa6';
 
+import { TBasicSizes } from '../../types';
 import { ILabelProps } from '../Label';
 import { Input } from '../Input';
 import './Datepicker.scss';
@@ -19,7 +20,7 @@ export type TDatepickerProps = {
   reserveSpaceForError?: boolean;
   dropdownMode?: 'scroll' | 'select';
   autoComplete?: 'on' | 'off';
-  inputSmall?: boolean;
+  inputSize?: TBasicSizes;
   isValid?: boolean;
   onChange?: (
     date: Date | Array<Date | null> | Date[] | null,
@@ -45,11 +46,12 @@ export const Datepicker: FC<TDatepickerProps> = ({
   autoComplete = 'off',
   showPopperArrow,
   popperModifiers,
-  inputSmall,
+  inputSize = 'medium',
   isValid,
   ...rest
 }) => {
   const shouldModifyPopperOffeset = reserveSpaceForError || Boolean(hintText) || Boolean(errorMsg);
+  const iconSize = inputSize === 'small' ? 14 : inputSize === 'medium' ? 16 : 18;
 
   const datePickerProps: DatePickerProps = {
     ...rest,
@@ -85,8 +87,8 @@ export const Datepicker: FC<TDatepickerProps> = ({
         errorMsg={errorMsg}
         hintText={hintText}
         reserveSpaceForError={reserveSpaceForError}
-        small={inputSmall}
-        endAdornment={<FaCalendarDays size={inputSmall ? 14 : 18} />}
+        size={inputSize}
+        endAdornment={<FaCalendarDays size={iconSize} />}
         isValid={isValid}
       />
     ),

@@ -36,7 +36,7 @@ const meta: Meta<typeof FormInput> = {
     labelEndAdornment: 'none',
     startAdornment: 'none',
     endAdornment: 'none',
-    small: false,
+    size: 'medium',
     disabled: false,
     required: false,
     placeholder: 'value',

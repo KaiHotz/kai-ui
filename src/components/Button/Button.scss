@@ -2,19 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 8px;
-  height: 32px;
   width: var(--ui-btn--width, auto);
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
-  border: 2px solid transparent;
   font-family: var(--d-din);
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 16px;
   outline: 0;
-  padding: 0 16px;
   color: var(--emphasis-primary);
   &:hover {
     background-color: var(--emphasis-tertiary);
@@ -119,6 +112,7 @@
     padding: 0 6px;
     font-weight: 600;
     font-size: 12px;
+    border: 1px solid transparent;
     &.ui-btn--square {
       min-width: 20px;
       border-radius: 6px;
@@ -128,19 +122,51 @@
     }
   }
 
-  &--icon {
-    width: 32px;
-    border-radius: 8px;
-    column-gap: 6px;
-    padding: 0;
-    svg {
-      font-weight: 700;
+  &--medium {
+    height: 32px;
+    column-gap: 8px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0 16px;
+    border: 2px solid transparent;
+    &.ui-btn--square {
+      min-width: 32px;
+      border-radius: 8px;
+      padding: 0 5px;
+    }
+    &.ui-btn--icon {
+      width: 32px;
+      border-radius: 8px;
+      column-gap: 6px;
+      padding: 0;
+      svg {
+        font-weight: 700;
+      }
     }
   }
 
-  &--square {
-    min-width: 32px;
-    border-radius: 8px;
-    padding: 0 5px;
+  &--large {
+    height: 40px;
+    column-gap: 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0 20px;
+    border: 2px solid transparent;
+    &.ui-btn--square {
+      min-width: 40px;
+      border-radius: 10px;
+      padding: 0 7px;
+    }
+    &.ui-btn--icon {
+      width: 40px;
+      border-radius: 10px;
+      column-gap: 8px;
+      padding: 0;
+      svg {
+        font-weight: 700;
+      }
+    }
   }
 }

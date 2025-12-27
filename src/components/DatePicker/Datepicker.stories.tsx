@@ -35,6 +35,7 @@ const meta: Meta<typeof Datepicker> = {
     },
   },
   args: {
+    inputSize: 'medium',
     label: '',
     labelPosition: 'top',
     labelEndAdornment: 'none',

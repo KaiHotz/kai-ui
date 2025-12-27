@@ -22,7 +22,7 @@ export default {
     iconPosition: 'left',
     variant: 'primary',
     type: 'button',
-    small: false,
+    size: 'medium',
     square: false,
     disabled: false,
   },
