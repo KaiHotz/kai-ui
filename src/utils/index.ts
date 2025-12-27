@@ -4,6 +4,7 @@ export * from './clamb';
 export * from './cleanObj';
 export * from './countries';
 export * from './getInitials';
+export * from './getTextWidth';
 export * from './heatmapHelpers';
 export * from './highlightText';
 export * from './isEditableElement';
