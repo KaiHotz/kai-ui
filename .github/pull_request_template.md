@@ -1,6 +1,7 @@
-# Fixes/Implements [JIRA-TASK-ID](https://task.link)
+# Fixes/Implements [TASK-ID](https://task.link)
 
 ## Checklist
+
 - [ ] !Important I Bumped up the version number in package.json file (required)
 - [ ] The PR title follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) and includes a Jira ticket reference or a helpful description.
 - [ ] All styles are aligned with the styles from Task figma file
@@ -11,6 +12,7 @@
 - [ ] I have added screenshots / gifs / videos.
 
 ## Description
+
 ### What was done in this pr?
 
 `<Content goes here.>`
