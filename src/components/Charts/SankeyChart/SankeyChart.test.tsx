@@ -10,7 +10,7 @@ let lastHighchartsOptions: Highcharts.Options | null = null;
 
 // Mock HighchartsReact
 vi.mock('highcharts-react-official', () => ({
-  default: vi.fn(({ options, containerProps, callback }) => {
+  default: ({ options, containerProps, callback }: any) => {
     // Store options for assertions
     lastHighchartsOptions = options;
 
@@ -24,7 +24,32 @@ vi.mock('highcharts-react-official', () => ({
         {options?.series?.length > 0 && <div data-testid="chart-series">{options.series.length} series</div>}
       </div>
     );
-  }),
+  },
+}));
+
+// Mock highcharts to avoid CSS.supports error in jsdom
+vi.mock('highcharts', () => ({
+  default: {},
+  merge: (...args: any[]) => {
+    // Deep merge implementation similar to Highcharts merge
+    const deepMerge = (target: any, source: any): any => {
+      if (!source) {
+        return target;
+      }
+      const output = { ...target };
+      for (const key of Object.keys(source)) {
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+          output[key] = deepMerge(target[key] || {}, source[key]);
+        } else {
+          output[key] = source[key];
+        }
+      }
+
+      return output;
+    };
+
+    return args.reduce((acc, curr) => deepMerge(acc, curr), {});
+  },
 }));
 
 const mockData: ISankeyChartDataAxis[] = [

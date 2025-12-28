@@ -1,9 +1,36 @@
 import { render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import Highcharts from 'highcharts';
+import type Highcharts from 'highcharts';
 
 import { BridgeChart } from './BridgeChart';
 import type { IBridgeChartSeries } from './BridgeChart';
+
+// Mock highcharts to avoid CSS.supports error in jsdom
+vi.mock('highcharts', () => ({
+  default: {},
+  merge: (...args: Highcharts.Options[]) => {
+    // Deep merge implementation similar to Highcharts merge
+    const deepMerge = (target: Highcharts.Options, source: Highcharts.Options): Highcharts.Options => {
+      if (!source) {
+        return target;
+      }
+      const output = { ...target } as Record<string, unknown>;
+      for (const key of Object.keys(source)) {
+        const sourceVal = (source as Record<string, unknown>)[key];
+        const targetVal = (target as Record<string, unknown>)[key];
+        if (sourceVal && typeof sourceVal === 'object' && !Array.isArray(sourceVal)) {
+          output[key] = deepMerge((targetVal || {}) as Highcharts.Options, sourceVal as Highcharts.Options);
+        } else {
+          output[key] = sourceVal;
+        }
+      }
+
+      return output as Highcharts.Options;
+    };
+
+    return args.reduce((acc, curr) => deepMerge(acc, curr), {} as Highcharts.Options);
+  },
+}));
 
 // Mock HighchartsReact
 vi.mock('highcharts-react-official', () => ({

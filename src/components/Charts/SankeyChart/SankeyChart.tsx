@@ -1,6 +1,8 @@
 import { type FC, type RefObject, useMemo } from 'react';
+import cx from 'clsx';
 import Highcharts, { type ColorType, merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import './SankeyChart.scss';
 
 export interface ISankeyChartSeriesNode {
   id?: string;
@@ -28,7 +30,7 @@ export interface ISankeyChartProps {
 export const SankeyChart: FC<ISankeyChartProps> = ({ ref, data, containerProps, options, callback, className }) => {
   const memoizedContainerProps = useMemo(
     () => ({
-      className,
+      className: cx('ui-sankey-chart', className),
       ...containerProps,
     }),
     [className, containerProps],
