@@ -40,15 +40,11 @@ export const Radio: FC<PropsWithChildren<IRadioProps>> = ({
           'ui-radio--inline': isInline,
         })}
       >
-        {Children.map(children, (child) => {
-          return (
-            <RadioOptionContext
-              value={{ onChange, disabled, selected, labelPosition, variant, isInline, size, ...rest }}
-            >
-              {child}
-            </RadioOptionContext>
-          );
-        })}
+        <RadioOptionContext value={{ onChange, disabled, selected, labelPosition, variant, isInline, size, ...rest }}>
+          {Children.map(children, (child) => {
+            return child;
+          })}
+        </RadioOptionContext>
       </div>
       {shouldShowValidationWrapper && (
         <div className="ui-radio__validation-wrapper">
