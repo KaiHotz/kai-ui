@@ -3,7 +3,7 @@ import cx from 'clsx';
 import Highcharts, { merge } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-import { TChartSeriesTypes } from '../types';
+import { TChartSeriesTypes } from './types';
 import './Chart.scss';
 
 export interface IChartDataAxis {
