@@ -1,0 +1,10 @@
+.ui-bridge-chart {
+  height: 100%;
+  .highcharts-container {
+    font-family: var(--font-primary);
+  }
+
+  .highcharts-axis-labels {
+    fill: var(--emphasis-primary);
+  }
+}
