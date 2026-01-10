@@ -31,6 +31,15 @@ export default defineConfig(
       'jsx-a11y': jsxA11y,
       prettier: eslintPluginPrettier,
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.app.json',
+        },
+        node: true,
+      },
+    },
     rules: {
       ...reactHooks.configs.recommended.rules,
       'prettier/prettier': 'error',
