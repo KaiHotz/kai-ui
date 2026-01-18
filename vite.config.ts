@@ -5,8 +5,6 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
-import deletePlugin from 'rollup-plugin-delete';
-import terser from '@rollup/plugin-terser';
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
@@ -48,12 +46,6 @@ export default defineConfig({
         icon: true,
       },
     }),
-
-    // Clean up unwanted files after build
-    deletePlugin({
-      targets: ['dist/temp'],
-      hook: 'writeBundle',
-    }),
   ],
 
   resolve: {
@@ -69,6 +61,18 @@ export default defineConfig({
     sourcemap: false,
     cssCodeSplit: false,
     reportCompressedSize: false,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        passes: 2,
+      },
+      mangle: true,
+      format: {
+        comments: false,
+      },
+    },
 
     lib: {
       entry: {
@@ -81,7 +85,6 @@ export default defineConfig({
 
     rollupOptions: {
       external: [...peerDeps, ...deps, 'react/jsx-runtime'],
-
       output: {
         globals: {
           react: 'React',
@@ -90,21 +93,6 @@ export default defineConfig({
         preserveModules: false,
         exports: 'named',
         inlineDynamicImports: false,
-
-        // Minification with terser
-        plugins: [
-          terser({
-            compress: {
-              drop_console: true,
-              drop_debugger: true,
-              passes: 2,
-            },
-            mangle: true,
-            format: {
-              comments: false,
-            },
-          }),
-        ],
       },
     },
   },
